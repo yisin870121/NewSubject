@@ -7,144 +7,141 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.UI;
 using Subject.Models;
 
 namespace Subject.Controllers
 {
-    public class UsersController : Controller
+    public class SuggestsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd = new SetData();
-
-        // GET: Users
+        // GET: Suggests
         public ActionResult Index()
         {
-            return View(db.Users.ToList());
+            var suggest = db.Suggest.Include(s => s.Adm).Include(s => s.Users);
+            return View(suggest.ToList());
         }
 
-        // GET: Users/Details/5
+        // GET: Suggests/Details/5
         public ActionResult _Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Suggest suggest = db.Suggest.Find(id);
+            if (suggest == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(users);
+            return PartialView(suggest);
         }
 
-        // GET: Users/Create
+        // GET: Suggests/Create
         public ActionResult _Create()
         {
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
             return PartialView();
         }
 
-        // POST: Users/Create
+        // POST: Suggests/Create
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Users users)
+        public ActionResult Create(Suggest suggest)
         {
             if (ModelState.IsValid)
             {
-                string sql = "insert into Users(UserAccount,UserPassword,UserName,Sex,Birthday)" +
-                "values(@UserAccount,@UserPassword,@UserName,@Sex,@Birthday)";
+                string sql = "insert into Suggest(UserNumber,Suggest,AdmNumber)values(@UserNumber,@Suggest,@AdmNumber)";
 
                 List<SqlParameter> list = new List<SqlParameter>
                 {
-                    new SqlParameter("UserAccount",users.UserAccount),
-                    new SqlParameter("UserPassword",users.UserPassword),
-                    new SqlParameter("UserName",users.UserName),
-                    new SqlParameter("Sex",users.Sex),
-                    new SqlParameter("Birthday",users.Birthday)
+                    new SqlParameter("UserNumber",suggest.UserNumber),
+                    new SqlParameter("Suggest",suggest.Suggest1),
+                    new SqlParameter("AdmNumber",suggest.AdmNumber)
                 };
 
                 sd.executeSql(sql, list);
-
                 return RedirectToAction("Index");
             }
 
-            return View(users);
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", suggest.AdmNumber);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", suggest.UserNumber);
+            return View(suggest);
         }
 
-        // GET: Users/Edit/5
+        // GET: Suggests/Edit/5
         public ActionResult _Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Suggest suggest = db.Suggest.Find(id);
+            if (suggest == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(users);
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", suggest.AdmNumber);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", suggest.UserNumber);
+            return PartialView(suggest);
         }
 
-        // POST: Users/Edit/5
+        // POST: Suggests/Edit/5
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users users)
+        public ActionResult Edit(Suggest suggest)
         {
-            string sql = "update Users set UserName=@UserName,Birthday=@Birthday where UserNumber=@UserNumber";
-
+            string sql = "update Suggest set Suggest=@Suggest,CheckDate=@CheckDate," +
+                "AdmNumber=@AdmNumber from Suggest inner join Adm on Suggest.AdmNumber=Adm.AdmNumber where SuggestNumber=@SuggestNumber";
             List<SqlParameter> list = new List<SqlParameter>
             {
-                new SqlParameter("UserNumber",users.UserNumber),
-                new SqlParameter("UserName",users.UserName),
-                new SqlParameter("Birthday",users.Birthday)
+                new SqlParameter("Suggest",suggest.Suggest1),
+                new SqlParameter("CheckDate",suggest.CheckDate),
+                new SqlParameter("AdmNumber",suggest.AdmNumber),
+                new SqlParameter("SuggestNumber",suggest.SuggestNumber),
             };
-
             try
             { 
-                sd.executeSql(sql, list);
+                sd.executeSql(sql,list);
                 return RedirectToAction("Index");
             }
             catch(Exception ex)
             {
                 ViewBag.Msg = ex.Message;
-                return View(users);
+                ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", suggest.AdmNumber);
+                ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", suggest.UserNumber);
+                return View(suggest);
             }
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(users).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //return View(users);
+            
         }
 
-        // GET: Users/Delete/5
+        // GET: Suggests/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            Suggest suggest = db.Suggest.Find(id);
+            if (suggest == null)
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return View(suggest);
         }
 
-        // POST: Users/Delete/5
+        // POST: Suggests/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Users users = db.Users.Find(id);
-            db.Users.Remove(users);
+            Suggest suggest = db.Suggest.Find(id);
+            db.Suggest.Remove(suggest);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

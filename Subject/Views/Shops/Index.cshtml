@@ -1,0 +1,131 @@
+﻿@model IEnumerable<Subject.Models.Shop>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section css{
+    <style>
+        #AddShop{
+            display:none;
+        }
+    </style>
+    }
+
+<h2>店家資料管理</h2>
+
+<p class="text-right">
+    <button class="btn btn-primary" id="AddForm">新增店家</button>
+</p>
+<div class="alert alert-primary" id="AddShop">
+    @Html.Action("_Create")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ShopNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ShopDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adm.AdmNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Closed)
+        </th>
+        <th>
+            管理
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShopNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShopName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ShopDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UpdateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adm.AdmNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Closed)
+        </td>
+        <td>
+            <button type="button" id="@item.ShopNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                <i class="bi bi-pencil-square" id="@item.ShopNumber"></i>
+            </button>
+
+            <button type="button" id="@item.ShopNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+                <i class="bi bi-journal-text" id="@item.ShopNumber"></i>
+            </button>
+
+            @*@Html.ActionLink("Delete", "Delete", new { id=item.ShopNumber })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="modal fade" id="showDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#AddForm').click(function () {
+            $('#AddShop').fadeToggle(800);
+        });
+
+        function getDetailData(evt) {
+            $('#showDetailModal .modal-body').load("/Shops/_Details/" + evt.target.id);
+        }
+
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/Shops/_Edit/" + evt.target.id);
+        }
+
+    </script>
+    
+    
+    }

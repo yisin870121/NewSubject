@@ -243,6 +243,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdmsController.cs" />
     <Compile Include="Controllers\LoginCheck.cs" />
+    <Compile Include="Controllers\PaysController.cs" />
+    <Compile Include="Controllers\PostShopsController.cs" />
+    <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="Controllers\SuggestsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -324,6 +328,26 @@
     <Content Include="Views\Users\_Details.cshtml" />
     <Content Include="Views\Users\_Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Shops\_Create.cshtml" />
+    <Content Include="Views\Shops\Delete.cshtml" />
+    <Content Include="Views\Shops\_Details.cshtml" />
+    <Content Include="Views\Shops\_Edit.cshtml" />
+    <Content Include="Views\Shops\Index.cshtml" />
+    <Content Include="Views\Pays\_Create.cshtml" />
+    <Content Include="Views\Pays\_Delete.cshtml" />
+    <Content Include="Views\Pays\Details.cshtml" />
+    <Content Include="Views\Pays\_Edit.cshtml" />
+    <Content Include="Views\Pays\Index.cshtml" />
+    <Content Include="Views\PostShops\_Create.cshtml" />
+    <Content Include="Views\PostShops\Delete.cshtml" />
+    <Content Include="Views\PostShops\_Details.cshtml" />
+    <Content Include="Views\PostShops\_Edit.cshtml" />
+    <Content Include="Views\PostShops\Index.cshtml" />
+    <Content Include="Views\Suggests\_Create.cshtml" />
+    <Content Include="Views\Suggests\Delete.cshtml" />
+    <Content Include="Views\Suggests\_Details.cshtml" />
+    <Content Include="Views\Suggests\_Edit.cshtml" />
+    <Content Include="Views\Suggests\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -6,7 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
-namespace HomeSubject.Models
+namespace Subject.Models
 {
     public class SetData
     {
@@ -53,6 +53,11 @@ namespace HomeSubject.Models
             conn.Close();
 
         }
+
+        
+
+
+
 
     }
 }

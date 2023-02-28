@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Subject.Models.Suggest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section css{
+    <style>
+        #AddSuggest {
+            display: none;
+        }
+    </style>
+}
+
+<h2>用戶建議</h2>
+
+<p class="text-right">
+    <button class="btn btn-primary" id="AddForm">新增建議</button>
+</p>
+<div class="alert alert-primary" id="AddSuggest">
+    @Html.Action("_Create")
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SuggestNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SuggestDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adm.AdmNumber)
+        </th>
+        
+        <th>管理</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuggestNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SuggestDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adm.AdmNumber)
+            </td>
+            
+            <td>
+                <button type="button" id="@item.SuggestNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                    <i class="bi bi-pencil-square" id="@item.SuggestNumber"></i>
+                </button>
+                <button type="button" id="@item.SuggestNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+                    <i class="bi bi-journal-text" id="@item.SuggestNumber"></i>
+                </button>
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.SuggestNumber })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal fade" id="showDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#AddForm').click(function () {
+            $('#AddSuggest').fadeToggle(800);
+        });
+
+        function getDetailData(evt) {
+            $('#showDetailModal .modal-body').load("/Suggests/_Details/" + evt.target.id);
+        }
+
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/Suggests/_Edit/" + evt.target.id);
+        }
+    </script>
+
+
+}

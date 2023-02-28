@@ -1,0 +1,58 @@
+﻿@model Subject.Models.PostShop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4>
+            @Html.DisplayNameFor(model => model.PostNumber) (@Html.DisplayFor(model => model.PostNumber))
+        </h4>
+    </div>
+    <div class="card-body">
+        <div>
+            @Html.DisplayNameFor(model => model.PostName): @Html.DisplayFor(model => model.PostName)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostDistrict): @Html.DisplayFor(model => model.PostDistrict)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostAdress): @Html.DisplayFor(model => model.PostAdress)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostTime): @Html.DisplayFor(model => model.PostTime)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostPhone): @Html.DisplayFor(model => model.PostPhone)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostWeb): @Html.DisplayFor(model => model.PostWeb)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostOutlet): @Html.DisplayFor(model => model.PostOutlet)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostWifi): @Html.DisplayFor(model => model.PostWifi)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostLimitedTime): @Html.DisplayFor(model => model.PostLimitedTime)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostOrder): @Html.DisplayFor(model => model.PostOrder)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PostDate): @Html.DisplayFor(model => model.PostDate)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.PassDate): @Html.DisplayFor(model => model.PassDate)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Adm.AdmNumber): @Html.DisplayFor(model => model.Adm.AdmNumber)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Users.UserNumber): @Html.DisplayFor(model => model.Users.UserNumber)
+        </div>
+    </div>
+</div>
+

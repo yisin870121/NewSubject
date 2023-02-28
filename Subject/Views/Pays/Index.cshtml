@@ -1,0 +1,103 @@
+﻿@model IEnumerable<Subject.Models.Pay>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section css{
+    <style>
+        #AddPay{
+            display:none;
+        }
+
+    </style>
+    }
+
+<h2>付款種類管理</h2>
+
+<p class="text-right">
+    <button class="btn btn-primary" id="AddForm">新增付款方式</button>
+</p>
+
+<div class="alert alert-primary" id="AddPay">
+    @Html.Action("_Create")
+</div>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PayNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PayType)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PayType)
+        </td>
+        <td>
+            <button type="button" id="@item.PayNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                <i class="bi bi-pencil-square" id="@item.PayNumber"></i>
+            </button>
+            <button type="button" id="@item.PayNumber" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">
+                <i class="bi bi-trash3" id="@item.PayNumber"></i>
+            </button>
+            @*@Html.ActionLink("Delete", "_Delete", new { id = item.PayNumber }, new { onclick = "return confirm('確定刪除?')", @class = "btn btn-danger" })*@
+        </td>
+    </tr>
+}
+
+</table>
+
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showDeleteModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#AddForm').click(function () {
+            $('#AddPay').fadeToggle(800);
+        });
+
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/Pays/_Edit/" + evt.target.id);
+        }
+
+        function getDeleteData(evt) {
+            $('#showDeleteModal .modal-body').load("/Pays/_Delete/" + evt.target.id);
+        }
+    </script>
+    
+    }

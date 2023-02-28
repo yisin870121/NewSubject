@@ -1,0 +1,29 @@
+﻿@model Subject.Models.Pay
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PayType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PayType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("_Delete","Pays",FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-right">
+            <input type="submit" value="刪除" class="btn btn-danger" />
+            <span class="text-danger">@ViewBag.Msg</span>
+            @*@Html.ActionLink("Back to List", "Index")*@
+        </div>
+    }
+</div>

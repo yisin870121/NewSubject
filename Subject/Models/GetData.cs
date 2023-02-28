@@ -10,7 +10,7 @@ namespace Subject.Models
 {
     public class GetData
     {
-        static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SpecialSubject"].ConnectionString);
+        static SqlConnection conn = new SqlConnection(ConfigurationManager.ConnectionStrings["SpecialSubjectConnection"].ConnectionString);
 
         SqlCommand cmd = new SqlCommand();
 

@@ -18,7 +18,7 @@
     <button class="btn btn-primary" id="AddForm">新增用戶</button>
 </p>
 
-<div class="well alert alert-primary" id="AddUser">
+<div class="alert alert-primary" id="AddUser">
     @Html.Action("_Create")
 </div>
 
@@ -50,14 +50,15 @@
         </td>
         <td>
             <button type="button" id="@item.UserNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
-                <i class="bi bi-pencil-square"></i>
+                <i class="bi bi-pencil-square" id="@item.UserNumber"></i>
             </button>
 
             <button type="button" id="@item.UserNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
-                <i class="bi bi-person-vcard"></i>
+                <i class="bi bi-person-vcard" id="@item.UserNumber"></i>
             </button>
+                
 
-            @Html.ActionLink("Delete", "Delete", new { id = item.UserNumber })
+            @*@Html.ActionLink("Delete", "Delete", new { id = item.UserNumber })*@
         </td>
     </tr>
 }
@@ -99,6 +100,7 @@
         $('#AddForm').click(function () {
             $('#AddUser').fadeToggle(800);
         });
+
 
         function getDetailData(evt) {
 

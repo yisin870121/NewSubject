@@ -1,0 +1,118 @@
+﻿@model IEnumerable<Subject.Models.PostShop>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section css{
+    <style>
+        #AddPostShop {
+            display: none;
+        }
+    </style>
+}
+
+<h2>投稿店家審核</h2>
+
+<p class="text-right">
+    <button class="btn btn-primary" id="AddForm">新增投稿</button>
+</p>
+
+<div class="alert alert-primary" id="AddPostShop">
+    @Html.Action("_Create")
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PostNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PostDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PassDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adm.AdmNumber)
+        </th>
+
+        <th>管理</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PassDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adm.AdmNumber)
+            </td>
+
+            <td>
+                <button type="button" id="@item.PostNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                    <i class="bi bi-pencil-square" id="@item.PostNumber"></i>
+                </button>
+                <button type="button" id="@item.PostNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+                    <i class="bi bi-journal-text" id="@item.PostNumber"></i>
+                </button>
+                @*@Html.ActionLink("Delete", "Delete", new { id = item.PostNumber })*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class="modal fade" id="showDetailModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#AddForm').click(function () {
+            $('#AddPostShop').fadeToggle(800);
+        });
+
+        function getDetailData(evt) {
+            $('#showDetailModal .modal-body').load("/PostShops/_Details/" + evt.target.id);
+        }
+
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/PostShops/_Edit/" + evt.target.id);
+        }
+
+    </script>
+}

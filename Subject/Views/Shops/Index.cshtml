@@ -74,7 +74,13 @@
                 <i class="bi bi-journal-text" id="@item.ShopNumber"></i>
             </button>
 
+            @*<button type="button" id="@item.ShopNumber" class="btn btn-info btn-sm" data-toggle="modal" data-target="#showMenuModal" onclick="getMenuData(event)">
+            <i class="bi bi-book" id="@item.ShopNumber"></i>
+        </button>*@
+
             @*@Html.ActionLink("Delete", "Delete", new { id=item.ShopNumber })*@
+
+            @Html.ActionLink("菜單", "Display", new { id = "ShopNumber" }, new { @class = "btn btn-success" })
         </td>
     </tr>
 }
@@ -111,6 +117,21 @@
     </div>
 </div>
 
+@*<div class="modal fade" id="showMenuModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+            </div>
+        </div>
+    </div>
+</div>*@
+
 @section scripts{
     <script>
         $('#AddForm').click(function () {
@@ -125,7 +146,13 @@
             $('#showEditModal .modal-body').load("/Shops/_Edit/" + evt.target.id);
         }
 
+        //function getMenuData(evt) {
+        //    $('#showMenuModal .modal-body').load("/ShopMenus/_Details/" + evt.target.id);
+        //}
+
     </script>
     
     
     }
+
+

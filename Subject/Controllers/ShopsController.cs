@@ -16,6 +16,7 @@ namespace Subject.Controllers
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd = new SetData();
+        GetData gd = new GetData();
 
         // GET: Shops
         public ActionResult Index()
@@ -36,8 +37,34 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
+
             return PartialView(shop);
         }
+
+        //public ActionResult Display(int id)
+        //{
+        //    string sql = "SELECT Shop.ShopName, Shop.District, Shop.ShopAddress, Shop.ShopTime, Shop.Phone, Shop.Web," +
+        //        " Shop.Outlet, Shop.WIFI, Shop.LimitedTime, Shop.IsOrder, Shop.ShopDate, Shop.UpdateDate, Shop.Closed," +
+        //        " Shop.AdmNumber FROM Shop " +
+        //        "INNER JOIN Adm ON Shop.AdmNumber = Adm.AdmNumber where Shop.ShopNumber=@id";
+
+        //    List<SqlParameter> list = new List<SqlParameter>
+        //    {
+        //        new SqlParameter("id",id)
+        //    };
+
+        //    var shop = gd.TableQuery(sql, list);
+
+        //    return View(shop);
+        //}
+
+        //[ChildActionOnly]  //子Action //就不能在網址上打id查詢了  //只能當partialview
+        //public ActionResult _DisplayDetail(int id)
+        //{
+
+        //    return PartialView(db.ShopMenu.Where(m => m.ShopNumber == id).ToList());
+
+        //}
 
         // GET: Shops/Create
         public ActionResult _Create()
@@ -97,7 +124,7 @@ namespace Subject.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", shop.AdmNumber);
             return PartialView(shop);
         }
 
@@ -186,5 +213,8 @@ namespace Subject.Controllers
             }
             base.Dispose(disposing);
         }
+
+        
     }
+
 }

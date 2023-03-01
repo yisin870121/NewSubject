@@ -1,0 +1,32 @@
+﻿@model Subject.Models.ShopMenu
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div>
+            @Html.DisplayNameFor(model => model.Shop.ShopNumber)@Html.DisplayFor(model => model.Shop.ShopNumber)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Item)@Html.DisplayFor(model => model.Item)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Price)@Html.DisplayFor(model => model.Price)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.MenuDate)@Html.DisplayFor(model => model.MenuDate)
+        </div>
+        <div>
+            @Html.DisplayNameFor(model => model.Users.UserAccount)@Html.DisplayFor(model => model.Users.UserAccount)
+        </div>
+    </div>
+</div>
+
+
+
+
+

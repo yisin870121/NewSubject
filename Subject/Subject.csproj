@@ -245,6 +245,7 @@
     <Compile Include="Controllers\LoginCheck.cs" />
     <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\PostShopsController.cs" />
+    <Compile Include="Controllers\ShopMenusController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\SuggestsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
@@ -348,6 +349,12 @@
     <Content Include="Views\Suggests\_Details.cshtml" />
     <Content Include="Views\Suggests\_Edit.cshtml" />
     <Content Include="Views\Suggests\Index.cshtml" />
+    <Content Include="Views\ShopMenus\_Create.cshtml" />
+    <Content Include="Views\ShopMenus\_Delete.cshtml" />
+    <Content Include="Views\ShopMenus\_Details.cshtml" />
+    <Content Include="Views\ShopMenus\_Edit.cshtml" />
+    <Content Include="Views\ShopMenus\Index.cshtml" />
+    <Content Include="Views\Shops\Display.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

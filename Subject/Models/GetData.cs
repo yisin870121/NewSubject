@@ -16,28 +16,60 @@ namespace Subject.Models
 
         SqlDataReader rd;
 
-        public SqlDataReader LoginQuery(string sql, List<SqlParameter> para)
+        SqlDataAdapter adp = new SqlDataAdapter("", conn);
+
+        DataSet ds = new DataSet();
+        DataTable dt = new DataTable();
+
+        public DataTable TableQuery(string sql)
         {
-            cmd.CommandText = sql;
+            adp.SelectCommand.CommandText = sql;  //指定 Select Command
+            adp.Fill(ds);  //把取道的Table填入DataSet
+
+            dt = ds.Tables[0];
+
+            return dt;
+        }
+
+        public DataTable TableQuery(string sql, List<SqlParameter> para)
+        {
+            adp.SelectCommand.CommandText = sql;  //指定 Select Command
 
             foreach (SqlParameter p in para)
             {
-                cmd.Parameters.Add(p);
+                adp.SelectCommand.Parameters.Add(p);
             }
 
-            conn.Open();
-            try
-            {
-                rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                rd.Read();
-            }
-            catch
-            {
-                conn.Close();
-                return rd;
-            }
+            adp.Fill(ds);  //把取道的Table填入DataSet
 
-            return rd;
+            dt = ds.Tables[0];
+
+            return dt;
         }
+
+
+        //public SqlDataReader LoginQuery(string sql, List<SqlParameter> para)
+        //{
+        //    cmd.CommandText = sql;
+
+        //    foreach (SqlParameter p in para)
+        //    {
+        //        cmd.Parameters.Add(p);
+        //    }
+
+        //    conn.Open();
+        //    try
+        //    {
+        //        rd = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+        //        rd.Read();
+        //    }
+        //    catch
+        //    {
+        //        conn.Close();
+        //        return rd;
+        //    }
+
+        //    return rd;
+        //}
     }
 }

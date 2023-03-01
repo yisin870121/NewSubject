@@ -106,17 +106,45 @@ namespace Subject.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PostNumber,PostName,PostDistrict,PostAdress,PostTime,PostPhone,PostWeb,PostOutlet,PostWifi,PostLimitedTime,PostOrder,UserNumber,PostDate,PassDate,AdmNumber")] PostShop postShop)
+        public ActionResult Edit(PostShop postShop)
         {
-            if (ModelState.IsValid)
+            string sql = "update PostShop set PostName=@PostName,PostDistrict=@PostDistrict,PostAdress=@PostAdress,PostTime=@PostTime," +
+                "PostPhone=@PostPhone,PostWeb=@PostWeb,PostOutlet=@PostOutlet,PostWifi=@PostWifi,PostLimitedTime=@PostLimitedTime," +
+                "PostOrder=@PostOrder,UserNumber=@UserNumber,PassDate=@PassDate,AdmNumber=@AdmNumber from PostShop " +
+                "inner join Adm on PostShop.AdmNumber=Adm.AdmNumber " +
+                "inner join Users on PostShop.UserNumber=Users.UserNumber " +
+                "where PostNumber=@PostNumber";
+
+            List<SqlParameter> list = new List<SqlParameter>
             {
-                db.Entry(postShop).State = EntityState.Modified;
-                db.SaveChanges();
+                new SqlParameter("PostName",postShop.PostName),
+                new SqlParameter("PostDistrict",postShop.PostDistrict),
+                new SqlParameter("PostAdress",postShop.PostAdress),
+                new SqlParameter("PostTime",postShop.PostTime),
+                new SqlParameter("PostPhone",postShop.PostPhone),
+                new SqlParameter("PostWeb",postShop.PostWeb),
+                new SqlParameter("PostOutlet",postShop.PostOutlet),
+                new SqlParameter("PostWifi",postShop.PostWifi),
+                new SqlParameter("PostLimitedTime",postShop.PostLimitedTime),
+                new SqlParameter("PostOrder",postShop.PostOrder),
+                new SqlParameter("UserNumber",postShop.UserNumber),
+                new SqlParameter("PassDate",postShop.PassDate),
+                new SqlParameter("AdmNumber",postShop.AdmNumber),
+                new SqlParameter("PostNumber",postShop.PostNumber)
+            };
+            try 
+            {
+                sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
-            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", postShop.AdmNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", postShop.UserNumber);
-            return View(postShop);
+            catch(Exception ex)
+            {
+                ViewBag.Msg = ex.Message;
+                ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", postShop.AdmNumber);
+                ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", postShop.UserNumber);
+                return View(postShop);
+            }
+            
         }
 
         // GET: PostShops/Delete/5

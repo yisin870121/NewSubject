@@ -247,6 +247,7 @@
     <Compile Include="Controllers\PostShopsController.cs" />
     <Compile Include="Controllers\ShopMenusController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
+    <Compile Include="Controllers\ShopTagsController.cs" />
     <Compile Include="Controllers\SuggestsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -354,7 +355,13 @@
     <Content Include="Views\ShopMenus\_Details.cshtml" />
     <Content Include="Views\ShopMenus\_Edit.cshtml" />
     <Content Include="Views\ShopMenus\Index.cshtml" />
-    <Content Include="Views\Shops\Display.cshtml" />
+    <Content Include="Views\Shops\_MenuDetail.cshtml" />
+    <Content Include="Views\ShopTags\Create.cshtml" />
+    <Content Include="Views\ShopTags\Delete.cshtml" />
+    <Content Include="Views\ShopTags\Details.cshtml" />
+    <Content Include="Views\ShopTags\Edit.cshtml" />
+    <Content Include="Views\ShopTags\Index.cshtml" />
+    <Content Include="Views\Shops\_TagDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

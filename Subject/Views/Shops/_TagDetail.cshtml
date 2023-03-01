@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Subject.Models.ShopTag>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Shop.ShopName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TagDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Users.UserName)
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shop.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagDate)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserName)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -74,13 +74,14 @@
                 <i class="bi bi-journal-text" id="@item.ShopNumber"></i>
             </button>
 
-            @*<button type="button" id="@item.ShopNumber" class="btn btn-info btn-sm" data-toggle="modal" data-target="#showMenuModal" onclick="getMenuData(event)">
-            <i class="bi bi-book" id="@item.ShopNumber"></i>
-        </button>*@
+            <button type="button" id="@item.ShopNumber" class="btn btn-info btn-sm" data-toggle="modal" data-target="#showMenuModal" onclick="getMenuData(event)">
+                <i class="bi bi-book" id="@item.ShopNumber"></i>
+            </button>
 
-            @*@Html.ActionLink("Delete", "Delete", new { id=item.ShopNumber })*@
+            <button type="button" id="@item.ShopNumber" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#showTagModal" onclick="getTagData(event)">
+                <i class="bi bi-hash" id="@item.ShopNumber"></i>
+            </button>
 
-            @Html.ActionLink("菜單", "Display", new { id = "ShopNumber" }, new { @class = "btn btn-success" })
         </td>
     </tr>
 }
@@ -91,6 +92,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>詳細資料</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -106,6 +108,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>編輯資料</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -117,20 +120,37 @@
     </div>
 </div>
 
-@*<div class="modal fade" id="showMenuModal" tabindex="-1">
+<div class="modal fade" id="showMenuModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>菜單</h5></div>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showTagModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>標籤</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                
+
             </div>
         </div>
     </div>
-</div>*@
+</div>
 
 @section scripts{
     <script>
@@ -146,10 +166,14 @@
             $('#showEditModal .modal-body').load("/Shops/_Edit/" + evt.target.id);
         }
 
-        //function getMenuData(evt) {
-        //    $('#showMenuModal .modal-body').load("/ShopMenus/_Details/" + evt.target.id);
-        //}
+        function getMenuData(evt) {
+            $('#showMenuModal .modal-body').load("/Shops/_MenuDetail/" + evt.target.id);
+        }
 
+        function getTagData(evt) {
+            $('#showMenuModal .modal-body').load("/Shops/_TagDetail/" + evt.target.id);
+        }
+       
     </script>
     
     

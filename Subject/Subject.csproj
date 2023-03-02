@@ -356,10 +356,10 @@
     <Content Include="Views\ShopMenus\_Edit.cshtml" />
     <Content Include="Views\ShopMenus\Index.cshtml" />
     <Content Include="Views\Shops\_MenuDetail.cshtml" />
-    <Content Include="Views\ShopTags\Create.cshtml" />
-    <Content Include="Views\ShopTags\Delete.cshtml" />
+    <Content Include="Views\ShopTags\_Create.cshtml" />
+    <Content Include="Views\ShopTags\_Delete.cshtml" />
     <Content Include="Views\ShopTags\Details.cshtml" />
-    <Content Include="Views\ShopTags\Edit.cshtml" />
+    <Content Include="Views\ShopTags\_Edit.cshtml" />
     <Content Include="Views\ShopTags\Index.cshtml" />
     <Content Include="Views\Shops\_TagDetail.cshtml" />
     <None Include="Web.Debug.config">

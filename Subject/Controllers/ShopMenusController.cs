@@ -54,27 +54,24 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ShopMenu shopMenu)
         {
-            string sql = "insert into ShopMenu(UserNumber,ShopNumber,Item,Price)values(@UserNumber,@ShopNumber,@Item,@Price)";
-            List<SqlParameter> list = new List<SqlParameter>
+            if (ModelState.IsValid)
             {
-                new SqlParameter("UserNumber",shopMenu.UserNumber),
-                new SqlParameter("ShopNumber",shopMenu.ShopNumber),
-                new SqlParameter("Item",shopMenu.Item),
-                new SqlParameter("Price",shopMenu.Price)
-            };
+                string sql = "insert into ShopMenu(UserNumber,ShopNumber,Item,Price)values(@UserNumber,@ShopNumber,@Item,@Price)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",shopMenu.UserNumber),
+                    new SqlParameter("ShopNumber",shopMenu.ShopNumber),
+                    new SqlParameter("Item",shopMenu.Item),
+                    new SqlParameter("Price",shopMenu.Price)
+                };
 
-            try 
-            {
-                sd.executeSql(sql,list);
+                sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
-            {
-                ViewBag.Msg = ex.Message;
+            
                 ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopMenu.ShopNumber);
                 ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopMenu.UserNumber);
                 return View(shopMenu);
-            }
             
         }
 

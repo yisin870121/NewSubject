@@ -52,6 +52,8 @@ namespace Subject.Controllers
             return PartialView(db.ShopTag.Where(m => m.ShopNumber == id).ToList());
         }
 
+        
+
         // GET: Shops/Create
         public ActionResult _Create()
         {

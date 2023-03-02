@@ -4,48 +4,123 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@section css{
+    <style>
+        #AddTag {
+            display: none;
+        }
+    </style>
+}
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<h2>標籤管理</h2>
+
+<p class="text-right">
+    <button class="btn btn-primary" id="AddForm">新增標籤</button>
 </p>
+<div class="alert alert-primary" id="AddTag">
+    @Html.Action("_Create")
+</div>
+
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Tag)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TagDate)
+            @Html.DisplayNameFor(model => model.TagNumber)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Shop.ShopName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Users.UserAccount)
+            @Html.DisplayNameFor(model => model.Tag)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TagDate)
+        </th>
+        <th>
+            管理
+        </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tag)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TagDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Shop.ShopName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Users.UserAccount)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TagNumber }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TagNumber }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TagNumber })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shop.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TagDate)
+            </td>
+            <td>
+                <button type="button" id="@item.TagNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                    <i class="bi bi-pencil-square" id="@item.TagNumber"></i>
+                </button>
+                <button type="button" id="@item.TagNumber" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">
+                    <i class="bi bi-trash3" id="@item.TagNumber"></i>
+                </button>
+            </td>
+        </tr>
+    }
 
 </table>
+
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>編輯</h5></div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="showDeleteModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>確定要刪除?</h5></div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $('#AddForm').click(function () {
+            $('#AddTag').fadeToggle(800);
+        });
+
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/ShopTags/_Edit/" + evt.target.id);
+        }
+
+        function getDeleteData(evt) {
+            $('#showDeleteModal .modal-body').load("/ShopTags/_Delete/" + evt.target.id);
+        }
+
+    </script>
+
+
+}

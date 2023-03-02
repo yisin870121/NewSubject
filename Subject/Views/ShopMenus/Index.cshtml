@@ -12,7 +12,7 @@
     </style>
 }
 
-<h2>各店家菜單管理</h2>
+<h2>菜單管理</h2>
 
 <p class="text-right">
     <button class="btn btn-primary" id="AddForm">新增菜單</button>
@@ -36,7 +36,7 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Users.UserNumber)
+            @Html.DisplayNameFor(model => model.Users.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MenuDate)
@@ -60,7 +60,7 @@
                 @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Users.UserNumber)
+                @Html.DisplayFor(modelItem => item.Users.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.MenuDate)

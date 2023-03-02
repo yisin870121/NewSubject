@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,6 +14,7 @@ namespace Subject.Controllers
     public class ShopTagsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
+        SetData sd = new SetData();
 
         // GET: ShopTags
         public ActionResult Index()
@@ -37,11 +39,11 @@ namespace Subject.Controllers
         }
 
         // GET: ShopTags/Create
-        public ActionResult Create()
+        public ActionResult _Create()
         {
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount");
-            return View();
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
+            return PartialView();
         }
 
         // POST: ShopTags/Create
@@ -49,22 +51,29 @@ namespace Subject.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TagNumber,UserNumber,ShopNumber,Tag,TagDate")] ShopTag shopTag)
+        public ActionResult Create(ShopTag shopTag)
         {
             if (ModelState.IsValid)
             {
-                db.ShopTag.Add(shopTag);
-                db.SaveChanges();
+                string sql = "insert into ShopTag(UserNumber,ShopNumber,Tag)values(@UserNumber,@ShopNumber,@Tag)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",shopTag.UserNumber),
+                    new SqlParameter("ShopNumber", shopTag.ShopNumber),
+                    new SqlParameter("Tag", shopTag.Tag)
+                };
+
+                sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
 
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopTag.ShopNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopTag.UserNumber);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopTag.UserNumber);
             return View(shopTag);
         }
 
         // GET: ShopTags/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult _Edit(int? id)
         {
             if (id == null)
             {
@@ -76,8 +85,8 @@ namespace Subject.Controllers
                 return HttpNotFound();
             }
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopTag.ShopNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopTag.UserNumber);
-            return View(shopTag);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopTag.UserNumber);
+            return PartialView(shopTag);
         }
 
         // POST: ShopTags/Edit/5
@@ -85,21 +94,38 @@ namespace Subject.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TagNumber,UserNumber,ShopNumber,Tag,TagDate")] ShopTag shopTag)
+        public ActionResult Edit(ShopTag shopTag)
         {
-            if (ModelState.IsValid)
+            string sql = "update ShopTag set UserNumber=@UserNumber,ShopNumber=@ShopNumber,Tag=@Tag from ShopTag " +
+                "inner join Shop on ShopTag.ShopNumber=Shop.ShopNumber " +
+                "inner join Users on ShopTag.UserNumber=Users.UserNumber " +
+                "where TagNumber=@TagNumber";
+
+            List<SqlParameter> list = new List<SqlParameter>
             {
-                db.Entry(shopTag).State = EntityState.Modified;
-                db.SaveChanges();
+                new SqlParameter("UserNumber",shopTag.UserNumber),
+                new SqlParameter("ShopNumber",shopTag.ShopNumber),
+                new SqlParameter("Tag",shopTag.Tag),
+                new SqlParameter("TagNumber",shopTag.TagNumber)
+            };
+
+            try
+            {
+                sd.executeSql(sql,list);
                 return RedirectToAction("Index");
             }
-            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopTag.ShopNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopTag.UserNumber);
-            return View(shopTag);
+            catch(Exception ex)
+            {
+                ViewBag.Msg=ex.Message;
+                ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopTag.ShopNumber);
+                ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopTag.UserNumber);
+                return View(shopTag);
+            }
+
         }
 
         // GET: ShopTags/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
@@ -110,11 +136,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(shopTag);
+            return PartialView(shopTag);
         }
 
         // POST: ShopTags/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

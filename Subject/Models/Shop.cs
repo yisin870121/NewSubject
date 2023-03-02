@@ -19,10 +19,10 @@ namespace Subject.Models
         {
             this.ShopImage = new HashSet<ShopImage>();
             this.ShopMenu = new HashSet<ShopMenu>();
+            this.ShopPay = new HashSet<ShopPay>();
             this.ShopTag = new HashSet<ShopTag>();
             this.UserFeedback = new HashSet<UserFeedback>();
             this.UserSave = new HashSet<UserSave>();
-            this.Pay = new HashSet<Pay>();
         }
     
         public int ShopNumber { get; set; }
@@ -47,12 +47,12 @@ namespace Subject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShopMenu> ShopMenu { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ShopPay> ShopPay { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShopTag> ShopTag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFeedback> UserFeedback { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserSave> UserSave { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pay> Pay { get; set; }
     }
 }

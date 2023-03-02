@@ -17,16 +17,16 @@ namespace Subject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pay()
         {
-            this.PostShop = new HashSet<PostShop>();
-            this.Shop = new HashSet<Shop>();
+            this.PostShopPay = new HashSet<PostShopPay>();
+            this.ShopPay = new HashSet<ShopPay>();
         }
     
         public int PayNumber { get; set; }
         public string PayType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostShop> PostShop { get; set; }
+        public virtual ICollection<PostShopPay> PostShopPay { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Shop> Shop { get; set; }
+        public virtual ICollection<ShopPay> ShopPay { get; set; }
     }
 }

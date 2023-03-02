@@ -246,6 +246,7 @@
     <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\PostShopsController.cs" />
     <Compile Include="Controllers\ShopMenusController.cs" />
+    <Compile Include="Controllers\ShopPaysController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\ShopTagsController.cs" />
     <Compile Include="Controllers\SuggestsController.cs" />
@@ -264,6 +265,9 @@
     <Compile Include="Models\PostShop.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PostShopPay.cs">
+      <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SetData.cs" />
     <Compile Include="Models\Shop.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
@@ -272,6 +276,9 @@
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShopMenu.cs">
+      <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ShopPay.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ShopTag.cs">
@@ -362,6 +369,11 @@
     <Content Include="Views\ShopTags\_Edit.cshtml" />
     <Content Include="Views\ShopTags\Index.cshtml" />
     <Content Include="Views\Shops\_TagDetail.cshtml" />
+    <Content Include="Views\ShopPays\_Create.cshtml" />
+    <Content Include="Views\ShopPays\Delete.cshtml" />
+    <Content Include="Views\ShopPays\Details.cshtml" />
+    <Content Include="Views\ShopPays\Edit.cshtml" />
+    <Content Include="Views\ShopPays\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

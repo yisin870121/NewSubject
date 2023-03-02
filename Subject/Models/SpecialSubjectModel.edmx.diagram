@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b9f10d35edc845aeb3ff6eadbad37757" Name="Diagram1">
+      <Diagram DiagramId="ce5bc43f13714be18c82a91304ede3b8" Name="Diagram1">
         <EntityTypeShape EntityType="SpecialSubjectModel.Adm" Width="1.5" PointX="0.75" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.Pay" Width="1.5" PointX="1.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.Pay" Width="1.5" PointX="6" PointY="20.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.PostShop" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.PostShopPay" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.Shop" Width="1.5" PointX="3.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.ShopImage" Width="1.5" PointX="6" PointY="13.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.ShopMenu" Width="1.5" PointX="6" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.ShopPay" Width="1.5" PointX="11.25" PointY="11.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.ShopTag" Width="1.5" PointX="6" PointY="17.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.Suggest" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SpecialSubjectModel.UserBlock" Width="1.5" PointX="3" PointY="17.875" IsExpanded="true" />
@@ -21,9 +23,13 @@
         <AssociationConnector Association="SpecialSubjectModel.FK__Shop__AdmNumber__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__Suggest__AdmNumb__2180FB33" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserBlock__AdmNu__7C4F7684" ManuallyRouted="false" />
+        <AssociationConnector Association="SpecialSubjectModel.FK__PostShopP__PayNu__1CBC4616" ManuallyRouted="false" />
+        <AssociationConnector Association="SpecialSubjectModel.FK__ShopPay__PayNumb__778AC167" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__PostShop__UserNu__17F790F9" ManuallyRouted="false" />
+        <AssociationConnector Association="SpecialSubjectModel.FK__PostShopP__PostN__1BC821DD" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__ShopImage__ShopN__0A9D95DB" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__ShopMenu__ShopNu__14270015" ManuallyRouted="false" />
+        <AssociationConnector Association="SpecialSubjectModel.FK__ShopPay__ShopNum__76969D2E" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__ShopTag__ShopNum__0F624AF8" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserFeedb__ShopN__05D8E0BE" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserSave__ShopNu__01142BA1" ManuallyRouted="false" />
@@ -34,8 +40,6 @@
         <AssociationConnector Association="SpecialSubjectModel.FK__UserBlock__UserN__7B5B524B" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserFeedb__UserN__04E4BC85" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserSave__UserNu__00200768" ManuallyRouted="false" />
-        <AssociationConnector Association="SpecialSubjectModel.PostShopPay" ManuallyRouted="false" />
-        <AssociationConnector Association="SpecialSubjectModel.ShopPay" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

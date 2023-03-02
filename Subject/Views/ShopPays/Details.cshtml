@@ -1,0 +1,42 @@
+﻿@model Subject.Models.ShopPay
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShopPay</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pay.PayType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pay.PayType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shop.ShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shop.ShopName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

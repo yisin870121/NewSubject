@@ -33,8 +33,10 @@
                         @Html.ActionLink("店家管理", "Index", "Shops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown" ,aria_expanded = "false" })
                         <div class="dropdown-menu">
                             @Html.ActionLink("主頁", "Index", "Shops", new { area = "" }, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
                             @Html.ActionLink("菜單管理", "Index", "ShopMenus", new { area = "" }, new { @class = "dropdown-item" })
                             @Html.ActionLink("標籤管理", "Index", "ShopTags", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("付款方式管理", "Index", "ShopPays", new { area = "" }, new { @class = "dropdown-item" })
                         </div>
                     </li>
 

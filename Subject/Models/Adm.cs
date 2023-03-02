@@ -25,22 +25,8 @@ namespace Subject.Models
     
         public int AdmNumber { get; set; }
         public string AdmAccount { get; set; }
-
-
-        string password;
-        public string AdmPsaaword
-        {
-            get
-            {
-                return password;
-            }
-            set
-            {
-                password = BR.getHashPassword(value);
-            }
-        }
-
-
+        public string AdmPsaaword { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PostShop> PostShop { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -16,7 +16,6 @@ namespace Subject.Controllers
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd = new SetData();
-        GetData gd = new GetData();
 
         // GET: Shops
         public ActionResult Index()

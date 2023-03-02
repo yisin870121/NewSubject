@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Subject.Models.ShopPay>
+@{
+    ViewBag.Title = "Index";
+}
+
+@section css{
+    <style>
+        #AddPay {
+            display: none;
+        }
+    </style>
+}
+
+<h2>店家付款方式</h2>
+
+<p class="text-right">
+    <button class="btn btn-primary" id="AddForm">新增菜單</button>
+</p>
+<div class="alert alert-primary" id="AddPay">
+    @Html.Action("_Create")
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Shop.ShopName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pay.PayType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            管理
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Shop.ShopName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pay.PayType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { id=item.Shop.ShopNumber}) |*@
+                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
+                @*@Html.ActionLink("刪除", "Delete", new {id=item.ShopNumber})*@
+            </td>
+        </tr>
+    }
+
+</table>
+
+@section scripts{
+    <script>
+        $('#AddForm').click(function () {
+            $('#AddPay').fadeToggle(800);
+        });
+
+        //function getEditData(evt) {
+        //    $('#showEditModal .modal-body').load("/ShopMenus/_Edit/" + evt.target.id);
+        //}
+
+        //function getDeleteData(evt) {
+        //    $('#showDeleteModal .modal-body').load("/ShopMenus/_Delete/" + evt.target.id);
+        //}
+
+    </script>
+
+
+}

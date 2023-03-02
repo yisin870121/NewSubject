@@ -17,7 +17,7 @@ namespace Subject.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PostShop()
         {
-            this.Pay = new HashSet<Pay>();
+            this.PostShopPay = new HashSet<PostShopPay>();
         }
     
         public int PostNumber { get; set; }
@@ -39,6 +39,6 @@ namespace Subject.Models
         public virtual Adm Adm { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pay> Pay { get; set; }
+        public virtual ICollection<PostShopPay> PostShopPay { get; set; }
     }
 }

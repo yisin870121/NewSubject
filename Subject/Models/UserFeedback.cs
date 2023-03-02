@@ -14,6 +14,7 @@ namespace Subject.Models
     
     public partial class UserFeedback
     {
+        public int Number { get; set; }
         public int UserNumber { get; set; }
         public int ShopNumber { get; set; }
         public int MFeedback { get; set; }

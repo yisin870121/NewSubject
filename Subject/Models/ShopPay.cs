@@ -14,6 +14,7 @@ namespace Subject.Models
     
     public partial class ShopPay
     {
+        public int Number { get; set; }
         public int ShopNumber { get; set; }
         public int PayNumber { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }

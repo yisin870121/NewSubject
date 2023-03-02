@@ -14,6 +14,7 @@ namespace Subject.Models
     
     public partial class UserSave
     {
+        public int Number { get; set; }
         public int UserNumber { get; set; }
         public int ShopNumber { get; set; }
         public Nullable<System.DateTime> SaveDate { get; set; }

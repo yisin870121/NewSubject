@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Subject.Models.ShopPay>
+
 @{
     ViewBag.Title = "Index";
 }
@@ -11,17 +12,19 @@
     </style>
 }
 
-<h2>店家付款方式</h2>
+<h2>付款方式管理</h2>
 
 <p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增菜單</button>
+    <button class="btn btn-primary" id="AddForm">新增付款方式</button>
 </p>
 <div class="alert alert-primary" id="AddPay">
     @Html.Action("_Create")
 </div>
-
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Shop.ShopName)
         </th>
@@ -40,6 +43,9 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Shop.ShopName)
             </td>
             <td>
@@ -49,14 +55,30 @@
                 @Html.DisplayFor(modelItem => item.CreateDate)
             </td>
             <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.Shop.ShopNumber}) |*@
-                @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ })*@
-                @*@Html.ActionLink("刪除", "Delete", new {id=item.ShopNumber})*@
+                <button type="button" id="@item.Number" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">
+                    <i class="bi bi-trash3" id="@item.Number"></i>
+                </button>
             </td>
         </tr>
     }
 
 </table>
+
+<div class="modal fade" id="showDeleteModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>確定要刪除嗎?</h5></div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
 
 @section scripts{
     <script>
@@ -64,14 +86,9 @@
             $('#AddPay').fadeToggle(800);
         });
 
-        //function getEditData(evt) {
-        //    $('#showEditModal .modal-body').load("/ShopMenus/_Edit/" + evt.target.id);
-        //}
-
-        //function getDeleteData(evt) {
-        //    $('#showDeleteModal .modal-body').load("/ShopMenus/_Delete/" + evt.target.id);
-        //}
-
+        function getDeleteData(evt) {
+            $('#showDeleteModal .modal-body').load("/ShopPays/_Delete/" + evt.target.id);
+        }
     </script>
 
 

@@ -59,10 +59,9 @@ namespace Subject.Controllers
                 List<SqlParameter> list = new List<SqlParameter>
                 {
                     new SqlParameter("ShopNumber",shopPay.ShopNumber),
-                     new SqlParameter("PayNumber",shopPay.PayNumber)
+                    new SqlParameter("PayNumber",shopPay.PayNumber)
                 };
-
-                sd.executeSql(sql,list);
+                sd.executeSql(sql, list);
                 return RedirectToAction("Index");
 
             }
@@ -94,7 +93,7 @@ namespace Subject.Controllers
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ShopNumber,PayNumber,CreateDate")] ShopPay shopPay)
+        public ActionResult Edit([Bind(Include = "Number,ShopNumber,PayNumber,CreateDate")] ShopPay shopPay)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +107,7 @@ namespace Subject.Controllers
         }
 
         // GET: ShopPays/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
@@ -119,11 +118,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(shopPay);
+            return PartialView(shopPay);
         }
 
         // POST: ShopPays/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

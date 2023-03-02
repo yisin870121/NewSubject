@@ -108,8 +108,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\SpecialSubjectModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SpecialSubjectModel.Context.cs</LastGenOutput>
       <DependentUpon>SpecialSubjectModel.edmx</DependentUpon>
+      <LastGenOutput>SpecialSubjectModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\SpecialSubjectModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -369,8 +369,9 @@
     <Content Include="Views\ShopTags\_Edit.cshtml" />
     <Content Include="Views\ShopTags\Index.cshtml" />
     <Content Include="Views\Shops\_TagDetail.cshtml" />
+    <Content Include="Views\Shops\_PayDetail.cshtml" />
     <Content Include="Views\ShopPays\_Create.cshtml" />
-    <Content Include="Views\ShopPays\Delete.cshtml" />
+    <Content Include="Views\ShopPays\_Delete.cshtml" />
     <Content Include="Views\ShopPays\Details.cshtml" />
     <Content Include="Views\ShopPays\Edit.cshtml" />
     <Content Include="Views\ShopPays\Index.cshtml" />

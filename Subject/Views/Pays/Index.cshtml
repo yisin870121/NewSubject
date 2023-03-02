@@ -42,7 +42,7 @@
             @Html.DisplayFor(modelItem => item.PayType)
         </td>
         <td>
-            <button type="button" id="@item.PayNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+            <button type="button" id="@item.PayNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
                 <i class="bi bi-pencil-square" id="@item.PayNumber"></i>
             </button>
             <button type="button" id="@item.PayNumber" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">
@@ -59,6 +59,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>編輯資料</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -74,6 +75,7 @@
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>確定要刪除嗎?</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>

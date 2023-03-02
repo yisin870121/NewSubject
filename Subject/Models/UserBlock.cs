@@ -14,6 +14,7 @@ namespace Subject.Models
     
     public partial class UserBlock
     {
+        public int Number { get; set; }
         public int UserNumber { get; set; }
         public int AdmNumber { get; set; }
         public Nullable<System.DateTime> BlockDate { get; set; }

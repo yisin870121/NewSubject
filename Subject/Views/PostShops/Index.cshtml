@@ -57,12 +57,13 @@
             </td>
 
             <td>
-                <button type="button" id="@item.PostNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
-                    <i class="bi bi-pencil-square" id="@item.PostNumber"></i>
-                </button>
                 <button type="button" id="@item.PostNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
                     <i class="bi bi-journal-text" id="@item.PostNumber"></i>
                 </button>
+                <button type="button" id="@item.PostNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                    <i class="bi bi-check-square" id="@item.PostNumber"></i>
+                </button>
+
                 @*@Html.ActionLink("Delete", "Delete", new { id = item.PostNumber })*@
             </td>
         </tr>
@@ -74,6 +75,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>詳細資料</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -89,6 +91,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>確認通過請填上通過日期</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>

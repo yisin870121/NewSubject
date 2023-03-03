@@ -11,13 +11,16 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ShopTag
     {
         public int TagNumber { get; set; }
         public int UserNumber { get; set; }
         public int ShopNumber { get; set; }
         public string Tag { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> TagDate { get; set; }
     
         public virtual Shop Shop { get; set; }

@@ -11,12 +11,15 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class UserBlock
     {
         public int Number { get; set; }
         public int UserNumber { get; set; }
         public int AdmNumber { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> BlockDate { get; set; }
     
         public virtual Adm Adm { get; set; }

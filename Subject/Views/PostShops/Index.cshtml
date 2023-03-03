@@ -60,6 +60,9 @@
                 <button type="button" id="@item.PostNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
                     <i class="bi bi-journal-text" id="@item.PostNumber"></i>
                 </button>
+                <button type="button" id="@item.PostNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showPayModal" onclick="getPayData(event)">
+                    <i class="bi bi-coin" id="@item.PostNumber"></i>
+                </button>
                 <button type="button" id="@item.PostNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
                     <i class="bi bi-check-square" id="@item.PostNumber"></i>
                 </button>
@@ -103,6 +106,22 @@
     </div>
 </div>
 
+<div class="modal fade" id="showPayModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>付款方式</h5></div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts{
     <script>
         $('#AddForm').click(function () {
@@ -115,6 +134,10 @@
 
         function getEditData(evt) {
             $('#showEditModal .modal-body').load("/PostShops/_Edit/" + evt.target.id);
+        }
+
+        function getPayData(evt) {
+            $('#showPayModal .modal-body').load("/PostShops/_PayDetail/" + evt.target.id);
         }
 
     </script>

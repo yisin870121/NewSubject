@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Subject.Models.Adm>
+﻿@model IEnumerable<Subject.Models.PostShopPay>
 
 @{
     ViewBag.Title = "Index";
@@ -6,36 +6,34 @@
 
 @section css{
     <style>
-        #AddAdm {
+        #AddPay {
             display: none;
         }
     </style>
 }
 
-<h2>管理員資料</h2>
+<h2>投稿店家付款方式</h2>
+
 <p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增管理員</button>
+    <button class="btn btn-primary" id="AddForm">新增付款方式</button>
 </p>
-<div class="alert alert-info" id="AddAdm">
+<div class="alert alert-primary" id="AddPay">
     @Html.Action("_Create")
 </div>
 
-@*<p>
-        @Html.ActionLink("新增管理員", "Create")
-    </p>*@
 <table class="table">
     <tr>
         <th>
-            @*管理員編號*@
-            @Html.DisplayNameFor(model => model.AdmNumber)
+            @Html.DisplayNameFor(model => model.Number)
         </th>
         <th>
-            @*帳號*@
-            @Html.DisplayNameFor(model => model.AdmAccount)
+            @Html.DisplayNameFor(model => model.PostShop.PostName)
         </th>
         <th>
-            @*密碼*@
-            @Html.DisplayNameFor(model => model.AdmPsaaword)
+            @Html.DisplayNameFor(model => model.Pay.PayType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
         </th>
         <th>
             管理
@@ -46,19 +44,20 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.AdmNumber)
+                @Html.DisplayFor(modelItem => item.Number)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.AdmAccount)
+                @Html.DisplayFor(modelItem => item.PostShop.PostName)
             </td>
             <td>
-                ***
-                @*@Html.DisplayFor(modelItem => item.AdmPsaaword)*@
+                @Html.DisplayFor(modelItem => item.Pay.PayType)
             </td>
             <td>
-                @*@Html.ActionLink("編輯", "Edit", new { id = item.AdmNumber })*@
-                <button type="button" id="@item.AdmNumber" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">
-                    <i class="bi bi-trash3" id="@item.AdmNumber"></i>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                <button type="button" id="@item.Number" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">
+                    <i class="bi bi-trash3" id="@item.Number"></i>
                 </button>
             </td>
         </tr>
@@ -85,13 +84,13 @@
 @section scripts{
     <script>
         $('#AddForm').click(function () {
-            $('#AddAdm').fadeToggle(800);
+            $('#AddPay').fadeToggle(800);
         });
 
         function getDeleteData(evt) {
-            $('#showDeleteModal .modal-body').load("/Adms/_Delete/" + evt.target.id);
+            $('#showDeleteModal .modal-body').load("/PostShopPays/_Delete/" + evt.target.id);
         }
-            
     </script>
+
 
 }

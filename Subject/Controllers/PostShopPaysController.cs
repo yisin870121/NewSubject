@@ -8,124 +8,126 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Subject.Models;
-using System.Configuration;
-using Subject.ViewModels;
 
 namespace Subject.Controllers
 {
-    public class AdmsController : Controller
+    public class PostShopPaysController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd = new SetData();
 
-        //[LoginCheck]
+        // GET: PostShopPays
         public ActionResult Index()
         {
-            return View(db.Adm.ToList());
+            var postShopPay = db.PostShopPay.Include(p => p.Pay).Include(p => p.PostShop);
+            return View(postShopPay.ToList());
         }
 
-        //[LoginCheck]
+        // GET: PostShopPays/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Adm adm = db.Adm.Find(id);
-            if (adm == null)
+            PostShopPay postShopPay = db.PostShopPay.Find(id);
+            if (postShopPay == null)
             {
                 return HttpNotFound();
             }
-            return View(adm);
+            return View(postShopPay);
         }
 
-        //[LoginCheck]
+        // GET: PostShopPays/Create
         public ActionResult _Create()
         {
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType");
+            ViewBag.PostNumber = new SelectList(db.PostShop, "PostNumber", "PostName");
             return PartialView();
         }
 
-        // POST: Adms/Create
+        // POST: PostShopPays/Create
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [LoginCheck]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Adm adm)
+        public ActionResult Create(PostShopPay postShopPay)
         {
             if (ModelState.IsValid)
             {
-                string sql = "insert into Adm(AdmAccount,AdmPsaaword)" +
-                    "values(@AdmAccount,@AdmPsaaword)";
-
+                string sql = "insert into PostShopPay(PostNumber,PayNumber)values(@PostNumber,@PayNumber)";
                 List<SqlParameter> list = new List<SqlParameter>
                 {
-                    new SqlParameter("AdmAccount",adm.AdmAccount),
-                    new SqlParameter("AdmPsaaword",adm.AdmPsaaword)
+                    new SqlParameter("PostNumber",postShopPay.PostNumber),
+                    new SqlParameter("PayNumber",postShopPay.PayNumber)
                 };
 
-                sd.executeSql(sql, list);
-
+                sd.executeSql(sql,list);
                 return RedirectToAction("Index");
             }
 
-            return View(adm);
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", postShopPay.PayNumber);
+            ViewBag.PostNumber = new SelectList(db.PostShop, "PostNumber", "PostName", postShopPay.PostNumber);
+            return View(postShopPay);
         }
 
-        //[LoginCheck]
+        // GET: PostShopPays/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Adm adm = db.Adm.Find(id);
-            if (adm == null)
+            PostShopPay postShopPay = db.PostShopPay.Find(id);
+            if (postShopPay == null)
             {
                 return HttpNotFound();
             }
-            return View(adm);
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", postShopPay.PayNumber);
+            ViewBag.PostNumber = new SelectList(db.PostShop, "PostNumber", "PostName", postShopPay.PostNumber);
+            return View(postShopPay);
         }
 
-        // POST: Adms/Edit/5
+        // POST: PostShopPays/Edit/5
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        //[LoginCheck]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AdmNumber,AdmAccount,AdmPsaaword")] Adm adm)
+        public ActionResult Edit([Bind(Include = "Number,PostNumber,PayNumber,CreateDate")] PostShopPay postShopPay)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(adm).State = EntityState.Modified;
+                db.Entry(postShopPay).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(adm);
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", postShopPay.PayNumber);
+            ViewBag.PostNumber = new SelectList(db.PostShop, "PostNumber", "PostName", postShopPay.PostNumber);
+            return View(postShopPay);
         }
 
-        //[LoginCheck]
+        // GET: PostShopPays/Delete/5
         public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Adm adm = db.Adm.Find(id);
-            if (adm == null)
+            PostShopPay postShopPay = db.PostShopPay.Find(id);
+            if (postShopPay == null)
             {
                 return HttpNotFound();
             }
-            return PartialView(adm);
+            return PartialView(postShopPay);
         }
 
-        //[LoginCheck]
+        // POST: PostShopPays/Delete/5
         [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Adm adm = db.Adm.Find(id);
-            db.Adm.Remove(adm);
+            PostShopPay postShopPay = db.PostShopPay.Find(id);
+            db.PostShopPay.Remove(postShopPay);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -138,42 +140,5 @@ namespace Subject.Controllers
             }
             base.Dispose(disposing);
         }
-
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Login(VMLogin vMLogin)
-        {
-            string password = BR.getHashPassword(vMLogin.Password);
-
-            var adm = db.Adm.Where(m => m.AdmAccount == vMLogin.Account && m.AdmPsaaword == vMLogin.Password).FirstOrDefault();
-
-            if (adm == null)
-            {
-                ViewBag.ErrMsg = "帳號或密碼有誤";
-                return View(vMLogin);
-            }
-
-            Session["adm"] = adm;
-            return RedirectToAction("AfterLogin");
-        }
-
-        [LoginCheck]
-        public ActionResult Logout()
-        {
-            Session["adm"] = null;
-            return RedirectToAction("Login");
-        }
-
-        public ActionResult AfterLogin()
-        {
-            return View();
-        }
-
-
-
     }
 }

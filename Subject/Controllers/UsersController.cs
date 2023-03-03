@@ -124,7 +124,7 @@ namespace Subject.Controllers
         }
 
         // GET: Users/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
@@ -135,11 +135,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(users);
+            return PartialView(users);
         }
 
-        // POST: Users/Delete/5
-        [HttpPost, ActionName("Delete")]
+        //POST: Users/Delete/5
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -149,6 +149,7 @@ namespace Subject.Controllers
             return RedirectToAction("Index");
         }
 
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -157,5 +158,7 @@ namespace Subject.Controllers
             }
             base.Dispose(disposing);
         }
+
+
     }
 }

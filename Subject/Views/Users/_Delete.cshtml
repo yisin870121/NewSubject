@@ -1,0 +1,33 @@
+﻿@model Subject.Models.Users
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("_Delete", "Users", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color text-right">
+            <input type="submit" value="封鎖" class="btn btn-danger" />
+        </div>
+    }
+</div>

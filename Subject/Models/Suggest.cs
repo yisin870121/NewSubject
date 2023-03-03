@@ -11,13 +11,18 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Suggest
     {
         public int SuggestNumber { get; set; }
         public int UserNumber { get; set; }
         public string Suggest1 { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> SuggestDate { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> CheckDate { get; set; }
         public Nullable<int> AdmNumber { get; set; }
     

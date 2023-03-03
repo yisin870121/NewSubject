@@ -23,14 +23,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="navbar-nav mr-auto w-100">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         @Html.ActionLink("用戶管理", "Index", "Users", new { area = "" }, new { @class = "nav-link" })
                     </li>
                     <li class="nav-item dropdown">
-                        @*<div class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </div>*@
-                        @Html.ActionLink("店家管理", "Index", "Shops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown" ,aria_expanded = "false" })
+                        @Html.ActionLink("店家管理", "Index", "Shops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown", aria_expanded = "false" })
                         <div class="dropdown-menu">
                             @Html.ActionLink("主頁", "Index", "Shops", new { area = "" }, new { @class = "dropdown-item" })
                             <div class="dropdown-divider"></div>
@@ -39,26 +36,34 @@
                             @Html.ActionLink("付款方式管理", "Index", "ShopPays", new { area = "" }, new { @class = "dropdown-item" })
                         </div>
                     </li>
-
-                    @*<li class="nav-item active">
-                        @Html.ActionLink("店家管理", "Index", "Shops", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item active">
-                        @Html.ActionLink("店家菜單", "Index", "ShopMenus", new { area = "" }, new { @class = "nav-link" })
-                    </li>*@
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         @Html.ActionLink("付款種類", "Index", "Pays", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item active">
-                        @Html.ActionLink("投稿店家", "Index", "PostShops", new { area = "" }, new { @class = "nav-link" })
+                    <li class="nav-item dropdown">
+                        @Html.ActionLink("投稿店家", "Index", "PostShops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown", aria_expanded = "false" })
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("主頁", "Index", "PostShops", new { area = "" }, new { @class = "dropdown-item" })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("付款方式管理", "Index", "PostShopPays", new { area = "" }, new { @class = "dropdown-item" })
+                        </div>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         @Html.ActionLink("建議", "Index", "Suggests", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item ml-auto">
-                        @Html.ActionLink("登出", "Logout", "Adms", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
+                    <li class="dropdown ml-auto">
+                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                            管理員
+                        </button>
+                        <div class="dropdown-menu">
+                            @Html.ActionLink("管理員資料", "Index", "Adms", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("封鎖名單", "Index", "UserBlocks", new { area = "" }, new { @class = "dropdown-item " })
+                            <div class="dropdown-divider"></div>
+                            @Html.ActionLink("登出", "Logout", "Adms", new { area = "" }, new { @class = "dropdown-item " })
+                        </div>
                     </li>
-                    <li></li>
+                    <li>
+
+                    </li>
                 </ul>
             </div>
         </div>
@@ -73,7 +78,7 @@
     </div>
 
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

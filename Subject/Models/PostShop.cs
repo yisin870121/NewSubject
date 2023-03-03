@@ -11,7 +11,8 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class PostShop
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,8 +33,13 @@ namespace Subject.Models
         public Nullable<bool> PostLimitedTime { get; set; }
         public Nullable<bool> PostOrder { get; set; }
         public int UserNumber { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PostDate { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PassDate { get; set; }
+
         public Nullable<int> AdmNumber { get; set; }
     
         public virtual Adm Adm { get; set; }

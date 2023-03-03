@@ -11,7 +11,8 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ShopMenu
     {
         public int MenuNumber { get; set; }
@@ -19,6 +20,8 @@ namespace Subject.Models
         public int ShopNumber { get; set; }
         public string Item { get; set; }
         public short Price { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> MenuDate { get; set; }
     
         public virtual Shop Shop { get; set; }

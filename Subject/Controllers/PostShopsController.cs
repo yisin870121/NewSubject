@@ -38,6 +38,11 @@ namespace Subject.Controllers
             return PartialView(postShop);
         }
 
+        public ActionResult _PayDetail(int id)
+        {
+            return PartialView(db.PostShopPay.Where(m => m.PostNumber == id).ToList());
+        }
+
         // GET: PostShops/Create
         public ActionResult _Create()
         {

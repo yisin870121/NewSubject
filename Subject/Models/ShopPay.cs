@@ -11,12 +11,15 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ShopPay
     {
         public int Number { get; set; }
         public int ShopNumber { get; set; }
         public int PayNumber { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> CreateDate { get; set; }
     
         public virtual Pay Pay { get; set; }

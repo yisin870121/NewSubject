@@ -28,12 +28,17 @@
             @Html.DisplayNameFor(model => model.UserNumber)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            @Html.DisplayNameFor(model => model.UserAccount)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.UserDate)
         </th>
-        <th>管理</th>
+        <th>
+            封鎖
+        </th>
+        <th>
+            管理
+        </th>
     </tr>
 
 @foreach (var item in Model) {
@@ -43,10 +48,15 @@
             @Html.DisplayFor(modelItem => item.UserNumber)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.UserName)
+            @Html.DisplayFor(modelItem => item.UserAccount)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.UserDate)
+        </td>
+        <td>
+            <form>
+                <input id="Checkbox1" type="checkbox" />
+            </form>
         </td>
         <td>
             <button type="button" id="@item.UserNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
@@ -56,9 +66,8 @@
             <button type="button" id="@item.UserNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
                 <i class="bi bi-person-vcard" id="@item.UserNumber"></i>
             </button>
-                
 
-            @*@Html.ActionLink("Delete", "Delete", new { id = item.UserNumber })*@
+
         </td>
     </tr>
 }
@@ -97,6 +106,8 @@
     </div>
 </div>
 
+
+
 @section scripts{
     <script>
         $('#AddForm').click(function () {
@@ -113,5 +124,7 @@
 
             $('#showEditModal .modal-body').load("/Users/_Edit/" + evt.target.id);
         }
+
+        
     </script>
     }

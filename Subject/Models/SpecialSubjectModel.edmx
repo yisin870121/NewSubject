@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SpecialSubjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="SpecialSubjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Adm">
           <Key>
             <PropertyRef Name="AdmNumber" />
@@ -120,15 +120,6 @@
           <Property Name="CheckDate" Type="datetime" />
           <Property Name="AdmNumber" Type="int" />
         </EntityType>
-        <EntityType Name="UserBlock">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserNumber" Type="int" Nullable="false" />
-          <Property Name="AdmNumber" Type="int" Nullable="false" />
-          <Property Name="BlockDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="UserFeedback">
           <Key>
             <PropertyRef Name="Number" />
@@ -154,6 +145,7 @@
           <Property Name="Birthday" Type="datetime" Nullable="false" />
           <Property Name="Age" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="UserDate" Type="datetime" />
+          <Property Name="Blockade" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="UserSave">
           <Key>
@@ -344,30 +336,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserBlock__AdmNu__4C6B5938">
-          <End Role="Adm" Type="Self.Adm" Multiplicity="1" />
-          <End Role="UserBlock" Type="Self.UserBlock" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm">
-              <PropertyRef Name="AdmNumber" />
-            </Principal>
-            <Dependent Role="UserBlock">
-              <PropertyRef Name="AdmNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserBlock__UserN__4B7734FF">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserBlock" Type="Self.UserBlock" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserNumber" />
-            </Principal>
-            <Dependent Role="UserBlock">
-              <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__UserFeedb__ShopN__55F4C372">
           <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
           <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
@@ -427,7 +395,6 @@
           <EntitySet Name="ShopPay" EntityType="Self.ShopPay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopTag" EntityType="Self.ShopTag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggest" EntityType="Self.Suggest" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserBlock" EntityType="Self.UserBlock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserSave" EntityType="Self.UserSave" Schema="dbo" store:Type="Tables" />
@@ -491,14 +458,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Suggest" EntitySet="Suggest" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserBlock__AdmNu__4C6B5938" Association="Self.FK__UserBlock__AdmNu__4C6B5938">
-            <End Role="Adm" EntitySet="Adm" />
-            <End Role="UserBlock" EntitySet="UserBlock" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserBlock__UserN__4B7734FF" Association="Self.FK__UserBlock__UserN__4B7734FF">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserBlock" EntitySet="UserBlock" />
-          </AssociationSet>
           <AssociationSet Name="FK__UserFeedb__ShopN__55F4C372" Association="Self.FK__UserFeedb__ShopN__55F4C372">
             <End Role="Shop" EntitySet="Shop" />
             <End Role="UserFeedback" EntitySet="UserFeedback" />
@@ -516,8 +475,7 @@
             <End Role="UserSave" EntitySet="UserSave" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SpecialSubjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -531,7 +489,6 @@
           <NavigationProperty Name="PostShop" Relationship="Self.FK__PostShop__AdmNum__18EBB532" FromRole="Adm" ToRole="PostShop" />
           <NavigationProperty Name="Shop" Relationship="Self.FK__Shop__AdmNumber__73BA3083" FromRole="Adm" ToRole="Shop" />
           <NavigationProperty Name="Suggest" Relationship="Self.FK__Suggest__AdmNumb__2180FB33" FromRole="Adm" ToRole="Suggest" />
-          <NavigationProperty Name="UserBlock" Relationship="Self.FK__UserBlock__AdmNu__4C6B5938" FromRole="Adm" ToRole="UserBlock" />
         </EntityType>
         <EntityType Name="Pay">
           <Key>
@@ -664,17 +621,6 @@
           <NavigationProperty Name="Adm" Relationship="Self.FK__Suggest__AdmNumb__2180FB33" FromRole="Suggest" ToRole="Adm" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Suggest__UserNum__208CD6FA" FromRole="Suggest" ToRole="Users" />
         </EntityType>
-        <EntityType Name="UserBlock">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserNumber" Type="Int32" Nullable="false" />
-          <Property Name="AdmNumber" Type="Int32" Nullable="false" />
-          <Property Name="BlockDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Adm" Relationship="Self.FK__UserBlock__AdmNu__4C6B5938" FromRole="UserBlock" ToRole="Adm" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__UserBlock__UserN__4B7734FF" FromRole="UserBlock" ToRole="Users" />
-        </EntityType>
         <EntityType Name="UserFeedback">
           <Key>
             <PropertyRef Name="Number" />
@@ -702,12 +648,12 @@
           <Property Name="Birthday" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Age" Type="Int32" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="UserDate" Type="DateTime" Precision="3" />
+          <Property Name="Blockade" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="PostShop" Relationship="Self.FK__PostShop__UserNu__17F790F9" FromRole="Users" ToRole="PostShop" />
           <NavigationProperty Name="ShopImage" Relationship="Self.FK__ShopImage__UserN__09A971A2" FromRole="Users" ToRole="ShopImage" />
           <NavigationProperty Name="ShopMenu" Relationship="Self.FK__ShopMenu__UserNu__1332DBDC" FromRole="Users" ToRole="ShopMenu" />
           <NavigationProperty Name="ShopTag" Relationship="Self.FK__ShopTag__UserNum__0E6E26BF" FromRole="Users" ToRole="ShopTag" />
           <NavigationProperty Name="Suggest" Relationship="Self.FK__Suggest__UserNum__208CD6FA" FromRole="Users" ToRole="Suggest" />
-          <NavigationProperty Name="UserBlock" Relationship="Self.FK__UserBlock__UserN__4B7734FF" FromRole="Users" ToRole="UserBlock" />
           <NavigationProperty Name="UserFeedback" Relationship="Self.FK__UserFeedb__UserN__55009F39" FromRole="Users" ToRole="UserFeedback" />
           <NavigationProperty Name="UserSave" Relationship="Self.FK__UserSave__UserNu__503BEA1C" FromRole="Users" ToRole="UserSave" />
         </EntityType>
@@ -754,18 +700,6 @@
               <PropertyRef Name="AdmNumber" />
             </Principal>
             <Dependent Role="Suggest">
-              <PropertyRef Name="AdmNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserBlock__AdmNu__4C6B5938">
-          <End Role="Adm" Type="Self.Adm" Multiplicity="1" />
-          <End Role="UserBlock" Type="Self.UserBlock" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adm">
-              <PropertyRef Name="AdmNumber" />
-            </Principal>
-            <Dependent Role="UserBlock">
               <PropertyRef Name="AdmNumber" />
             </Dependent>
           </ReferentialConstraint>
@@ -938,18 +872,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserBlock__UserN__4B7734FF">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserBlock" Type="Self.UserBlock" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserNumber" />
-            </Principal>
-            <Dependent Role="UserBlock">
-              <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__UserFeedb__UserN__55009F39">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
@@ -985,7 +907,6 @@
           <EntitySet Name="ShopPay" EntityType="Self.ShopPay" />
           <EntitySet Name="ShopTag" EntityType="Self.ShopTag" />
           <EntitySet Name="Suggest" EntityType="Self.Suggest" />
-          <EntitySet Name="UserBlock" EntityType="Self.UserBlock" />
           <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UserSave" EntityType="Self.UserSave" />
@@ -1000,10 +921,6 @@
           <AssociationSet Name="FK__Suggest__AdmNumb__2180FB33" Association="Self.FK__Suggest__AdmNumb__2180FB33">
             <End Role="Adm" EntitySet="Adm" />
             <End Role="Suggest" EntitySet="Suggest" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserBlock__AdmNu__4C6B5938" Association="Self.FK__UserBlock__AdmNu__4C6B5938">
-            <End Role="Adm" EntitySet="Adm" />
-            <End Role="UserBlock" EntitySet="UserBlock" />
           </AssociationSet>
           <AssociationSet Name="FK__PostShopP__PayNu__47A6A41B" Association="Self.FK__PostShopP__PayNu__47A6A41B">
             <End Role="Pay" EntitySet="Pay" />
@@ -1060,10 +977,6 @@
           <AssociationSet Name="FK__Suggest__UserNum__208CD6FA" Association="Self.FK__Suggest__UserNum__208CD6FA">
             <End Role="Users" EntitySet="Users" />
             <End Role="Suggest" EntitySet="Suggest" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserBlock__UserN__4B7734FF" Association="Self.FK__UserBlock__UserN__4B7734FF">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserBlock" EntitySet="UserBlock" />
           </AssociationSet>
           <AssociationSet Name="FK__UserFeedb__UserN__55009F39" Association="Self.FK__UserFeedb__UserN__55009F39">
             <End Role="Users" EntitySet="Users" />
@@ -1205,16 +1118,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserBlock">
-            <EntityTypeMapping TypeName="SpecialSubjectModel.UserBlock">
-              <MappingFragment StoreEntitySet="UserBlock">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="UserNumber" ColumnName="UserNumber" />
-                <ScalarProperty Name="AdmNumber" ColumnName="AdmNumber" />
-                <ScalarProperty Name="BlockDate" ColumnName="BlockDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="UserFeedback">
             <EntityTypeMapping TypeName="SpecialSubjectModel.UserFeedback">
               <MappingFragment StoreEntitySet="UserFeedback">
@@ -1240,6 +1143,7 @@
                 <ScalarProperty Name="Birthday" ColumnName="Birthday" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="UserDate" ColumnName="UserDate" />
+                <ScalarProperty Name="Blockade" ColumnName="Blockade" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

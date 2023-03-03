@@ -4,25 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="fece73e09a50436fb5057db1b95cd009" Name="Diagram1">
-        <EntityTypeShape EntityType="SpecialSubjectModel.Adm" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.Pay" Width="1.5" PointX="6" PointY="21.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.PostShop" Width="1.5" PointX="3" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.PostShopPay" Width="1.5" PointX="8.25" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.Shop" Width="1.5" PointX="3.75" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.ShopImage" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.ShopMenu" Width="1.5" PointX="6" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.ShopPay" Width="1.5" PointX="11.25" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.ShopTag" Width="1.5" PointX="6" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.Suggest" Width="1.5" PointX="3" PointY="8.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.UserBlock" Width="1.5" PointX="3" PointY="18" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.UserFeedback" Width="1.5" PointX="9" PointY="13.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.Users" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="SpecialSubjectModel.UserSave" Width="1.5" PointX="9" PointY="10" IsExpanded="true" />
+      <Diagram DiagramId="9188c41f30614f36a8ff0d09faa4f449" Name="Diagram1">
+        <EntityTypeShape EntityType="SpecialSubjectModel.Adm" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.Pay" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.PostShop" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.PostShopPay" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.Shop" Width="1.5" PointX="3.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.ShopImage" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.ShopMenu" Width="1.5" PointX="6" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.ShopPay" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.ShopTag" Width="1.5" PointX="6" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.Suggest" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.UserFeedback" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.Users" Width="1.5" PointX="0.75" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SpecialSubjectModel.UserSave" Width="1.5" PointX="9" PointY="12.5" IsExpanded="true" />
         <AssociationConnector Association="SpecialSubjectModel.FK__PostShop__AdmNum__18EBB532" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__Shop__AdmNumber__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__Suggest__AdmNumb__2180FB33" ManuallyRouted="false" />
-        <AssociationConnector Association="SpecialSubjectModel.FK__UserBlock__AdmNu__4C6B5938" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__PostShopP__PayNu__47A6A41B" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__ShopPay__PayNumb__42E1EEFE" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__PostShop__UserNu__17F790F9" ManuallyRouted="false" />
@@ -37,7 +35,6 @@
         <AssociationConnector Association="SpecialSubjectModel.FK__ShopMenu__UserNu__1332DBDC" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__ShopTag__UserNum__0E6E26BF" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__Suggest__UserNum__208CD6FA" ManuallyRouted="false" />
-        <AssociationConnector Association="SpecialSubjectModel.FK__UserBlock__UserN__4B7734FF" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserFeedb__UserN__55009F39" ManuallyRouted="false" />
         <AssociationConnector Association="SpecialSubjectModel.FK__UserSave__UserNu__503BEA1C" ManuallyRouted="false" />
       </Diagram>

@@ -34,7 +34,7 @@
             @Html.DisplayNameFor(model => model.UserDate)
         </th>
         <th>
-            封鎖
+            @Html.DisplayNameFor(model => model.Blockade)
         </th>
         <th>
             管理
@@ -53,11 +53,22 @@
         <td>
             @Html.DisplayFor(modelItem => item.UserDate)
         </td>
-        <td>
-            <form>
-                <input id="Checkbox1" type="checkbox" />
-            </form>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Blockade)
+        </td>*@
+
+        <td class="text-center">
+            @if (@item.Blockade)
+            {
+                <span class="text-danger" data-toggle="tooltip" data-placement="bottom" title="已封鎖"><i class="bi bi-check-lg"></i></span>
+            }
+            else
+            {
+                
+            }
         </td>
+
+
         <td>
             <button type="button" id="@item.UserNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
                 <i class="bi bi-pencil-square" id="@item.UserNumber"></i>
@@ -125,6 +136,9 @@
             $('#showEditModal .modal-body').load("/Users/_Edit/" + evt.target.id);
         }
 
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
         
     </script>
     }

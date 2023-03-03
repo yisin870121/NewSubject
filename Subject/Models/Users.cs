@@ -11,8 +11,7 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,38 +22,20 @@ namespace Subject.Models
             this.ShopMenu = new HashSet<ShopMenu>();
             this.ShopTag = new HashSet<ShopTag>();
             this.Suggest = new HashSet<Suggest>();
-            this.UserBlock = new HashSet<UserBlock>();
             this.UserFeedback = new HashSet<UserFeedback>();
             this.UserSave = new HashSet<UserSave>();
         }
     
         public int UserNumber { get; set; }
         public string UserAccount { get; set; }
-
-        string password;
-        public string UserPassword 
-        { 
-            get
-            {
-                return password;
-            }
-            set
-            {
-                password = BR.getHashPassword(value);
-            } 
-        }
-
-
+        public string UserPassword { get; set; }
         public string UserName { get; set; }
         public bool Sex { get; set; }
         public byte[] UserPhoto { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Birthday { get; set; }
         public Nullable<int> Age { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> UserDate { get; set; }
+        public bool Blockade { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PostShop> PostShop { get; set; }
@@ -66,8 +47,6 @@ namespace Subject.Models
         public virtual ICollection<ShopTag> ShopTag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suggest> Suggest { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserBlock> UserBlock { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<UserFeedback> UserFeedback { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

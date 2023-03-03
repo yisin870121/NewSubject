@@ -53,8 +53,8 @@ namespace Subject.Controllers
         {
             if (ModelState.IsValid)
             {
-                string sql = "insert into Users(UserAccount,UserPassword,UserName,Sex,Birthday)" +
-                "values(@UserAccount,@UserPassword,@UserName,@Sex,@Birthday)";
+                string sql = "insert into Users(UserAccount,UserPassword,UserName,Sex,Birthday,Blockade)" +
+                "values(@UserAccount,@UserPassword,@UserName,@Sex,@Birthday,@Blockade)";
 
                 List<SqlParameter> list = new List<SqlParameter>
                 {
@@ -62,7 +62,8 @@ namespace Subject.Controllers
                     new SqlParameter("UserPassword",users.UserPassword),
                     new SqlParameter("UserName",users.UserName),
                     new SqlParameter("Sex",users.Sex),
-                    new SqlParameter("Birthday",users.Birthday)
+                    new SqlParameter("Birthday",users.Birthday),
+                    new SqlParameter("Blockade",users.Blockade)
                 };
 
                 sd.executeSql(sql, list);
@@ -95,13 +96,14 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Users users)
         {
-            string sql = "update Users set UserName=@UserName,Birthday=@Birthday where UserNumber=@UserNumber";
+            string sql = "update Users set UserName=@UserName,Birthday=@Birthday,Blockade=@Blockade where UserNumber=@UserNumber";
 
             List<SqlParameter> list = new List<SqlParameter>
             {
                 new SqlParameter("UserNumber",users.UserNumber),
                 new SqlParameter("UserName",users.UserName),
-                new SqlParameter("Birthday",users.Birthday)
+                new SqlParameter("Birthday",users.Birthday),
+                new SqlParameter("Blockade",users.Blockade)
             };
 
             try
@@ -157,6 +159,11 @@ namespace Subject.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult Block()
+        {
+            return View(db.Users.Where(m => m.Blockade).ToList());
         }
 
 

@@ -11,8 +11,7 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class UserFeedback
     {
         public int Number { get; set; }
@@ -21,8 +20,6 @@ namespace Subject.Models
         public int MFeedback { get; set; }
         public int EFeedback { get; set; }
         public int PFeedback { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FeedbackDate { get; set; }
     
         public virtual Shop Shop { get; set; }

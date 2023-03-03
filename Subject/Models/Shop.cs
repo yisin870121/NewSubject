@@ -11,8 +11,7 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class Shop
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -37,13 +36,8 @@ namespace Subject.Models
         public Nullable<bool> WIFI { get; set; }
         public Nullable<bool> LimitedTime { get; set; }
         public Nullable<bool> IsOrder { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> ShopDate { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> UpdateDate { get; set; }
-
         public int AdmNumber { get; set; }
         public Nullable<bool> Closed { get; set; }
     

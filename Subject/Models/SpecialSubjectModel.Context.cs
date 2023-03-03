@@ -35,7 +35,6 @@ namespace Subject.Models
         public virtual DbSet<ShopPay> ShopPay { get; set; }
         public virtual DbSet<ShopTag> ShopTag { get; set; }
         public virtual DbSet<Suggest> Suggest { get; set; }
-        public virtual DbSet<UserBlock> UserBlock { get; set; }
         public virtual DbSet<UserFeedback> UserFeedback { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UserSave> UserSave { get; set; }

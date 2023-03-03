@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Subject.Models.Users>
+
+@{
+    ViewBag.Title = "Block";
+}
+
+<h2>封鎖名單</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserAccount)
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserAccount)
+            </td>
+        </tr>
+
+    }
+</table>
+
+
+
+@*<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@

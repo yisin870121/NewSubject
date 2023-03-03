@@ -11,15 +11,12 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class UserSave
     {
         public int Number { get; set; }
         public int UserNumber { get; set; }
         public int ShopNumber { get; set; }
-
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> SaveDate { get; set; }
     
         public virtual Shop Shop { get; set; }

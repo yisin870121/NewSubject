@@ -20,7 +20,6 @@ namespace Subject.Models
             this.PostShop = new HashSet<PostShop>();
             this.Shop = new HashSet<Shop>();
             this.Suggest = new HashSet<Suggest>();
-            this.UserBlock = new HashSet<UserBlock>();
         }
     
         public int AdmNumber { get; set; }
@@ -33,7 +32,5 @@ namespace Subject.Models
         public virtual ICollection<Shop> Shop { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suggest> Suggest { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserBlock> UserBlock { get; set; }
     }
 }

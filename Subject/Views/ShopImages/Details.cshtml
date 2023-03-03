@@ -1,0 +1,50 @@
+﻿@model Subject.Models.ShopImage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ShopImage</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ShopImage1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShopImage1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ImageDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ImageDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shop.ShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shop.ShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserAccount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ImageNumber }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

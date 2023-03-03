@@ -246,6 +246,7 @@
     <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\PostShopPaysController.cs" />
     <Compile Include="Controllers\PostShopsController.cs" />
+    <Compile Include="Controllers\ShopImagesController.cs" />
     <Compile Include="Controllers\ShopMenusController.cs" />
     <Compile Include="Controllers\ShopPaysController.cs" />
     <Compile Include="Controllers\ShopsController.cs" />
@@ -301,9 +302,6 @@
       <DependentUpon>SpecialSubjectModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Suggest.cs">
-      <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserBlock.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserFeedback.cs">
@@ -383,6 +381,12 @@
     <Content Include="Views\PostShopPays\Index.cshtml" />
     <Content Include="Views\PostShops\_PayDetail.cshtml" />
     <Content Include="Views\Adms\AfterLogin.cshtml" />
+    <Content Include="Views\Users\Block.cshtml" />
+    <Content Include="Views\ShopImages\Create.cshtml" />
+    <Content Include="Views\ShopImages\Delete.cshtml" />
+    <Content Include="Views\ShopImages\Details.cshtml" />
+    <Content Include="Views\ShopImages\Edit.cshtml" />
+    <Content Include="Views\ShopImages\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

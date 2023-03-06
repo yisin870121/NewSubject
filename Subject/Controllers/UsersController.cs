@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -9,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using Subject.Models;
+using Subject.ViewModels;
 
 namespace Subject.Controllers
 {
@@ -116,13 +118,6 @@ namespace Subject.Controllers
                 ViewBag.Msg = ex.Message;
                 return View(users);
             }
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(users).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //return View(users);
         }
 
         // GET: Users/Delete/5
@@ -164,6 +159,49 @@ namespace Subject.Controllers
         public ActionResult Block()
         {
             return View(db.Users.Where(m => m.Blockade).ToList());
+        }
+
+
+
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(VMLogin vMLogin)
+        {
+            string password = BR.getHashPassword(vMLogin.Password);
+
+            var user = db.Users.Where(m => m.UserAccount == vMLogin.Account && m.UserPassword == vMLogin.Password).FirstOrDefault();
+
+            if (user == null)
+            {
+                ViewBag.ErrMsg = "帳號或密碼有誤";
+                return View(vMLogin);
+            }
+            Session["user"] = user;
+            return RedirectToAction("AfterLogin", "Users", new {id=user.UserNumber});
+        }
+
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult AfterLogin(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Users users = db.Users.Find(id);
+            if (users == null)
+            {
+                return HttpNotFound();
+            }
+            return View(users);
         }
 
 

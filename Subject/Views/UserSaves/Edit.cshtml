@@ -1,20 +1,22 @@
-﻿@model Subject.Models.ShopImage
+﻿@model Subject.Models.UserSave
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>ShopImage</h4>
+        <h4>UserSave</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Number)
+
         <div class="form-group">
             @Html.LabelFor(model => model.UserNumber, "UserNumber", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -32,24 +34,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ShopImage1, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SaveDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ShopImage1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShopImage1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ImageDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ImageDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ImageDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SaveDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SaveDate, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>

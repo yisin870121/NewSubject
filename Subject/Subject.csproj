@@ -242,6 +242,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdmsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCheck.cs" />
     <Compile Include="Controllers\PaysController.cs" />
     <Compile Include="Controllers\PostShopPaysController.cs" />
@@ -252,6 +253,7 @@
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\ShopTagsController.cs" />
     <Compile Include="Controllers\SuggestsController.cs" />
+    <Compile Include="Controllers\UserSavesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -382,11 +384,23 @@
     <Content Include="Views\PostShops\_PayDetail.cshtml" />
     <Content Include="Views\Adms\AfterLogin.cshtml" />
     <Content Include="Views\Users\Block.cshtml" />
-    <Content Include="Views\ShopImages\Create.cshtml" />
+    <Content Include="Views\ShopImages\_Create.cshtml" />
     <Content Include="Views\ShopImages\Delete.cshtml" />
     <Content Include="Views\ShopImages\Details.cshtml" />
     <Content Include="Views\ShopImages\Edit.cshtml" />
     <Content Include="Views\ShopImages\Index.cshtml" />
+    <Content Include="Views\UserSaves\Create.cshtml" />
+    <Content Include="Views\UserSaves\Delete.cshtml" />
+    <Content Include="Views\UserSaves\Details.cshtml" />
+    <Content Include="Views\UserSaves\Edit.cshtml" />
+    <Content Include="Views\UserSaves\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Details.cshtml" />
+    <Content Include="Views\Users\Login.cshtml" />
+    <Content Include="Views\Users\AfterLogin.cshtml" />
+    <Content Include="Views\Home\_MenuDetail.cshtml" />
+    <Content Include="Views\Home\_TagDetail.cshtml" />
+    <Content Include="Views\Home\_PayDetail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

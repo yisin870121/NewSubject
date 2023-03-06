@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Subject.Models.ShopTag>
+
+
+@foreach (var item in Model)
+{
+    <div class="btn btn-light">
+        @Html.DisplayFor(modelItem => item.Tag)
+    </div>
+}
+

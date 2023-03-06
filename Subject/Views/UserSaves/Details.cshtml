@@ -1,0 +1,42 @@
+﻿@model Subject.Models.UserSave
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserSave</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shop.ShopName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shop.ShopName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Users.UserAccount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Users.UserAccount)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

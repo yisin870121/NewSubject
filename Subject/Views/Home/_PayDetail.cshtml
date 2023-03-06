@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Subject.Models.ShopPay>
+
+
+@foreach (var item in Model)
+{
+    <div class="btn btn-light">
+        @Html.DisplayFor(modelItem => item.Pay.PayType)
+    </div>
+}
+
+
+

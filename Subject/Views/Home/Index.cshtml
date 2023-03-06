@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Subject.Models.Shop>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>咖啡廳清單</h2>
+
+
+<table class="table table-hover pointer-event">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.District)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Outlet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WIFI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LimitedTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsOrder)
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr id="@item.ShopNumber" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+            <td id="@item.ShopNumber">
+                @Html.DisplayFor(modelItem => item.ShopName)
+            </td>
+            <td id="@item.ShopNumber">
+                @Html.DisplayFor(modelItem => item.District)
+            </td>
+            <td id="@item.ShopNumber">
+                @Html.DisplayFor(modelItem => item.Outlet)
+            </td>
+            <td id="@item.ShopNumber">
+                @Html.DisplayFor(modelItem => item.WIFI)
+            </td>
+            <td id="@item.ShopNumber">
+                @Html.DisplayFor(modelItem => item.LimitedTime)
+            </td>
+            <td id="@item.ShopNumber">
+                @Html.DisplayFor(modelItem => item.IsOrder)
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="modal fade" id="showDetailModal" tabindex="-1">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            @*<div class="modal-header">
+                    <h5 class="text-dark mt-2 ml-2"></h5>
+                </div>*@
+            <div class="modal-body">
+                <button class="btn btn-danger disabled"><i class="bi bi-heart-fill"></i> 收藏</button>
+                <button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button>
+                @*<button class="btn btn-danger disabled"><i class="bi bi-hash"></i> 標籤</button>*@
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+                <div class="mt-3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script>
+        function getDetailData(evt) {
+            $('#showDetailModal .modal-body>div').load("/Home/_Details/" + evt.target.id);
+         /*   $('#showDetailModal .modal-body>div>div').load("/Home/_MenuDetail/" + evt.target.id);*/
+        }
+
+    </script>
+
+
+}

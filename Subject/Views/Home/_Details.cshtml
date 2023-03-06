@@ -46,26 +46,24 @@
         <div>
             @Html.DisplayNameFor(model => model.IsOrder): @Html.DisplayFor(model => model.IsOrder)
         </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.ShopDate): @Html.DisplayFor(model => model.ShopDate)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.UpdateDate): @Html.DisplayFor(model => model.UpdateDate)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Closed): @Html.DisplayFor(model => model.Closed)
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Adm.AdmNumber): @Html.DisplayFor(model => model.Adm.AdmNumber)
-        </div>
     </div>
 </div>
 
+<span><strong>菜單</strong></span>
+<a href="#">新增</a>
+<div>
+    @Html.Action("_MenuDetail")
+</div>
 
-@*<div class="alert alert-primary">
-        @Html.Action("_MenuDetail")
-    </div>*@
+<span><strong>標籤</strong></span>
+<a href="#">新增</a>
+<div class="alert alert-primary">
+    @Html.Action("_TagDetail")
+</div>
+
+<span><strong>付款方式</strong></span>
+<a href="#">新增</a>
+<div class="alert alert-primary">
+    @Html.Action("_PayDetail")
+</div>
+

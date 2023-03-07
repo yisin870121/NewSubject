@@ -9,6 +9,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 using Subject.Models;
 using Subject.ViewModels;
 
@@ -181,7 +182,7 @@ namespace Subject.Controllers
                 return View(vMLogin);
             }
             Session["user"] = user;
-            return RedirectToAction("AfterLogin", "Users", new {id=user.UserNumber});
+            return RedirectToAction("AfterLogin", new {id=user.UserNumber});
         }
 
         public ActionResult Logout()
@@ -203,6 +204,31 @@ namespace Subject.Controllers
             }
             return View(users);
         }
+
+        
+
+
+
+        //public ActionResult AfterLogin(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Users users = db.Users.Find(id);
+        //    if (users == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(users);
+        //}
+
+
+        //public ActionResult AfterLogin(VMLogin vMLogin)
+        //{
+        //    var user = db.Users.Where(m => m.UserAccount == vMLogin.Account && m.UserPassword == vMLogin.Password).FirstOrDefault();
+        //    return View(user);
+        //}
 
 
     }

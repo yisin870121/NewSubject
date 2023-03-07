@@ -397,10 +397,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Details.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
-    <Content Include="Views\Users\AfterLogin.cshtml" />
     <Content Include="Views\Home\_MenuDetail.cshtml" />
     <Content Include="Views\Home\_TagDetail.cshtml" />
     <Content Include="Views\Home\_PayDetail.cshtml" />
+    <Content Include="Views\Users\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

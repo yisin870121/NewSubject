@@ -169,20 +169,42 @@ namespace Subject.Controllers
             return View();
         }
 
+        //[HttpPost]
+        //public ActionResult Login(VMLogin vMLogin)
+        //{
+        //    string password = BR.getHashPassword(vMLogin.Password);
+
+        //    var user = db.Users.Where(m => m.UserAccount == vMLogin.Account && m.UserPassword == vMLogin.Password).FirstOrDefault();
+
+        //    if (user == null)
+        //    {
+        //        ViewBag.ErrMsg = "帳號或密碼有誤";
+        //        return View(vMLogin);
+        //    }
+        //    Session["user"] = user;
+        //    return RedirectToAction("Profile", new { id = user.UserNumber });
+        //}
+
         [HttpPost]
         public ActionResult Login(VMLogin vMLogin)
         {
-            string password = BR.getHashPassword(vMLogin.Password);
-
+            
             var user = db.Users.Where(m => m.UserAccount == vMLogin.Account && m.UserPassword == vMLogin.Password).FirstOrDefault();
-
             if (user == null)
             {
                 ViewBag.ErrMsg = "帳號或密碼有誤";
                 return View(vMLogin);
             }
+
             Session["user"] = user;
-            return RedirectToAction("AfterLogin", new {id=user.UserNumber});
+            Session["UserName"] = user.UserName;
+            Session["Sex"] = user.Sex;
+            Session["Birthday"] = user.Birthday;
+            Session["Age"] = user.Age;
+            Session["UserPhoto"] = user.UserPhoto;
+            //return RedirectToAction("Profile", new { id = user.UserNumber });
+            return RedirectToAction("Index", "Home");
+
         }
 
         public ActionResult Logout()
@@ -191,21 +213,24 @@ namespace Subject.Controllers
             return RedirectToAction("Index","Home");
         }
 
-        public ActionResult AfterLogin(int? id)
+
+        public ActionResult Profile()
         {
-            if (id == null)
+            if (Session["user"] != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View();
             }
-            Users users = db.Users.Find(id);
-            if (users == null)
+            else
             {
-                return HttpNotFound();
+                return RedirectToAction("Login");
             }
-            return View(users);
         }
 
-        
+
+
+
+
+
 
 
 

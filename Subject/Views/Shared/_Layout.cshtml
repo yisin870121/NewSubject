@@ -41,14 +41,17 @@
                         <li class="nav-item">
                             @Html.ActionLink("咖啡廳清單", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                         </li>
+
                         <li class="nav-item">
-                            @Html.ActionLink("個人檔案", "profile", "Users", new { area = "" }, new { @class = "nav-link" })
+                            <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
+                                <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜尋咖啡廳" aria-label="Search">
+                                <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                            </form>
                         </li>
-                        <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
-                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜尋..." aria-label="Search">
-                            <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
-                        </form>
                         <li class="nav-item ml-auto">
+                            @Html.ActionLink("個人檔案", "Profile", "Users", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item ml-3">
                             @Html.ActionLink("登出", "Logout", "Users", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
                         </li>
 

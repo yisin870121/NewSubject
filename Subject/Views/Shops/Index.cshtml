@@ -9,6 +9,7 @@
         #AddShop{
             display:none;
         }
+
     </style>
     }
 
@@ -21,29 +22,31 @@
     @Html.Action("_Create")
 </div>
 <table class="table table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ShopNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShopName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ShopDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Adm.AdmNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Closed)
-        </th>
-        <th>
-            管理
-        </th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShopDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adm.AdmNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Closed)
+            </th>
+            <th>
+                管理
+            </th>
+        </tr>
+    </thead>
 
 @foreach (var item in Model) {
     <tr>
@@ -86,7 +89,9 @@
                 <i class="bi bi-hash" id="@item.ShopNumber"></i>
             </button>
 
-
+            <button type="button" id="@item.ShopNumber" class="btn btn-dark btn-sm disabled" data-toggle="modal" data-target="#showImageModal" onclick="getImageData(event)">
+                <i class="bi bi-card-image" id="@item.ShopNumber"></i>
+            </button>
 
         </td>
     </tr>
@@ -174,6 +179,22 @@
     </div>
 </div>
 
+<div class="modal fade" id="showImageModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>照片</h5></div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
+
 @section scripts{
     <script>
         $('#AddForm').click(function () {
@@ -198,6 +219,10 @@
 
         function getPayData(evt) {
             $('#showPayModal .modal-body').load("/Shops/_PayDetail/" + evt.target.id);
+        }
+
+        function getImageData(evt) {
+            $('#showImageModal .modal-body').load("/Shops/_ImageDetail/" + evt.target.id);
         }
        
     </script>

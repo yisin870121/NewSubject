@@ -48,7 +48,7 @@
                 }
                 else
                 {
-                    @Html.DisplayFor(model => model.UserPhoto)
+                    <img src="@Url.Action("GetPhoto", new {id=Model.UserNumber})" width="100" />
                 }
 
             </div>

@@ -4,11 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section css{
+    <style>
+        .table-hover tbody tr:hover {
+            color: #212529;
+            background-color: rgba(0, 0, 0, 0.075);
+            cursor: pointer;
+        }
+    </style>
+    
+    }
 
 <h2>咖啡廳清單</h2>
 
 
-<table class="table table-hover pointer-event">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>
@@ -34,6 +44,7 @@
 
     @foreach (var item in Model)
     {
+        
         <tr id="@item.ShopNumber" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
             <td id="@item.ShopNumber">
                 @Html.DisplayFor(modelItem => item.ShopName)

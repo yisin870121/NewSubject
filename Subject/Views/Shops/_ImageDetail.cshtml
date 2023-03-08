@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Subject.Models.ShopImage>
+
+@foreach (var item in Model)
+{
+
+    <div>
+        <img src="@Url.Action("GetPhoto", new {id=item.ImageNumber})" width="100" />
+    </div>
+
+}
+

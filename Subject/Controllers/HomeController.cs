@@ -50,6 +50,29 @@ namespace Subject.Controllers
             return PartialView(db.ShopPay.Where(m => m.ShopNumber == id).ToList());
         }
 
+        public ActionResult _ImageDetail(int id)
+        {
+            return PartialView(db.ShopImage.Where(m => m.ShopNumber == id).ToList());
+        }
+
+        public FileContentResult GetShopPhoto(int id)
+        {
+            var Photo = db.ShopImage.Find(id);
+            if (Photo != null)
+                return File(Photo.ShopImage1, "image/jpeg");
+            return null;
+
+        }
+
+        public FileContentResult GetUserPhoto(int id)
+        {
+            var photo = db.Users.Find(id);
+            if (photo != null)
+                return File(photo.UserPhoto, "image/jpeg");
+            return null;
+
+        }
+
 
         public ActionResult Login()
         {
@@ -68,6 +91,7 @@ namespace Subject.Controllers
             }
 
             Session["user"] = user;
+            Session["UserNumber"] = user.UserNumber;
             Session["UserName"] = user.UserName;
             Session["Sex"] = user.Sex;
             Session["Birthday"] = user.Birthday;

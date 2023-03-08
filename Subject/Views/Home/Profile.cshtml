@@ -17,7 +17,8 @@
             }
             else
             {
-                @Session["UserPhoto"]
+                <img src="@Url.Action("GetUserPhoto", new {id=Session["UserNumber"]})" width="100" />
+                @*@Session["UserPhoto"]*@
                 @*@Html.DisplayFor(model => model.UserPhoto)*@
             }
         </div>

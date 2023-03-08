@@ -57,6 +57,19 @@ namespace Subject.Controllers
             return PartialView(db.ShopPay.Where(m => m.ShopNumber == id).ToList());
         }
 
+        public ActionResult _ImageDetail(int id)
+        {
+            return PartialView(db.ShopImage.Where(m => m.ShopNumber == id).ToList());
+        }
+
+        public FileContentResult GetPhoto(int id)
+        {
+            var photo = db.ShopImage.Find(id);
+            if (photo != null)
+                return File(photo.ShopImage1, "image/jpeg");
+            return null;
+
+        }
 
         // GET: Shops/Create
         public ActionResult _Create()

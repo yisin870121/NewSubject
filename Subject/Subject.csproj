@@ -401,6 +401,8 @@
     <Content Include="Views\Home\_TagDetail.cshtml" />
     <Content Include="Views\Home\_PayDetail.cshtml" />
     <Content Include="Views\Users\Profile.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

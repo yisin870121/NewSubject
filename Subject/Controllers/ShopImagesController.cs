@@ -72,22 +72,22 @@ namespace Subject.Controllers
         //    return View(shopImage);
         //}
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ShopImage shopImage)
+        public ActionResult Create([Bind(Include = "ImageNumber,UserNumber,ShopNumber,ShopImage1,ImageDate")] ShopImage shopImage, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
-                string sql = "insert into ShopImage(UserNumber,ShopNumber,ShopImage)" +
-                "values(@UserNumber,@ShopNumber,CONVERT(VarBinary(MAX),'@ShopImage'))";
+                int filelength = upload.ContentLength;
+                byte[] Myfile = new byte[filelength];
+                upload.InputStream.Read(Myfile, 0, filelength);
+                shopImage.ShopImage1 = Myfile;
 
-                List<SqlParameter> list = new List<SqlParameter>
-                {
-                    new SqlParameter("UserNumber",shopImage.UserNumber),
-                    new SqlParameter("ShopNumber",shopImage.ShopNumber),
-                    new SqlParameter("ShopImage",shopImage.ShopImage1)
-                };
-                sd.executeSql(sql, list);
+                shopImage.ImageDate=DateTime.Now;
+
+                db.ShopImage.Add(shopImage);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -95,6 +95,32 @@ namespace Subject.Controllers
             ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
             return View(shopImage);
         }
+
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create(ShopImage shopImage)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        string sql = "insert into ShopImage(UserNumber,ShopNumber,ShopImage)" +
+        //        "values(@UserNumber,@ShopNumber,CONVERT(VarBinary(MAX),'@ShopImage'))";
+
+        //        List<SqlParameter> list = new List<SqlParameter>
+        //        {
+        //            new SqlParameter("UserNumber",shopImage.UserNumber),
+        //            new SqlParameter("ShopNumber",shopImage.ShopNumber),
+        //            new SqlParameter("ShopImage",shopImage.ShopImage1)
+        //        };
+        //        sd.executeSql(sql, list);
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
+        //    ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
+        //    return View(shopImage);
+        //}
 
 
 
@@ -168,18 +194,27 @@ namespace Subject.Controllers
             base.Dispose(disposing);
         }
 
-        public FileResult GetPhoto(int? id)
-        {
+        //public FileResult GetPhoto(int? id)
+        //{
             
-            ShopImage shopImage = db.ShopImage.Find(id);
+        //    ShopImage shopImage = db.ShopImage.Find(id);
 
-            byte[] photo = shopImage.ShopImage1;
+        //    byte[] photo = shopImage.ShopImage1;
 
-            return File(photo, "image/jpeg");
+        //    return File(photo, "image/jpeg");
+
+        //}
+
+        public FileContentResult GetPhoto(int id)
+        {
+            var photo = db.ShopImage.Find(id);
+            if (photo != null)
+                return File(photo.ShopImage1,"image/jpeg");
+            return null;
 
         }
 
-       
+
 
 
     }

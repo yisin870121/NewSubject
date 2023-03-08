@@ -51,6 +51,52 @@ namespace Subject.Controllers
         }
 
 
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(VMLogin vMLogin)
+        {
+
+            var user = db.Users.Where(m => m.UserAccount == vMLogin.Account && m.UserPassword == vMLogin.Password).FirstOrDefault();
+            if (user == null)
+            {
+                ViewBag.ErrMsg = "帳號或密碼有誤";
+                return View(vMLogin);
+            }
+
+            Session["user"] = user;
+            Session["UserName"] = user.UserName;
+            Session["Sex"] = user.Sex;
+            Session["Birthday"] = user.Birthday;
+            Session["Age"] = user.Age;
+            Session["UserPhoto"] = user.UserPhoto;
+            //return RedirectToAction("Profile", new { id = user.UserNumber });
+            return RedirectToAction("Index");
+
+        }
+
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            return RedirectToAction("Index");
+        }
+
+
+        public ActionResult Profile()
+        {
+            if (Session["user"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
+        }
+
     }
 
 }

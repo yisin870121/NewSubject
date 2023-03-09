@@ -14,7 +14,7 @@
 
 }
 
-<div id="adForPhotos" class="carousel slide" data-ride="carousel">
+<div id="adForPhotos" class="carousel slide mt-1" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#adForPhotos" data-slide-to="0" class="active"></li>
         @for (int i = 1; i < Model.Count(); i++)
@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
             <div class="carousel-item @IsActive(c)">
-                <img src="@Url.Action("GetShopPhoto",new { id = item.ImageNumber })" @*style="height:500px"*@/>
+                <img src="@Url.Action("GetShopPhoto",new { id = item.ImageNumber })" class="w-100" />
             </div>
             c++;
         }

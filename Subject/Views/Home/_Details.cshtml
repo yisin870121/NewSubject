@@ -10,7 +10,7 @@
             <strong>@Html.DisplayFor(model => model.ShopName)</strong>
         </span>
         <span class="ml-3"><button class="btn btn-danger disabled"><i class="bi bi-heart-fill"></i> 收藏</button></span>
-        <span><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>
+        <span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>
     </div>
     <div class="card-body row">
         <div class="col-8">
@@ -90,15 +90,6 @@
 </div>
 
 <hr />
-
-<span style="font-size:20px"><strong>菜單</strong></span>
-<a href="#">新增</a>
-<div>
-    @Html.Action("_MenuDetail")
-</div>
-
-<hr />
-
 <span style="font-size:20px"><strong>標籤</strong></span>
 <a href="#">新增</a>
 <div>
@@ -106,15 +97,21 @@
 </div>
 
 <hr />
-
 <span style="font-size:20px"><strong>付款方式</strong></span>
 <a href="#">新增</a>
 <div>
     @Html.Action("_PayDetail")
 </div>
 
-<hr />
 
+<hr />
+<span style="font-size:20px"><strong>菜單</strong></span>
+<a href="#">新增</a>
+<div>
+    @Html.Action("_MenuDetail")
+</div>
+
+<hr />
 <span style="font-size:20px"><strong>照片</strong></span>
 <a href="#">新增</a>
 <div class="text-center">

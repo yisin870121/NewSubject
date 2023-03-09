@@ -18,8 +18,6 @@ namespace Subject.Models
         public int UserNumber { get; set; }
         public int ShopNumber { get; set; }
         public byte[] ShopImage1 { get; set; }
-
-
         public Nullable<System.DateTime> ImageDate { get; set; }
     
         public virtual Shop Shop { get; set; }

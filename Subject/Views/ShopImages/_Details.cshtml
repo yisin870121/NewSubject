@@ -1,0 +1,10 @@
+﻿@model Subject.Models.ShopImage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<div>
+    <img src="@Url.Action("GetPhoto", new {id=Model.ImageNumber})" class="d-block w-100" />
+</div>

@@ -385,8 +385,8 @@
     <Content Include="Views\Adms\AfterLogin.cshtml" />
     <Content Include="Views\Users\Block.cshtml" />
     <Content Include="Views\ShopImages\_Create.cshtml" />
-    <Content Include="Views\ShopImages\Delete.cshtml" />
-    <Content Include="Views\ShopImages\Details.cshtml" />
+    <Content Include="Views\ShopImages\_Delete.cshtml" />
+    <Content Include="Views\ShopImages\_Details.cshtml" />
     <Content Include="Views\ShopImages\Edit.cshtml" />
     <Content Include="Views\ShopImages\Index.cshtml" />
     <Content Include="Views\UserSaves\Create.cshtml" />
@@ -405,6 +405,7 @@
     <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Shops\_ImageDetail.cshtml" />
     <Content Include="Views\Home\_ImageDetail.cshtml" />
+    <Content Include="Views\Shared\_Layout_Adm_Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -69,27 +69,27 @@
             @Html.DisplayFor(modelItem => item.Closed)
         </td>
         <td>
-            <button type="button" id="@item.ShopNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+            <button type="button" id="@item.ShopNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)" title="編輯">
                 <i class="bi bi-pencil-square" id="@item.ShopNumber"></i>
             </button>
 
-            <button type="button" id="@item.ShopNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+            <button type="button" id="@item.ShopNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)" title="詳細資料">
                 <i class="bi bi-journal-text" id="@item.ShopNumber"></i>
             </button>
 
-            <button type="button" id="@item.ShopNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showPayModal" onclick="getPayData(event)">
+            <button type="button" id="@item.ShopNumber" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#showPayModal" onclick="getPayData(event)" title="付款方式">
                 <i class="bi bi-coin" id="@item.ShopNumber"></i>
             </button>
 
-            <button type="button" id="@item.ShopNumber" class="btn btn-danger btn-sm disabled" data-toggle="modal" data-target="#showMenuModal" onclick="getMenuData(event)">
+            <button type="button" id="@item.ShopNumber" class="btn btn-danger btn-sm disabled" data-toggle="modal" data-target="#showMenuModal" onclick="getMenuData(event)" title="菜單">
                 <i class="bi bi-book" id="@item.ShopNumber"></i>
             </button>
 
-            <button type="button" id="@item.ShopNumber" class="btn btn-secondary btn-sm disabled" data-toggle="modal" data-target="#showTagModal" onclick="getTagData(event)">
+            <button type="button" id="@item.ShopNumber" class="btn btn-secondary btn-sm disabled" data-toggle="modal" data-target="#showTagModal" onclick="getTagData(event)" title="標籤">
                 <i class="bi bi-hash" id="@item.ShopNumber"></i>
             </button>
 
-            <button type="button" id="@item.ShopNumber" class="btn btn-dark btn-sm disabled" data-toggle="modal" data-target="#showImageModal" onclick="getImageData(event)">
+            <button type="button" id="@item.ShopNumber" class="btn btn-dark btn-sm disabled" data-toggle="modal" data-target="#showImageModal" onclick="getImageData(event)" title="照片">
                 <i class="bi bi-card-image" id="@item.ShopNumber"></i>
             </button>
 
@@ -132,7 +132,7 @@
 </div>
 
 <div class="modal fade" id="showMenuModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="text-dark mt-2 ml-2"><h5>菜單</h5></div>
@@ -148,7 +148,7 @@
 </div>
 
 <div class="modal fade" id="showTagModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="text-dark mt-2 ml-2"><h5>標籤</h5></div>

@@ -57,7 +57,7 @@
           <Property Name="ShopName" Type="nvarchar" MaxLength="30" Nullable="false" />
           <Property Name="District" Type="nvarchar" MaxLength="10" />
           <Property Name="ShopAddress" Type="nvarchar" MaxLength="50" />
-          <Property Name="ShopTime" Type="nvarchar" MaxLength="100" />
+          <Property Name="ShopTime" Type="nvarchar" MaxLength="1000" />
           <Property Name="Phone" Type="varchar" MaxLength="30" />
           <Property Name="Web" Type="nvarchar" MaxLength="100" />
           <Property Name="Outlet" Type="bit" />
@@ -541,7 +541,7 @@
           <Property Name="ShopName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="District" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="ShopAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ShopTime" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ShopTime" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="Web" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Outlet" Type="Boolean" />

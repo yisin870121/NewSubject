@@ -31,7 +31,7 @@ namespace Subject.Controllers
         }
 
         // GET: ShopImages/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult _Details(int? id)
         {
             if (id == null)
             {
@@ -42,14 +42,14 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(shopImage);
+            return PartialView(shopImage);
         }
 
         // GET: ShopImages/Create
         public ActionResult _Create()
         {
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount");
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
             return PartialView();
         }
 
@@ -92,7 +92,7 @@ namespace Subject.Controllers
             }
 
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);
             return View(shopImage);
         }
 
@@ -137,7 +137,7 @@ namespace Subject.Controllers
                 return HttpNotFound();
             }
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);
             return View(shopImage);
         }
 
@@ -155,12 +155,12 @@ namespace Subject.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
-            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
+            ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);
             return View(shopImage);
         }
 
         // GET: ShopImages/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
@@ -171,11 +171,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(shopImage);
+            return PartialView(shopImage);
         }
 
         // POST: ShopImages/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

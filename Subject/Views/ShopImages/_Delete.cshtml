@@ -1,0 +1,26 @@
+﻿@model Subject.Models.ShopImage
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<div>
+    <dl class="dl-horizontal">
+        <dd>
+            @Html.DisplayFor(model => model.Shop.ShopName)
+        </dd>
+        <dd>
+            @Html.DisplayFor(model => model.ShopImage1)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("_Delete", "ShopImages", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="刪除" class="btn btn-danger" />
+        </div>
+    }
+</div>

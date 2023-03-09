@@ -15,10 +15,10 @@
     
     }
 
-<h2>咖啡廳清單</h2>
+<h2 class="mt-3">咖啡廳清單</h2>
 
 
-<table class="table table-hover">
+<table class="table table-hover mt-3">
     <thead>
         <tr>
             <th>
@@ -27,16 +27,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.District)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Outlet)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.WIFI)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.LimitedTime)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.IsOrder)
             </th>
         </tr>
@@ -44,46 +44,75 @@
 
     @foreach (var item in Model)
     {
-        
-        <tr id="@item.ShopNumber" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+
+        <tr id="@item.ShopNumber" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)" title="點我看更多">
             <td id="@item.ShopNumber">
                 @Html.DisplayFor(modelItem => item.ShopName)
             </td>
+
             <td id="@item.ShopNumber">
                 @Html.DisplayFor(modelItem => item.District)
             </td>
-            <td id="@item.ShopNumber">
-                @Html.DisplayFor(modelItem => item.Outlet)
+            <td id="@item.ShopNumber" class="text-center">
+                @if (@item.Outlet == true)
+                {
+                    <span id="@item.ShopNumber">Yes</span>
+                }
+                else
+                {
+                    <span id="@item.ShopNumber">No</span>
+                }
             </td>
-            <td id="@item.ShopNumber">
-                @Html.DisplayFor(modelItem => item.WIFI)
+            <td id="@item.ShopNumber" class="text-center">
+                @if (@item.WIFI == true)
+                {
+                    <span id="@item.ShopNumber">Yes</span>
+                }
+                else
+                {
+                    <span id="@item.ShopNumber">No</span>
+                }
             </td>
-            <td id="@item.ShopNumber">
-                @Html.DisplayFor(modelItem => item.LimitedTime)
+            <td id="@item.ShopNumber" class="text-center">
+                @if (@item.LimitedTime == true)
+                {
+                    <span id="@item.ShopNumber">Yes</span>
+                }
+                else
+                {
+                    <span id="@item.ShopNumber">No</span>
+                }
             </td>
-            <td id="@item.ShopNumber">
-                @Html.DisplayFor(modelItem => item.IsOrder)
+            <td id="@item.ShopNumber" class="text-center">
+                @if (@item.IsOrder == true)
+                {
+                    <span id="@item.ShopNumber">Yes</span>
+                }
+                else
+                {
+                    <span id="@item.ShopNumber">No</span>
+                }
             </td>
         </tr>
     }
 </table>
 
 <div class="modal fade" id="showDetailModal" tabindex="-1">
-    <div class="modal-dialog modal-xl">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             @*<div class="modal-header">
-                    <h5 class="text-dark mt-2 ml-2"></h5>
-                </div>*@
+            <h5 class="text-dark mt-2 ml-2"></h5>
+        </div>*@
             <div class="modal-body">
-                <button class="btn btn-danger disabled"><i class="bi bi-heart-fill"></i> 收藏</button>
-                <button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button>
-                @*<button class="btn btn-danger disabled"><i class="bi bi-hash"></i> 標籤</button>*@
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
-                <div class="mt-3">
+                <div class="mt-5">
 
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
             </div>
         </div>
     </div>
@@ -94,8 +123,11 @@
     <script>
         function getDetailData(evt) {
             $('#showDetailModal .modal-body>div').load("/Home/_Details/" + evt.target.id);
-         /*   $('#showDetailModal .modal-body>div>div').load("/Home/_MenuDetail/" + evt.target.id);*/
         }
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
 
     </script>
 

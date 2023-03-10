@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Subject.Models.Users>
+
+@{
+    ViewBag.Title = "UserIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserAccount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPassword)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sex)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserPhoto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Blockade)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserAccount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPassword)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserPhoto)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Birthday)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Blockade)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.UserNumber }) |
+            @Html.ActionLink("Details", "Details", new { id=item.UserNumber }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserNumber })
+        </td>
+    </tr>
+}
+
+</table>

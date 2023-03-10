@@ -400,12 +400,12 @@
     <Content Include="Views\Home\_MenuDetail.cshtml" />
     <Content Include="Views\Home\_TagDetail.cshtml" />
     <Content Include="Views\Home\_PayDetail.cshtml" />
-    <Content Include="Views\Users\Profile.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\Home\Profile.cshtml" />
     <Content Include="Views\Shops\_ImageDetail.cshtml" />
     <Content Include="Views\Home\_ImageDetail.cshtml" />
     <Content Include="Views\Shared\_Layout_Adm_Login.cshtml" />
+    <Content Include="Views\Users\UserIndex.cshtml" />
+    <Content Include="Views\Home\UserIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

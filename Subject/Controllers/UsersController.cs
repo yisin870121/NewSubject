@@ -26,6 +26,15 @@ namespace Subject.Controllers
             return View(db.Users.ToList());
         }
 
+
+        //public ActionResult UserIndex()
+        //{
+        //    int id = ((Users)Session["user"]).UserNumber;
+        //    var users = db.Users.Find(id);
+           
+        //    return View(users);
+        //}
+
         // GET: Users/Details/5
         public ActionResult _Details(int? id)
         {
@@ -105,25 +114,50 @@ namespace Subject.Controllers
         //POST: Users/Edit/5
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Edit(Users users, HttpPostedFileBase upload)
+        //{
+        //    string sql = "update Users set UserName=@UserName,Birthday=@Birthday,Blockade=@Blockade,UserPhoto=@UserPhoto " +
+        //        "where UserNumber=@UserNumber";
+
+        //    int filelength = upload.ContentLength;
+        //    byte[] Myfile = new byte[filelength];
+        //    upload.InputStream.Read(Myfile, 0, filelength);
+        //    users.UserPhoto = Myfile;
+
+        //    List<SqlParameter> list = new List<SqlParameter>
+        //    {
+        //        new SqlParameter("UserNumber",users.UserNumber),
+        //        new SqlParameter("UserName",users.UserName),
+        //        new SqlParameter("Birthday",users.Birthday),
+        //        new SqlParameter("Blockade",users.Blockade),
+        //        new SqlParameter("UserPhoto",users.UserPhoto)
+        //    };
+
+        //    try
+        //    {
+        //        sd.executeSql(sql, list);
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewBag.Msg = ex.Message;
+        //        return View(users);
+        //    }
+        //}
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Users users, HttpPostedFileBase upload)
+        public ActionResult Edit(Users users)
         {
-            string sql = "update Users set UserName=@UserName,Birthday=@Birthday,Blockade=@Blockade,UserPhoto=@UserPhoto " +
-                "where UserNumber=@UserNumber";
-
-            int filelength = upload.ContentLength;
-            byte[] Myfile = new byte[filelength];
-            upload.InputStream.Read(Myfile, 0, filelength);
-            users.UserPhoto = Myfile;
+            string sql = "update Users set Blockade=@Blockade where UserNumber=@UserNumber";
 
             List<SqlParameter> list = new List<SqlParameter>
             {
                 new SqlParameter("UserNumber",users.UserNumber),
-                new SqlParameter("UserName",users.UserName),
-                new SqlParameter("Birthday",users.Birthday),
-                new SqlParameter("Blockade",users.Blockade),
-                new SqlParameter("UserPhoto",users.UserPhoto)
+                new SqlParameter("Blockade",users.Blockade)
             };
 
             try
@@ -137,7 +171,6 @@ namespace Subject.Controllers
                 return View(users);
             }
         }
-
 
         // GET: Users/Delete/5
         public ActionResult _Delete(int? id)

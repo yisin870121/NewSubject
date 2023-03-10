@@ -22,7 +22,15 @@
             </div>
 
             <div>
-                @Html.DisplayNameFor(model => model.Sex): @Html.DisplayFor(model => model.Sex)
+                @Html.DisplayNameFor(model => model.Sex): 
+                @if (Model.Sex)
+                {
+                    <span>男</span>
+                }
+                else
+                {
+                    <span>女</span>
+                }
             </div>
 
             <div>

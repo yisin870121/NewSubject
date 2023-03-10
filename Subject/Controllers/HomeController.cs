@@ -89,18 +89,21 @@ namespace Subject.Controllers
                 ViewBag.ErrMsg = "帳號或密碼有誤";
                 return View(vMLogin);
             }
-
+            
             Session["user"] = user;
-            Session["UserNumber"] = user.UserNumber;
-            Session["UserName"] = user.UserName;
-            Session["Sex"] = user.Sex;
-            Session["Birthday"] = user.Birthday;
-            Session["Age"] = user.Age;
-            Session["UserPhoto"] = user.UserPhoto;
-            //return RedirectToAction("Profile", new { id = user.UserNumber });
             return RedirectToAction("Index");
 
         }
+
+        [LoginCheck(id = 1)]
+        public ActionResult UserIndex()
+        {
+            int id = ((Users)Session["user"]).UserNumber;
+            var users = db.Users.Find(id);
+
+            return View(users);
+        }
+
 
         public ActionResult Logout()
         {
@@ -109,17 +112,9 @@ namespace Subject.Controllers
         }
 
 
-        public ActionResult Profile()
-        {
-            if (Session["user"] != null)
-            {
-                return View();
-            }
-            else
-            {
-                return RedirectToAction("Login");
-            }
-        }
+        
+
+        
 
     }
 

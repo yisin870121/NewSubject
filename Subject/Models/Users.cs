@@ -11,7 +11,8 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Users
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,8 +33,12 @@ namespace Subject.Models
         public string UserName { get; set; }
         public bool Sex { get; set; }
         public byte[] UserPhoto { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Birthday { get; set; }
         public Nullable<int> Age { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> UserDate { get; set; }
         public bool Blockade { get; set; }
     

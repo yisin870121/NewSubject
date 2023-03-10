@@ -1,29 +1,26 @@
-﻿@model Subject.Models.UserSave
+﻿@model Subject.Models.ShopTag
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "UserCreate";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2 class="mt-3">新增標籤</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("UserCreate", "ShopTags", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>UserSave</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Number)
-
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.UserNumber, "UserNumber", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("UserNumber", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.UserNumber, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
+        
 
         <div class="form-group">
             @Html.LabelFor(model => model.ShopNumber, "ShopNumber", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -34,25 +31,33 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SaveDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Tag, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SaveDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SaveDate, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Tag, "", new { @class = "text-danger" })
             </div>
         </div>
 
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TagDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TagDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TagDate, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="新增" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index","Home")
 </div>
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

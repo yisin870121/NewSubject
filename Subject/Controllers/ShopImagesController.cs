@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using Microsoft.SqlServer.Server;
 using Subject.Models;
 
@@ -53,26 +55,6 @@ namespace Subject.Controllers
             return PartialView();
         }
 
-        //POST: ShopImages/Create
-        //若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
-        // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Create([Bind(Include = "ImageNumber,UserNumber,ShopNumber,ShopImage1,ImageDate")] ShopImage shopImage)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.ShopImage.Add(shopImage);
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
-        //    ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
-        //    return View(shopImage);
-        //}
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ImageNumber,UserNumber,ShopNumber,ShopImage1,ImageDate")] ShopImage shopImage, HttpPostedFileBase upload)
@@ -84,7 +66,7 @@ namespace Subject.Controllers
                 upload.InputStream.Read(Myfile, 0, filelength);
                 shopImage.ShopImage1 = Myfile;
 
-                shopImage.ImageDate=DateTime.Now;
+                shopImage.ImageDate = DateTime.Now;
 
                 db.ShopImage.Add(shopImage);
                 db.SaveChanges();
@@ -96,32 +78,73 @@ namespace Subject.Controllers
             return View(shopImage);
         }
 
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreate()
+        {
+            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", "2");
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreate(ShopImage shopImage, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
+
+                int filelength = upload.ContentLength;
+                byte[] Myfile = new byte[filelength];
+                upload.InputStream.Read(Myfile, 0, filelength);
+                shopImage.ShopImage1 = Myfile;
+
+                string sql = "insert into ShopImage(UserNumber,ShopNumber,ShopImage)" +
+                    "values(@UserNumber,@ShopNumber,@ShopImage)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("ShopNumber",shopImage.ShopNumber),
+                    new SqlParameter("ShopImage",shopImage.ShopImage1)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index", "Home", new { id = shopImage.ShopNumber });
+            }
+
+            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);
+            return View(shopImage);
+        }
 
 
         //[HttpPost]
         //[ValidateAntiForgeryToken]
-        //public ActionResult Create(ShopImage shopImage)
+        //public ActionResult UserCreate([Bind(Include = "ImageNumber,UserNumber,ShopNumber,ShopImage1,ImageDate")] ShopImage shopImage, HttpPostedFileBase upload)
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        string sql = "insert into ShopImage(UserNumber,ShopNumber,ShopImage)" +
-        //        "values(@UserNumber,@ShopNumber,CONVERT(VarBinary(MAX),'@ShopImage'))";
+        //        int id = ((Users)Session["user"]).UserNumber;
+        //        var users = db.Users.Find(id);
+        //        shopImage.UserNumber = users.UserNumber;
 
-        //        List<SqlParameter> list = new List<SqlParameter>
-        //        {
-        //            new SqlParameter("UserNumber",shopImage.UserNumber),
-        //            new SqlParameter("ShopNumber",shopImage.ShopNumber),
-        //            new SqlParameter("ShopImage",shopImage.ShopImage1)
-        //        };
-        //        sd.executeSql(sql, list);
-        //        return RedirectToAction("Index");
+        //        int filelength = upload.ContentLength;
+        //        byte[] Myfile = new byte[filelength];
+        //        upload.InputStream.Read(Myfile, 0, filelength);
+        //        shopImage.ShopImage1 = Myfile;
+
+        //        shopImage.ImageDate = DateTime.Now;
+
+        //        db.ShopImage.Add(shopImage);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index", "Home", new { id = shopImage.ShopNumber });
         //    }
 
         //    ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
-        //    ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserAccount", shopImage.UserNumber);
+        //    //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);
         //    return View(shopImage);
         //}
-
 
 
         // GET: ShopImages/Edit/5
@@ -194,16 +217,6 @@ namespace Subject.Controllers
             base.Dispose(disposing);
         }
 
-        //public FileResult GetPhoto(int? id)
-        //{
-            
-        //    ShopImage shopImage = db.ShopImage.Find(id);
-
-        //    byte[] photo = shopImage.ShopImage1;
-
-        //    return File(photo, "image/jpeg");
-
-        //}
 
         public FileContentResult GetPhoto(int id)
         {

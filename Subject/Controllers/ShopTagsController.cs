@@ -72,6 +72,43 @@ namespace Subject.Controllers
             return View(shopTag);
         }
 
+
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreate()
+        {
+            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreate(ShopTag shopTag)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
+
+                string sql = "insert into ShopTag(UserNumber,ShopNumber,Tag)values(@UserNumber,@ShopNumber,@Tag)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("ShopNumber", shopTag.ShopNumber),
+                    new SqlParameter("Tag", shopTag.Tag)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index", "Home", new {id=shopTag.ShopNumber});
+            }
+
+            
+            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopTag.ShopNumber);
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopTag.UserNumber);
+            return View(shopTag);
+        }
+
+
         // GET: ShopTags/Edit/5
         public ActionResult _Edit(int? id)
         {

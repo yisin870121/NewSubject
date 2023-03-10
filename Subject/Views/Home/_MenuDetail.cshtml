@@ -1,7 +1,19 @@
 ﻿@model IEnumerable<Subject.Models.ShopMenu>
 
-<table class="table table-bordered table-striped mt-1">
+<table class="table table-bordered mt-1">
     
+    <thead class="thead-light">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Item)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+        </tr>
+    </thead>
+
+
     @foreach (var item in Model)
     {
         <tr>

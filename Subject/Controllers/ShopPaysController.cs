@@ -71,6 +71,38 @@ namespace Subject.Controllers
             return View(shopPay);
         }
 
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreate()
+        {
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType");
+            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreate(ShopPay shopPay)
+        {
+            if (ModelState.IsValid)
+            {
+                string sql = "insert into ShopPay(ShopNumber,PayNumber)values(@ShopNumber,@PayNumber)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("ShopNumber",shopPay.ShopNumber),
+                    new SqlParameter("PayNumber",shopPay.PayNumber)
+                };
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index", "Home", new { id = shopPay.ShopNumber });
+            }
+
+            ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopPay.ShopNumber);
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", shopPay.PayNumber);
+            return View(shopPay);
+        }
+
+        
+
         // GET: ShopPays/Edit/5
         public ActionResult Edit(int? id)
         {

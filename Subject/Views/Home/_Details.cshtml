@@ -89,31 +89,32 @@
     </div>
 </div>
 
+
+
+<hr />
+<span style="font-size:20px"><strong>付款方式</strong></span>
+@Html.ActionLink("新增", "UserCreate", "ShopPays")
+<div>
+    @Html.Action("_PayDetail")
+</div>
+
 <hr />
 <span style="font-size:20px"><strong>標籤</strong></span>
-<a href="#">新增</a>
+@Html.ActionLink("新增", "UserCreate", "ShopTags")
 <div>
     @Html.Action("_TagDetail")
 </div>
 
 <hr />
-<span style="font-size:20px"><strong>付款方式</strong></span>
-<a href="#">新增</a>
-<div>
-    @Html.Action("_PayDetail")
-</div>
-
-
-<hr />
 <span style="font-size:20px"><strong>菜單</strong></span>
-<a href="#">新增</a>
+@Html.ActionLink("新增", "UserCreate", "ShopMenus")
 <div>
     @Html.Action("_MenuDetail")
 </div>
 
 <hr />
 <span style="font-size:20px"><strong>照片</strong></span>
-<a href="#">新增</a>
+@Html.ActionLink("新增", "UserCreate", "ShopImages")
 <div class="text-center">
     @Html.Action("_ImageDetail")
 </div>

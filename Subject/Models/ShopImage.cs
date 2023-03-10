@@ -17,6 +17,7 @@ namespace Subject.Models
     {
         public int ImageNumber { get; set; }
         public int UserNumber { get; set; }
+
         public int ShopNumber { get; set; }
         public byte[] ShopImage1 { get; set; }
 

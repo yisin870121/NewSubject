@@ -253,7 +253,6 @@
     <Compile Include="Controllers\ShopsController.cs" />
     <Compile Include="Controllers\ShopTagsController.cs" />
     <Compile Include="Controllers\SuggestsController.cs" />
-    <Compile Include="Controllers\UserSavesController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -389,11 +388,6 @@
     <Content Include="Views\ShopImages\_Details.cshtml" />
     <Content Include="Views\ShopImages\Edit.cshtml" />
     <Content Include="Views\ShopImages\Index.cshtml" />
-    <Content Include="Views\UserSaves\Create.cshtml" />
-    <Content Include="Views\UserSaves\Delete.cshtml" />
-    <Content Include="Views\UserSaves\Details.cshtml" />
-    <Content Include="Views\UserSaves\Edit.cshtml" />
-    <Content Include="Views\UserSaves\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Details.cshtml" />
     <Content Include="Views\Users\Login.cshtml" />
@@ -406,6 +400,10 @@
     <Content Include="Views\Shared\_Layout_Adm_Login.cshtml" />
     <Content Include="Views\Users\UserIndex.cshtml" />
     <Content Include="Views\Home\UserIndex.cshtml" />
+    <Content Include="Views\ShopTags\UserCreate.cshtml" />
+    <Content Include="Views\ShopMenus\UserCreate.cshtml" />
+    <Content Include="Views\ShopImages\UserCreate.cshtml" />
+    <Content Include="Views\ShopPays\UserCreate.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

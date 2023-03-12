@@ -400,10 +400,10 @@
     <Content Include="Views\Shared\_Layout_Adm_Login.cshtml" />
     <Content Include="Views\Users\UserIndex.cshtml" />
     <Content Include="Views\Home\UserIndex.cshtml" />
-    <Content Include="Views\ShopTags\UserCreate.cshtml" />
     <Content Include="Views\ShopMenus\UserCreate.cshtml" />
     <Content Include="Views\ShopImages\UserCreate.cshtml" />
     <Content Include="Views\ShopPays\UserCreate.cshtml" />
+    <Content Include="Views\Home\UserCreateTag.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

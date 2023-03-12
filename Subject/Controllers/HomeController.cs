@@ -2,6 +2,7 @@
 using Subject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -13,7 +14,7 @@ namespace Subject.Controllers
     public class HomeController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
-
+        SetData sd= new SetData();
         public ActionResult Index()
         {
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
@@ -32,6 +33,7 @@ namespace Subject.Controllers
                 return HttpNotFound();
             }
 
+            ViewBag.ShopNumber = id;
             return PartialView(shop);
         }
 
@@ -43,6 +45,42 @@ namespace Subject.Controllers
         public ActionResult _TagDetail(int id)
         {
             return PartialView(db.ShopTag.Where(m => m.ShopNumber == id).ToList());
+        }
+
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreateTag()
+        {
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreateTag(ShopTag shopTag)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
+
+                string sql = "insert into ShopTag(UserNumber,ShopNumber,Tag)values(@UserNumber,@ShopNumber,@Tag)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("ShopNumber", shopTag.ShopNumber),
+                    new SqlParameter("Tag", shopTag.Tag)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index", "Home", new { id = shopTag.ShopNumber });
+            }
+
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopTag.ShopNumber);
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopTag.UserNumber);
+            return View(shopTag);
         }
 
         public ActionResult _PayDetail(int id)

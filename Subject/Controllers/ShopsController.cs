@@ -37,6 +37,7 @@ namespace Subject.Controllers
                 return HttpNotFound();
             }
 
+            Session["shop"] = shop;
             return PartialView(shop);
         }
 

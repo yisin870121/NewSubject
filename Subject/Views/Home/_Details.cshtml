@@ -100,7 +100,7 @@
 
 <hr />
 <span style="font-size:20px"><strong>標籤</strong></span>
-@Html.ActionLink("新增", "UserCreate", "ShopTags")
+@Html.ActionLink("新增", "UserCreateTag", new { ShopNumber = ViewBag.ShopNumber })
 <div>
     @Html.Action("_TagDetail")
 </div>

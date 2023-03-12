@@ -72,7 +72,7 @@ namespace Subject.Controllers
                     new SqlParameter("ShopNumber", shopTag.ShopNumber),
                     new SqlParameter("Tag", shopTag.Tag)
                 };
-
+                
                 sd.executeSql(sql, list);
                 return RedirectToAction("Index", "Home", new { id = shopTag.ShopNumber });
             }

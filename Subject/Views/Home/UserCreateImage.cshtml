@@ -1,9 +1,11 @@
 ﻿@model Subject.Models.ShopImage
 
 @{
-    ViewBag.Title = "UserCreateImage";
+
+    ViewBag.Title = "新增"+ Session["TitleSN"] + "的照片";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var sn = Request.QueryString["ShopNumber"];
+
 }
 
 @section css{

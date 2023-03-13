@@ -18,6 +18,7 @@ namespace Subject.Controllers
 
         public ActionResult Index()
         {
+            //var a = Session["SN"];
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
             return View(shop);
         }
@@ -35,6 +36,7 @@ namespace Subject.Controllers
             }
 
             ViewBag.ShopNumber = id;
+            Session["TitleSN"] = db.Shop.Find(id).ShopName;
             return PartialView(shop);
         }
 
@@ -72,7 +74,6 @@ namespace Subject.Controllers
 
                 sd.executeSql(sql, list);
                 return RedirectToAction("Index");
-                //, "Home", new { id = shopMenu.ShopNumber }
             }
 
             ViewBag.Shop = db.Shop.ToList();
@@ -100,7 +101,12 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UserCreateTag(ShopTag shopTag)
         {
-            if (ModelState.IsValid)
+            var tag = db.ShopTag.Where(m => m.ShopNumber == shopTag.ShopNumber && m.Tag == shopTag.Tag).FirstOrDefault();
+            if (tag != null)
+            {
+                ViewBag.TagCheck = "此標籤已存在，請輸入其他";
+            }
+            else if (ModelState.IsValid)
             {
                 int id = ((Users)Session["user"]).UserNumber;
                 var users = db.Users.Find(id);
@@ -115,7 +121,6 @@ namespace Subject.Controllers
                 
                 sd.executeSql(sql, list);
                 return RedirectToAction("Index");
-                //, "Home", new { id = shopTag.ShopNumber }
             }
 
             ViewBag.Shop = db.Shop.ToList();
@@ -143,16 +148,12 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult UserCreatePay(ShopPay shopPay)
         {
-            var pay = db.ShopPay.Where(m => m.Pay == shopPay.Pay && m.ShopNumber == shopPay.ShopNumber );
+            var pay = db.ShopPay.Where(m => m.ShopNumber == shopPay.ShopNumber && m.PayNumber == shopPay.PayNumber).FirstOrDefault();
             if(pay!= null)
             {
                 ViewBag.PayCheck = "此付款方式已存在";
-                ViewBag.Shop = db.Shop.ToList();
-                ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", shopPay.PayNumber);
-                return View(shopPay);
             }
-
-            if (ModelState.IsValid)
+            else if (ModelState.IsValid)
             {
                     string sql = "insert into ShopPay(ShopNumber,PayNumber)values(@ShopNumber,@PayNumber)";
                     List<SqlParameter> list = new List<SqlParameter>
@@ -161,9 +162,9 @@ namespace Subject.Controllers
                         new SqlParameter("PayNumber",shopPay.PayNumber)
                     };
                     sd.executeSql(sql, list);
-                    return RedirectToAction("Index", "Home", new { id = shopPay.ShopNumber });
+                    return RedirectToAction("Index");
             }
-            
+
             ViewBag.Shop = db.Shop.ToList();
             //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopPay.ShopNumber);
             ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", shopPay.PayNumber);
@@ -208,7 +209,7 @@ namespace Subject.Controllers
                 };
 
                 sd.executeSql(sql, list);
-                return RedirectToAction("Index", "Home", new { id = shopImage.ShopNumber });
+                return RedirectToAction("Index");
             }
 
             ViewBag.Shop = db.Shop.ToList();

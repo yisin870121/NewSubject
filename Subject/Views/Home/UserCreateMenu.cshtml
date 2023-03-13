@@ -1,7 +1,7 @@
 ﻿@model Subject.Models.ShopMenu
 
 @{
-    ViewBag.Title = "UserCreateMenu";
+    ViewBag.Title = "新增" + Session["TitleSN"] + "的菜單";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var sn = Request.QueryString["ShopNumber"];
 }
@@ -18,7 +18,7 @@
 
 <h2 class="mt-3">新增菜單</h2>
 
-@using (Html.BeginForm("UserCreateMenu", "Home", FormMethod.Post))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 

@@ -15,6 +15,7 @@ namespace Subject.Controllers
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd= new SetData();
+
         public ActionResult Index()
         {
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
@@ -41,6 +42,45 @@ namespace Subject.Controllers
         {
             return PartialView(db.ShopMenu.Where(m => m.ShopNumber == id).ToList());
         }
+
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreateMenu()
+        {
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreateMenu(ShopMenu shopMenu)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
+
+                string sql = "insert into ShopMenu(UserNumber,ShopNumber,Item,Price)values(@UserNumber,@ShopNumber,@Item,@Price)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("ShopNumber",shopMenu.ShopNumber),
+                    new SqlParameter("Item",shopMenu.Item),
+                    new SqlParameter("Price",shopMenu.Price)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index");
+                //, "Home", new { id = shopMenu.ShopNumber }
+            }
+
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopMenu.ShopNumber);
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopTag.UserNumber);
+            return View(shopMenu);
+        }
+
 
         public ActionResult _TagDetail(int id)
         {
@@ -74,7 +114,8 @@ namespace Subject.Controllers
                 };
                 
                 sd.executeSql(sql, list);
-                return RedirectToAction("Index", "Home", new { id = shopTag.ShopNumber });
+                return RedirectToAction("Index");
+                //, "Home", new { id = shopTag.ShopNumber }
             }
 
             ViewBag.Shop = db.Shop.ToList();
@@ -88,9 +129,92 @@ namespace Subject.Controllers
             return PartialView(db.ShopPay.Where(m => m.ShopNumber == id).ToList());
         }
 
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreatePay()
+        {
+            ViewBag.Shop = db.Shop.ToList();
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType");
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreatePay(ShopPay shopPay)
+        {
+            var pay = db.ShopPay.Where(m => m.Pay == shopPay.Pay && m.ShopNumber == shopPay.ShopNumber );
+            if(pay!= null)
+            {
+                ViewBag.PayCheck = "此付款方式已存在";
+                ViewBag.Shop = db.Shop.ToList();
+                ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", shopPay.PayNumber);
+                return View(shopPay);
+            }
+
+            if (ModelState.IsValid)
+            {
+                    string sql = "insert into ShopPay(ShopNumber,PayNumber)values(@ShopNumber,@PayNumber)";
+                    List<SqlParameter> list = new List<SqlParameter>
+                    {
+                        new SqlParameter("ShopNumber",shopPay.ShopNumber),
+                        new SqlParameter("PayNumber",shopPay.PayNumber)
+                    };
+                    sd.executeSql(sql, list);
+                    return RedirectToAction("Index", "Home", new { id = shopPay.ShopNumber });
+            }
+            
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopPay.ShopNumber);
+            ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", shopPay.PayNumber);
+            return View(shopPay);
+        }
+
         public ActionResult _ImageDetail(int id)
         {
             return PartialView(db.ShopImage.Where(m => m.ShopNumber == id).ToList());
+        }
+
+        [LoginCheck(id = 1)]
+        public ActionResult UserCreateImage()
+        {
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber");
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UserCreateImage(ShopImage shopImage, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
+
+                int filelength = upload.ContentLength;
+                byte[] Myfile = new byte[filelength];
+                upload.InputStream.Read(Myfile, 0, filelength);
+                shopImage.ShopImage1 = Myfile;
+
+                string sql = "insert into ShopImage(UserNumber,ShopNumber,ShopImage)" +
+                    "values(@UserNumber,@ShopNumber,@ShopImage)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("ShopNumber",shopImage.ShopNumber),
+                    new SqlParameter("ShopImage",shopImage.ShopImage1)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index", "Home", new { id = shopImage.ShopNumber });
+            }
+
+            ViewBag.Shop = db.Shop.ToList();
+            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
+            //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);
+            return View(shopImage);
         }
 
         public FileContentResult GetShopPhoto(int id)
@@ -110,7 +234,6 @@ namespace Subject.Controllers
             return null;
 
         }
-
 
         public ActionResult Login()
         {

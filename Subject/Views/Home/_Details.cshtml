@@ -93,7 +93,7 @@
 
 <hr />
 <span style="font-size:20px"><strong>付款方式</strong></span>
-@Html.ActionLink("新增", "UserCreate", "ShopPays")
+@Html.ActionLink("新增", "UserCreatePay", new { ShopNumber = ViewBag.ShopNumber })
 <div>
     @Html.Action("_PayDetail")
 </div>
@@ -107,14 +107,14 @@
 
 <hr />
 <span style="font-size:20px"><strong>菜單</strong></span>
-@Html.ActionLink("新增", "UserCreate", "ShopMenus")
+@Html.ActionLink("新增", "UserCreateMenu", new { ShopNumber = ViewBag.ShopNumber })
 <div>
     @Html.Action("_MenuDetail")
 </div>
 
 <hr />
 <span style="font-size:20px"><strong>照片</strong></span>
-@Html.ActionLink("新增", "UserCreate", "ShopImages")
+@Html.ActionLink("新增", "UserCreateImage", new { ShopNumber = ViewBag.ShopNumber })
 <div class="text-center">
     @Html.Action("_ImageDetail")
 </div>

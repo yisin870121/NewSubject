@@ -117,7 +117,7 @@
             setSave(shop);
         }
         else {
-            removeSave(shop);
+            removeSave();
         }
         console.log(save);
         localStorage.setItem("save", JSON.stringify(save));
@@ -136,13 +136,15 @@
         alert("已加入收藏");
     }
 
-    function removeSave(shop) {
-        save.splice(shop.SID, 1);
+    function removeSave() {
+        save.splice(save.length-1, 1);
         if (t.innerText == " 取消收藏") {
             t.innerText = " 收藏";
         }
         alert("已取消收藏");
     }
+
+    
 
 
 

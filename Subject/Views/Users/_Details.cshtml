@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    var c = "";
 }
 
 <div class="card">
@@ -22,15 +23,8 @@
             </div>
 
             <div>
-                @Html.DisplayNameFor(model => model.Sex): 
-                @if (Model.Sex)
-                {
-                    <span>男</span>
-                }
-                else
-                {
-                    <span>女</span>
-                }
+                @Html.DisplayNameFor(model => model.Sex):
+                @(c=Model.Sex == true? "男" : "女")
             </div>
 
             <div>
@@ -49,7 +43,6 @@
 
         <div class="col-4">
             <div>
-
                 @if (Model.UserPhoto == null)
                 {
                     <i class="bi bi-emoji-smile" style="font-size:5rem"></i>

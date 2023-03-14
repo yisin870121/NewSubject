@@ -66,13 +66,15 @@ namespace Subject.Controllers
             if (ModelState.IsValid)
             {
                 string sql = "insert into Users(UserAccount,UserPassword,UserName,Sex,Birthday,Blockade,UserPhoto,UserDate)" +
-                "values(@UserAccount,@UserPassword,@UserName,@Sex,@Birthday,@Blockade,@UserPhoto,@UserDate)";
+                "values(@UserAccount,@UserPassword,@UserName,@Sex,@Birthday,@Blockade,CONVERT(varbinary(max), @UserPhoto),@UserDate)";
 
-                int filelength = upload.ContentLength;
-                byte[] Myfile = new byte[filelength];
-                upload.InputStream.Read(Myfile, 0, filelength);
-                users.UserPhoto = Myfile;
-
+                if(upload != null)
+                { 
+                    int filelength = upload.ContentLength;
+                    byte[] Myfile = new byte[filelength];
+                    upload.InputStream.Read(Myfile, 0, filelength);
+                    users.UserPhoto = Myfile;
+                }
                 users.UserDate = DateTime.Now;
 
                 List<SqlParameter> list = new List<SqlParameter>

@@ -18,7 +18,6 @@ namespace Subject.Controllers
 
         public ActionResult Index()
         {
-            //var a = Session["SN"];
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
             return View(shop);
         }
@@ -273,10 +272,15 @@ namespace Subject.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult UserSave()
+        {
+            return View();
+        }
 
-        
 
-        
+
+
+
 
     }
 

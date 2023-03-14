@@ -1,8 +1,9 @@
 ﻿@model Subject.Models.Users
 
 @{
-    ViewBag.Title = "UserIndex";
+    ViewBag.Title = "個人資料";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var c = "";
 }
 
 
@@ -16,7 +17,7 @@
                 <h5 class="card-title">@Html.DisplayFor(model => model.UserName)</h5>
                 <p class="card-text">
                     <div>@Html.DisplayNameFor(model => model.UserAccount): @Html.DisplayFor(model => model.UserAccount)</div>
-                    <div>@Html.DisplayNameFor(model => model.Sex): @Html.DisplayFor(model => model.Sex)</div>
+                    <div>@Html.DisplayNameFor(model => model.Sex): @(c=Model.Sex == true? "男" : "女")</div>
                     <div>@Html.DisplayNameFor(model => model.Birthday): @Html.DisplayFor(model => model.Birthday)</div>
                     <div>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</div>
                 </p>

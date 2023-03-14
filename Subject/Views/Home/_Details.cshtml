@@ -2,14 +2,17 @@
 
 @{
     ViewBag.Title = "Details";
+    var c = "";
+    var p = Model.Phone;
 }
 
 <div class="card">
     <div class="card-header">
+        <input class="SID" type="hidden" value="@Model.ShopNumber" />
         <span style="font-size:25px">
-            <strong>@Html.DisplayFor(model => model.ShopName)</strong>
+            <strong class="SName">@Html.DisplayFor(model => model.ShopName)</strong>
         </span>
-        <span class="ml-3"><button class="btn btn-danger disabled"><i class="bi bi-heart-fill"></i> 收藏</button></span>
+        <span class="ml-3"><button class="btn btn-danger disabled addSave"><i class="bi bi-heart-fill"></i> 收藏</button></span>
         <span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>
     </div>
     <div class="card-body row">
@@ -23,17 +26,7 @@
 
             <div>
                 @Html.DisplayNameFor(model => model.Phone):
-                @if (Model.Phone == null)
-                {
-                    <span class="text-black-50">無</span>
-                }
-                else
-                {
-                    <span>
-                        @Html.DisplayFor(model => model.Phone)
-                    </span>
-                }
-
+                @(c=Model.Phone == null? "無" : p)
             </div>
 
             <div>
@@ -43,47 +36,19 @@
         <div class="col-4">
             <div>
                 @Html.DisplayNameFor(model => model.Outlet):
-                @if (Model.Outlet == true)
-                {
-                    <span>Yes</span>
-                }
-                else
-                {
-                    <span>No</span>
-                }
+                @(c=Model.Outlet == true? "Yes":"No")
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.WIFI):
-                @if (Model.WIFI == true)
-                {
-                    <span>Yes</span>
-                }
-                else
-                {
-                    <span>No</span>
-                }
+                @(c=Model.WIFI == true? "Yes":"No")
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.LimitedTime):
-                @if (Model.LimitedTime == true)
-                {
-                    <span>Yes</span>
-                }
-                else
-                {
-                    <span>No</span>
-                }
+                @(c=Model.LimitedTime == true? "Yes":"No")
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.IsOrder):
-                @if (Model.IsOrder == true)
-                {
-                    <span>Yes</span>
-                }
-                else
-                {
-                    <span>No</span>
-                }
+                @(c=Model.IsOrder == true? "Yes":"No")
             </div>
         </div>
     </div>
@@ -118,4 +83,45 @@
 <div class="text-center">
     @Html.Action("_ImageDetail")
 </div>
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var save = [];
+
+    if (localStorage.getItem("save")) {
+        save = JSON.parse(localStorage.getItem("save"));
+    }
+
+    $('.addSave').click(function () {
+        let shop = $(this).closest('.card');
+        let newSID = shop.find('.SID').val();
+
+        let foundItem = save.find(item => item.SID == newSID);
+        if (foundItem === undefined) {
+            setSave(shop);
+        }
+        else {
+            alert("取消收藏嗎?");
+        }
+        console.log(save);
+        localStorage.setItem("save", JSON.stringify(save));
+
+    })
+
+    function setSave(shop) {
+        let newItem = {
+            SID: shop.find('.SID').val(),
+            SName: shop.find('.SName').text()
+        }
+        save.push(newItem);
+        alert("已加入收藏");
+    }
+
+  
+
+
+</script>
+
+
 

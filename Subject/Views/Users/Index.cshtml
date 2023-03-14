@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Subject.Models.Users>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "用戶資料";
 }
 
 @section css{
@@ -30,9 +30,6 @@
         <th>
             @Html.DisplayNameFor(model => model.UserPhoto)
         </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.UserAccount)
-        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.UserDate)
         </th>
@@ -60,16 +57,9 @@
                 <img src="@Url.Action("GetPhoto", new {id=item.UserNumber})" width="100" />
             }
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.UserAccount)
-        </td>*@
         <td>
             @Html.DisplayFor(modelItem => item.UserDate)
         </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Blockade)
-        </td>*@
-
         <td class="text-center">
             @if (@item.Blockade)
             {

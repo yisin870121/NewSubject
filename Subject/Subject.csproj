@@ -390,7 +390,6 @@
     <Content Include="Views\ShopImages\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_Details.cshtml" />
-    <Content Include="Views\Users\Login.cshtml" />
     <Content Include="Views\Home\_MenuDetail.cshtml" />
     <Content Include="Views\Home\_TagDetail.cshtml" />
     <Content Include="Views\Home\_PayDetail.cshtml" />
@@ -398,11 +397,7 @@
     <Content Include="Views\Shops\_ImageDetail.cshtml" />
     <Content Include="Views\Home\_ImageDetail.cshtml" />
     <Content Include="Views\Shared\_Layout_Adm_Login.cshtml" />
-    <Content Include="Views\Users\UserIndex.cshtml" />
     <Content Include="Views\Home\UserIndex.cshtml" />
-    <Content Include="Views\ShopMenus\UserCreate.cshtml" />
-    <Content Include="Views\ShopImages\UserCreate.cshtml" />
-    <Content Include="Views\ShopPays\UserCreate.cshtml" />
     <Content Include="Views\Home\UserCreateTag.cshtml" />
     <Content Include="Views\Home\UserCreateMenu.cshtml" />
     <Content Include="Views\Home\UserCreateImage.cshtml" />

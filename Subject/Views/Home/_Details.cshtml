@@ -6,13 +6,18 @@
     var p = Model.Phone;
 }
 
+
+
 <div class="card">
     <div class="card-header">
         <input class="SID" type="hidden" value="@Model.ShopNumber" />
         <span style="font-size:25px">
             <strong class="SName">@Html.DisplayFor(model => model.ShopName)</strong>
         </span>
-        <span class="ml-3"><button class="btn btn-danger disabled addSave"><i class="bi bi-heart-fill"></i> 收藏</button></span>
+
+        <span class="ml-3"><button class="bi bi-heart-fill btn btn-danger disabled" id="addSave"> 收藏</button></span>
+
+        @*<span class="ml-3"><button class="btn btn-danger disabled addSave"><i class="bi bi-heart-fill"></i> 收藏</button></span>*@
         <span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>
     </div>
     <div class="card-body row">
@@ -23,12 +28,10 @@
             <div>
                 @Html.DisplayNameFor(model => model.ShopTime): @Html.DisplayFor(model => model.ShopTime)
             </div>
-
             <div>
                 @Html.DisplayNameFor(model => model.Phone):
                 @(c=Model.Phone == null? "無" : p)
             </div>
-
             <div>
                 @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>
             </div>
@@ -87,13 +90,25 @@
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script>
+    //function Buttontoggle() {
+    //    var t = document.getElementById("addSave");
+    //    if (t.innerText == "取消收藏") {
+    //        t.innerText = "收藏";
+    //    }
+    //    else if (t.innerText == "收藏") {
+    //        t.innerText = "取消收藏";
+    //    }
+    //}
+
+    var t = document.getElementById("addSave");
+
     var save = [];
 
     if (localStorage.getItem("save")) {
         save = JSON.parse(localStorage.getItem("save"));
     }
 
-    $('.addSave').click(function () {
+    $('#addSave').click(function () {
         let shop = $(this).closest('.card');
         let newSID = shop.find('.SID').val();
 
@@ -102,7 +117,7 @@
             setSave(shop);
         }
         else {
-            alert("取消收藏嗎?");
+            removeSave(shop);
         }
         console.log(save);
         localStorage.setItem("save", JSON.stringify(save));
@@ -115,10 +130,20 @@
             SName: shop.find('.SName').text()
         }
         save.push(newItem);
+        if (t.innerText == " 收藏") {
+            t.innerText = " 取消收藏";
+        }
         alert("已加入收藏");
     }
 
-  
+    function removeSave(shop) {
+        save.splice(shop.SID, 1);
+        if (t.innerText == " 取消收藏") {
+            t.innerText = " 收藏";
+        }
+        alert("已取消收藏");
+    }
+
 
 
 </script>

@@ -12,9 +12,9 @@
 
 <div class="card">
     <div class="card-header">
-        <input id="SID" class="SID" type="hidden" value="@Model.ShopNumber" />
+        <input id="SID" type="hidden" value="@Model.ShopNumber" />
         <span style="font-size:25px">
-            <strong class="SName">@Html.DisplayFor(model => model.ShopName)</strong>
+            <strong id="SName">@Html.DisplayFor(model => model.ShopName)</strong>
         </span>
 
         <span class="ml-3"><button class="bi bi-heart-fill btn btn-danger disabled" id="addSave"> 收藏</button></span>
@@ -112,8 +112,9 @@
     }
 
     $('#addSave').click(function () {
+    
         let shop = $(this).closest('.card');
-        let newSID = shop.find('.SID').val();
+        let newSID = shop.find('#SID').val();
 
         let foundItem = save.find(item => item.SID == newSID);
         if (foundItem === undefined) {
@@ -131,8 +132,8 @@
 
     function setSave(shop) {
         let newItem = {
-            SID: shop.find('.SID').val(),
-            SName: shop.find('.SName').text()
+            SID: shop.find('#SID').val(),
+            SName: shop.find('#SName').text()
         }
         save.push(newItem);
     
@@ -147,7 +148,7 @@
                 save.splice(save.indexOf(item), 1);
 
         }
-     
+        
         alert("已取消收藏");
         Buttontoggle();
     }
@@ -155,25 +156,30 @@
 
   
     //alert($('#SID').val())
-
+    
     function Buttontoggle() {
-
         for (var item of save) {
             console.log(item.SID == $('#SID').val())
             if (item.SID == $('#SID').val()) {
-                t.innerText = " 取消收藏"
+                t.innerText = " 取消收藏";
                 break;
             }
-            //else {
-            //    t.innerText = " 收藏"
-            //    continue;
-            //}
-
-
+            else {
+                t.innerText = " 收藏";
+            }
+        }
+        if (save.length == 0) {
+            t.innerText = " 收藏";
         }
 
     }
     Buttontoggle();
+    
+
+   
+   
+
+    
 </script>
 
 

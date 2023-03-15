@@ -4,13 +4,15 @@
     ViewBag.Title = "Details";
     var c = "";
     var p = Model.Phone;
+    var d = Model.District;
+    var a = Model.ShopAddress;
 }
 
 
 
 <div class="card">
     <div class="card-header">
-        <input class="SID" type="hidden" value="@Model.ShopNumber" />
+        <input id="SID" class="SID" type="hidden" value="@Model.ShopNumber" />
         <span style="font-size:25px">
             <strong class="SName">@Html.DisplayFor(model => model.ShopName)</strong>
         </span>
@@ -23,7 +25,8 @@
     <div class="card-body row">
         <div class="col-8">
             <div>
-                @Html.DisplayNameFor(model => model.ShopAddress): <span>高雄市</span>@Html.DisplayFor(model => model.District)@Html.DisplayFor(model => model.ShopAddress)
+                @Html.DisplayNameFor(model => model.ShopAddress):
+                @(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.ShopTime): @Html.DisplayFor(model => model.ShopTime)
@@ -33,7 +36,7 @@
                 @(c=Model.Phone == null? "無" : p)
             </div>
             <div>
-                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>
+                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>  
             </div>
         </div>
         <div class="col-4">
@@ -117,12 +120,14 @@
             setSave(shop);
         }
         else {
-            removeSave();
+            removeSave(newSID);
         }
         console.log(save);
         localStorage.setItem("save", JSON.stringify(save));
 
     })
+
+    
 
     function setSave(shop) {
         let newItem = {
@@ -130,24 +135,45 @@
             SName: shop.find('.SName').text()
         }
         save.push(newItem);
-        if (t.innerText == " 收藏") {
-            t.innerText = " 取消收藏";
-        }
-        alert("已加入收藏");
-    }
-
-    function removeSave() {
-        save.splice(save.length-1, 1);
-        if (t.innerText == " 取消收藏") {
-            t.innerText = " 收藏";
-        }
-        alert("已取消收藏");
-    }
-
     
+        alert("已加入收藏");
+        Buttontoggle();
+    }
+
+    function removeSave(SID) {
+        //alert(save.indexOf(save.SID))
+        for (var item of save) {
+            if (item.SID == SID)
+                save.splice(save.indexOf(item), 1);
+
+        }
+     
+        alert("已取消收藏");
+        Buttontoggle();
+    }
 
 
+  
+    //alert($('#SID').val())
 
+    function Buttontoggle() {
+
+        for (var item of save) {
+            console.log(item.SID == $('#SID').val())
+            if (item.SID == $('#SID').val()) {
+                t.innerText = " 取消收藏"
+                break;
+            }
+            //else {
+            //    t.innerText = " 收藏"
+            //    continue;
+            //}
+
+
+        }
+
+    }
+    Buttontoggle();
 </script>
 
 

@@ -35,12 +35,10 @@ namespace Subject.Models
                 if (p.SqlValue == null)
                 {
                     p.SqlValue = DBNull.Value;
-                    cmd.Parameters.Add(p);
                 }
-                else
-                {
-                    cmd.Parameters.Add(p);
-                }
+                
+                cmd.Parameters.Add(p);
+               
             }
 
             //foreach (var p in list)

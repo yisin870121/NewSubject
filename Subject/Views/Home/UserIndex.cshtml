@@ -8,120 +8,52 @@
 
 @section css{
     <style>
-        .card{
-            font-size:20px;
+        .card {
+            font-size: 20px;
         }
+
         .card-title {
-            font-size: 30px;
+            font-size: 25px;
         }
     </style>
-    
-    }
 
-<h2 class="text-center alert alert-warning mt-1">個人資料</h2>
+}
 
-<div class="card mb-3 mt-3">
-    <div class="row no-gutters">
-        @*<div class="col-md-6">*@
-            @if (Model.UserPhoto == null)
-            {
-                <i class="bi bi-emoji-smile" style="font-size:5rem"></i>
-            }
-            else
-            {
-                <img src="@Url.Action("GetUserPhoto", new {id=Model.UserNumber})" class="w-25" />
-            }
-        @*</div>*@
-        @*<div class="col-md-6">*@
-            <div class="card-body">
-                <h5 class="card-title">@Html.DisplayFor(model => model.UserName)</h5>
-                <p class="card-text">
-                    <div>@Html.DisplayNameFor(model => model.UserAccount): @Html.DisplayFor(model => model.UserAccount)</div>
-                    <div>@Html.DisplayNameFor(model => model.Sex): @(c=Model.Sex == true? "男" : "女")</div>
-                    <div>@Html.DisplayNameFor(model => model.Birthday): @Html.DisplayFor(model => model.Birthday)</div>
-                    <div>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</div>
-                </p>
-                @*<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>*@
-            </div>
-        @*</div>*@
+<div class="row">
+    <div class="col-3">
+        <h4 class="text-center alert alert-warning mt-2">個人資料</h4>
+        <div class="card mb-3 mt-1">
+                @if (Model.UserPhoto == null)
+                {
+                    <i class="bi bi-emoji-smile" style="font-size:5rem"></i>
+                }
+                else
+                {
+                    <img src="@Url.Action("GetUserPhoto", new {id=Model.UserNumber})" class="w-100" />
+                }
+
+                <div class="card-body">
+                    <div class="card-title">@Html.DisplayFor(model => model.UserName)</div>
+                    <p class="card-text">
+                        <div>@Html.DisplayNameFor(model => model.UserAccount): @Html.DisplayFor(model => model.UserAccount)</div>
+                        <div>@Html.DisplayNameFor(model => model.Sex): @(c=Model.Sex == true? "男" : "女")</div>
+                        <div>@Html.DisplayNameFor(model => model.Birthday): @Html.DisplayFor(model => model.Birthday)</div>
+                        <div>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</div>
+                    </p>
+                </div>
+        </div>
+    </div>
+    <div class="col-9 mt-2">
+        <div>
+            @Html.Action("_MySave")
+        </div>
     </div>
 </div>
 
-<div>
-    @Html.Action("_MySave")
-</div>
 
 
 
+@*@Html.ActionLink("Edit", "Edit", new { id = item.UserNumber }) |
+@Html.ActionLink("Details", "Details", new { id = item.UserNumber }) |
+@Html.ActionLink("Delete", "Delete", new { id = item.UserNumber })*@
 
-<!--<table class="table table-responsive-lg">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.UserAccount)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserPassword)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Sex)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserPhoto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Birthday)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UserDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Blockade)
-            </th>
-        </tr>
-    </thead>
-
-
-    <tr>
-        <td>
-            @Html.DisplayFor(model => model.UserAccount)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.UserPassword)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Sex)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.UserPhoto)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Birthday)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.UserDate)
-        </td>
-        <td>
-            @Html.DisplayFor(model => model.Blockade)
-        </td>-->
-@*<td>
-        @Html.ActionLink("Edit", "Edit", new { id=item.UserNumber }) |
-        @Html.ActionLink("Details", "Details", new { id=item.UserNumber }) |
-        @Html.ActionLink("Delete", "Delete", new { id=item.UserNumber })
-    </td>*@
-<!--</tr>
-
-
-</table>-->

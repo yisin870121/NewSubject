@@ -4,7 +4,23 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="text-center alert alert-warning">我的收藏店家</h2>
+<style>
+    .pic {
+        width: 150px;
+        height: 150px;
+        margin:auto;
+        /*margin: 50px;*/
+        /*border: 2px solid;*/
+    }
+
+        .pic img {
+            object-fit: contain;
+            width: 150px;
+            height: 150px;
+        }
+</style>
+
+<h4 class="text-center alert alert-warning">我的收藏店家</h4>
 
 <div class="container">
     <div class="row" id="MySave">
@@ -29,10 +45,12 @@
             let saveList = "";
             for (let item of save) {
                 saveList += `<div class="col-3">
-                                <div class="card shadow h-100 text-center">
+                                <div class="card shadow h-100 p-2 text-center">
                                     <a href="Details/${item.SID}" title="點我看更多">
-                                        <h5 class="text-secondary mt-1"><strong>${item.SName}</strong></h5>
-                                    <div class="mb-1"><img src="/ShopImages/GetSavePhoto/${item.SID}" class="w-50"></div>
+                                        <div class="pic">
+                                            <img src="/ShopImages/GetSavePhoto/${item.SID}" >
+                                        </div>
+                                        <div class="text-secondary"><strong>${item.SName}</strong></div>
                                     </a>
                                 </div>
                             </div>`
@@ -43,8 +61,8 @@
     }
     initSave();
 
-
-
+    //<div class="card-body"></div>
+    //class="img-fluid"
 </script>
 
 

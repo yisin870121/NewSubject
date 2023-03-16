@@ -2,13 +2,19 @@
 
 @{
     ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
     var c = "";
     var p = Model.Phone;
     var d = Model.District;
     var a = Model.ShopAddress;
 }
+<div class="mt-3 text-primary">
+    <a href="@Url.Action("UserIndex")"><i class="bi bi-chevron-double-left"></i>返回個人資料</a>
+    @*<i class="bi bi-chevron-double-left"></i>@Html.ActionLink("返回個人資料", "UserIndex")*@
+</div>
+<hr />
 
-<div class="card">
+<div class="card mt-3">
     <div class="card-header">
         <input id="SID" type="hidden" value="@Model.ShopNumber" />
         <span style="font-size:25px">
@@ -34,7 +40,7 @@
                 @(c=Model.Phone == null? "無" : p)
             </div>
             <div>
-                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>  
+                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>
             </div>
         </div>
         <div class="col-4">
@@ -87,89 +93,4 @@
 <div class="text-center">
     @Html.Action("_ImageDetail")
 </div>
-
-
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<script>
-
-    var t = document.getElementById("addSave");
-
-    var save = [];
-
-    if (localStorage.getItem("save")) {
-        save = JSON.parse(localStorage.getItem("save"));
-    }
-
-    $('#addSave').click(function () {
-    
-        let shop = $(this).closest('.card');
-        let newSID = shop.find('#SID').val();
-
-        let foundItem = save.find(item => item.SID == newSID);
-        if (foundItem === undefined) {
-            setSave(shop);
-        }
-        else {
-            removeSave(newSID);
-        }
-        console.log(save);
-        localStorage.setItem("save", JSON.stringify(save));
-    })
-    Buttontoggle();
-
-    
-
-    function setSave(shop) {
-        let newItem = {
-            SID: shop.find('#SID').val(),
-            SName: shop.find('#SName').text()
-        }
-        save.push(newItem);
-    
-        alert("已加入收藏");
-        Buttontoggle();
-    }
-
-
-    //alert(save.indexOf(save.SID))
-    function removeSave(SID) {
-       
-        for (var item of save) {
-            if (item.SID == SID)
-                save.splice(save.indexOf(item), 1);
-        }
-        
-        alert("已取消收藏");
-        Buttontoggle();
-    }
-
-
-  
-    //alert($('#SID').val())
-    function Buttontoggle() {
-        for (var item of save) {
-            console.log(item.SID == $('#SID').val())
-            if (item.SID == $('#SID').val()) {
-                t.innerText = " 取消收藏";
-                break;
-            }
-            else {
-                t.innerText = " 收藏";
-            }
-        }
-        if (save.length == 0) {
-            t.innerText = " 收藏";
-        }
-
-    }
-    //Buttontoggle();
-    
-
-   
-   
-
-    
-</script>
-
-
 

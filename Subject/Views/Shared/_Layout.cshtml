@@ -35,6 +35,9 @@
                         <li class="nav-item ml-auto">
                             @Html.ActionLink("登入", "Login", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
                         </li>
+                        <li class="nav-item ml-1">
+                            @Html.ActionLink("註冊", "SignUp", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
+                        </li>
                     }
                     @if (Session["user"] != null)
                     {
@@ -49,7 +52,7 @@
                             </form>
                         </li>
                         <li class="nav-item ml-auto">
-                            @Html.ActionLink("個人資料", "UserIndex", "Home", null, new { @class = "nav-link" })
+                            @Html.ActionLink("會員中心", "UserIndex", "Home", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item ml-3">
                             @Html.ActionLink("登出", "Logout", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
@@ -65,7 +68,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - My Cafe'</p>
         </footer>
     </div>
 

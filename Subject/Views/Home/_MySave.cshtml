@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "MySave";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center alert alert-warning">我的收藏店家</h2>
+
+<div class="container">
+    <div class="row" id="MySave">
+
+    </div>
+</div>
+
+<hr />
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    var save = [];
+
+    let initSave = function () {
+        if (!localStorage.getItem("save") || localStorage.getItem("save") == "[]") {
+            $('#MySave').html(`<h5 class="text-center text-danger">目前沒有收藏任何店家</h5>`);
+        }
+        else {
+            save = JSON.parse(localStorage.getItem("save"));
+
+            let saveList = "";
+            for (let item of save) {
+                saveList += `<div class="col-3">
+                                <div class="card shadow h-100 text-center">
+                                    <a href="Details/${item.SID}" title="點我看更多">
+                                        <h5 class="text-secondary mt-1"><strong>${item.SName}</strong></h5>
+                                    <div class="mb-1"><img src="/ShopImages/GetSavePhoto/${item.SID}" class="w-50"></div>
+                                    </a>
+                                </div>
+                            </div>`
+            }
+            $('#MySave').html(saveList);
+            
+        }
+    }
+    initSave();
+
+
+
+</script>
+
+

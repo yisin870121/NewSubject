@@ -39,6 +39,23 @@ namespace Subject.Controllers
             return PartialView(shop);
         }
 
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Shop shop = db.Shop.Find(id);
+            if (shop == null)
+            {
+                return HttpNotFound();
+            }
+
+            ViewBag.ShopNumber = id;
+            Session["TitleSN"] = db.Shop.Find(id).ShopName;
+            return View(shop);
+        }
+
         public ActionResult _MenuDetail(int id)
         {
             return PartialView(db.ShopMenu.Where(m => m.ShopNumber == id).ToList());
@@ -235,6 +252,50 @@ namespace Subject.Controllers
 
         }
 
+        public ActionResult SignUp()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SignUp(Users users, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                string sql = "insert into Users(UserAccount,UserPassword,UserName,Sex,Birthday,Blockade,UserPhoto,UserDate)" +
+                "values(@UserAccount,@UserPassword,@UserName,@Sex,@Birthday,@Blockade,CONVERT(varbinary(max), @UserPhoto),@UserDate)";
+
+                if (upload != null)
+                {
+                    int filelength = upload.ContentLength;
+                    byte[] Myfile = new byte[filelength];
+                    upload.InputStream.Read(Myfile, 0, filelength);
+                    users.UserPhoto = Myfile;
+                }
+                users.UserDate = DateTime.Now;
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserAccount",users.UserAccount),
+                    new SqlParameter("UserPassword",users.UserPassword),
+                    new SqlParameter("UserName",users.UserName),
+                    new SqlParameter("Sex",users.Sex),
+                    new SqlParameter("Birthday",users.Birthday),
+                    new SqlParameter("Blockade",users.Blockade),
+                    new SqlParameter("UserPhoto",users.UserPhoto),
+                    new SqlParameter("UserDate",users.UserDate)
+                };
+
+                sd.executeSql(sql, list);
+
+                return RedirectToAction("Login");
+            }
+
+            return View(users);
+        }
+
+
         public ActionResult Login()
         {
             return View();
@@ -272,9 +333,10 @@ namespace Subject.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult UserSave()
+   
+        public ActionResult _MySave()
         {
-            return View();
+            return PartialView();
         }
 
 

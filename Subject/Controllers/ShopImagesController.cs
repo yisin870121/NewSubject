@@ -158,6 +158,15 @@ namespace Subject.Controllers
 
         }
 
+        public FileContentResult GetSavePhoto(int id)
+        {
+            var photo = db.ShopImage.Where(m => m.ShopNumber == id).FirstOrDefault();
+            if (photo != null)
+                return File(photo.ShopImage1, "image/jpeg");
+            return null;
+
+        }
+
 
 
 

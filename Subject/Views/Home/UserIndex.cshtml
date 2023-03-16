@@ -1,24 +1,38 @@
 ﻿@model Subject.Models.Users
 
 @{
-    ViewBag.Title = "個人資料";
+    ViewBag.Title = "會員中心";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var c = "";
 }
 
-<div class="card mb-3 mt-3" style="max-width: 540px;">
+@section css{
+    <style>
+        .card{
+            font-size:20px;
+        }
+        .card-title {
+            font-size: 30px;
+        }
+    </style>
+    
+    }
+
+<h2 class="text-center alert alert-warning mt-1">個人資料</h2>
+
+<div class="card mb-3 mt-3">
     <div class="row no-gutters">
-        <div class="col-md-5 text-center">
+        @*<div class="col-md-6">*@
             @if (Model.UserPhoto == null)
             {
                 <i class="bi bi-emoji-smile" style="font-size:5rem"></i>
             }
             else
             {
-                <img src="@Url.Action("GetUserPhoto", new {id=Model.UserNumber})" class="w-100" />
+                <img src="@Url.Action("GetUserPhoto", new {id=Model.UserNumber})" class="w-25" />
             }
-        </div>
-        <div class="col-md-7">
+        @*</div>*@
+        @*<div class="col-md-6">*@
             <div class="card-body">
                 <h5 class="card-title">@Html.DisplayFor(model => model.UserName)</h5>
                 <p class="card-text">
@@ -29,8 +43,12 @@
                 </p>
                 @*<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>*@
             </div>
-        </div>
+        @*</div>*@
     </div>
+</div>
+
+<div>
+    @Html.Action("_MySave")
 </div>
 
 

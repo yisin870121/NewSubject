@@ -402,7 +402,9 @@
     <Content Include="Views\Home\UserCreateMenu.cshtml" />
     <Content Include="Views\Home\UserCreateImage.cshtml" />
     <Content Include="Views\Home\UserCreatePay.cshtml" />
-    <Content Include="Views\Home\UserSave.cshtml" />
+    <Content Include="Views\Home\_MySave.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

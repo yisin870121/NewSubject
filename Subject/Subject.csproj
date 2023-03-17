@@ -97,6 +97,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cafe\Cafe1.jpg" />
+    <Content Include="Cafe\Cafe2.jpg" />
+    <Content Include="Cafe\Cafe3.jpg" />
+    <Content Include="Cafe\Cafe4.jpg" />
+    <Content Include="Cafe\Cafe5.jpg" />
+    <Content Include="Cafe\Cafe6.jpg" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />

@@ -15,7 +15,7 @@ namespace Subject.Controllers
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd= new SetData();
-
+        
         public ActionResult Index()
         {
             var shop = db.Shop.Where(p => p.Closed == false).ToList();

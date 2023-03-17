@@ -8,51 +8,55 @@
 
 @section css{
     <style>
-        /*input, select, textarea {
-            max-width:max-content;
-        }*/
-
         input, select, textarea {
             max-width: max-content;
+            border-radius: 4px;
+            /*border-color: #ebd172;*/
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            width: 100%;
+            outline-color:#d4d07f;
+            resize:none;
         }
-
+        #suggestTitle{
+            color:#9e664c;
+        }
+        .alert-warning {
+            background-color: #fffcc1;
+        }
     </style>
-    
-    }
 
-<h2 class="mt-3">建議內容</h2>
+}
+
+@*<h5 class="pl-3 mt-3 col-7 mx-auto" id="suggestTitle">Hi ! 想告訴我們什麼呢 ?</h5>*@
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
+<div class="form-horizontal mt-3">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(model => model.Suggest1, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @*<textarea id="Suggest1" rows="20" cols="100" class="form-control"></textarea>*@
-            @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Suggest1, "", new { @class = "text-danger" })
-        </div>
+    <div class="form-group text-center">
+        <h5 id="suggestTitle">Hi ! 想告訴我們什麼呢 ?</h5>
+        @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "" },@class= "alert-warning", cols = "80", rows = "10", placeholder = " 請輸入內容..." })
+        @Html.ValidationMessageFor(model => model.Suggest1, "", new { @class = "text-danger" })
     </div>
-    <div class="form-group mt-3">
-        @*<div class="form-group col-12 text-right">*@
+    <div class="form-group text-center mt-3">
         <span class="btn btn-link">@Html.ActionLink("回上一頁", "Index")</span>
         <input type="submit" value="送出" class="btn btn-light" onclick="Success()" />
-            @*</div>*@
     </div>
 </div>
-    
 }
 
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
 
 @section scripts{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script>
         function Success() {
-            alert("謝謝您的投搞 ! 將經管理員審核，敬請期待");
+            alert("謝謝您的建議，我們已收到 !");
         }
 
     </script>

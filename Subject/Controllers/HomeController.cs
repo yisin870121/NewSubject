@@ -155,7 +155,6 @@ namespace Subject.Controllers
         {
             ViewBag.Shop = db.Shop.ToList();
             ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType");
-            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName");
             return View();
         }
 
@@ -182,7 +181,6 @@ namespace Subject.Controllers
             }
 
             ViewBag.Shop = db.Shop.ToList();
-            //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopPay.ShopNumber);
             ViewBag.PayNumber = new SelectList(db.Pay, "PayNumber", "PayType", shopPay.PayNumber);
             return View(shopPay);
         }
@@ -340,9 +338,80 @@ namespace Subject.Controllers
         }
 
 
+        public ActionResult PostShop()
+        {
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");
+            return View();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostShop(PostShop postShop)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
 
+                string sql = "insert into PostShop(PostName,PostDistrict,PostAdress,PostTime,PostPhone,PostWeb,PostOutlet," +
+                    "PostWifi,PostLimitedTime,PostOrder,UserNumber,AdmNumber)values(@PostName,@PostDistrict,@PostAdress," +
+                    "@PostTime,@PostPhone,@PostWeb,@PostOutlet,@PostWifi,@PostLimitedTime,@PostOrder,@UserNumber,@AdmNumber)";
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("PostName",postShop.PostName),
+                    new SqlParameter("PostDistrict",postShop.PostDistrict),
+                    new SqlParameter("PostAdress",postShop.PostAdress),
+                    new SqlParameter("PostTime",postShop.PostTime),
+                    new SqlParameter("PostPhone",postShop.PostPhone),
+                    new SqlParameter("PostWeb",postShop.PostWeb),
+                    new SqlParameter("PostOutlet",postShop.PostOutlet),
+                    new SqlParameter("PostWifi",postShop.PostWifi),
+                    new SqlParameter("PostLimitedTime",postShop.PostLimitedTime),
+                    new SqlParameter("PostOrder",postShop.PostOrder),
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("AdmNumber",postShop.AdmNumber)
+                };
 
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index");
+
+            }
+
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", postShop.AdmNumber);
+            return View(postShop);
+        }
+
+        public ActionResult Suggest()
+        {
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");
+            return PartialView();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Suggest(Suggest suggest)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var users = db.Users.Find(id);
+
+                string sql = "insert into Suggest(UserNumber,Suggest,AdmNumber)values(@UserNumber,@Suggest,@AdmNumber)";
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("Suggest",suggest.Suggest1),
+                    new SqlParameter("AdmNumber",suggest.AdmNumber)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", suggest.AdmNumber);
+            return View(suggest);
+        }
 
     }
 

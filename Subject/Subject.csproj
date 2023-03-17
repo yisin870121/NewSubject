@@ -405,6 +405,8 @@
     <Content Include="Views\Home\_MySave.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\Home\PostShop.cshtml" />
+    <Content Include="Views\Home\Suggest.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

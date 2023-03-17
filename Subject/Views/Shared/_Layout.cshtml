@@ -23,15 +23,23 @@
             </button>
             <div class="navbar-collapse collapse ml-3" id="mainMenu">
                 <ul class="navbar-nav mr-auto w-100 mt-1">
-                    @if (Session["user"] == null)
-                    {
-                        <li class="nav-item">
-                            @Html.ActionLink("咖啡廳清單", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
-                        </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("咖啡廳清單", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("投稿專區", "PostShop", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("建議", "Suggest", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
                         <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
-                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜尋..." aria-label="Search">
+                            <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜尋咖啡廳" aria-label="Search">
                             <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                         </form>
+                    </li>
+                    @if (Session["user"] == null)
+                    {
                         <li class="nav-item ml-auto">
                             @Html.ActionLink("登入", "Login", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
                         </li>
@@ -41,23 +49,23 @@
                     }
                     @if (Session["user"] != null)
                     {
-                        <li class="nav-item">
-                            @Html.ActionLink("咖啡廳清單", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        <li class="dropdown ml-auto">
+                            <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
+                                會員中心
+                            </button>
+                            <div class="dropdown-menu">
+                                @Html.ActionLink("主頁", "UserIndex", "Home", new { area = "" }, new { @class = "dropdown-item" })
+                                @*@Html.ActionLink("使用者頁面", "Index", "Home", new { area = "" }, new { @class = "dropdown-item" })*@
+                                <div class="dropdown-divider"></div>
+                                @Html.ActionLink("登出", "Logout", "Home", new { area = "" }, new { @class = "dropdown-item " })
+                            </div>
                         </li>
-
-                        <li class="nav-item">
-                            <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
-                                <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜尋咖啡廳" aria-label="Search">
-                                <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
-                            </form>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            @Html.ActionLink("會員中心", "UserIndex", "Home", null, new { @class = "nav-link" })
-                        </li>
-                        <li class="nav-item ml-3">
-                            @Html.ActionLink("登出", "Logout", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
-                        </li>
-
+                        @*<li class="nav-item ml-auto">
+                @Html.ActionLink("會員中心", "UserIndex", "Home", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item ml-3">
+                @Html.ActionLink("登出", "Logout", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
+            </li>*@
                     }
                 </ul>
             </div>

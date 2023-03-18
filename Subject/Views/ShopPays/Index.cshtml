@@ -4,23 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-@section css{
-    <style>
-        #AddPay {
-            display: none;
-        }
-    </style>
-}
+<h2 class="mt-3 text-center">付款方式管理</h2>
 
-<h2>付款方式管理</h2>
-
-<p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增付款方式</button>
-</p>
-<div class="alert alert-primary" id="AddPay">
-    @Html.Action("_Create")
-</div>
-<table class="table table-responsive-lg">
+<table class="table table-responsive-lg mt-3">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Number)
@@ -82,10 +68,6 @@
 
 @section scripts{
     <script>
-        $('#AddForm').click(function () {
-            $('#AddPay').fadeToggle(800);
-        });
-
         function getDeleteData(evt) {
             $('#showDeleteModal .modal-body').load("/ShopPays/_Delete/" + evt.target.id);
         }

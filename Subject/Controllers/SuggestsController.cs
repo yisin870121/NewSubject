@@ -11,6 +11,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class SuggestsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -96,28 +97,28 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Suggest suggest)
         {
-            string sql = "update Suggest set Suggest=@Suggest,CheckDate=@CheckDate," +
-                "AdmNumber=@AdmNumber from Suggest inner join Adm on Suggest.AdmNumber=Adm.AdmNumber where SuggestNumber=@SuggestNumber";
-            List<SqlParameter> list = new List<SqlParameter>
+            if (ModelState.IsValid)
             {
-                new SqlParameter("Suggest",suggest.Suggest1),
-                new SqlParameter("CheckDate",suggest.CheckDate),
-                new SqlParameter("AdmNumber",suggest.AdmNumber),
-                new SqlParameter("SuggestNumber",suggest.SuggestNumber),
-            };
-            try
-            { 
+                int id = ((Adm)Session["adm"]).AdmNumber;
+                var adms = db.Adm.Find(id);
+
+                string sql = "update Suggest set CheckDate=@CheckDate,AdmNumber=@AdmNumber " +
+                "where SuggestNumber=@SuggestNumber";
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("Suggest",suggest.Suggest1),
+                    new SqlParameter("CheckDate",suggest.CheckDate),
+                    new SqlParameter("AdmNumber",adms.AdmNumber),
+                    new SqlParameter("SuggestNumber",suggest.SuggestNumber),
+                };
+            
                 sd.executeSql(sql,list);
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
-            {
-                ViewBag.Msg = ex.Message;
                 ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", suggest.AdmNumber);
                 ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", suggest.UserNumber);
                 return View(suggest);
-            }
-            
         }
 
         // GET: Suggests/Delete/5

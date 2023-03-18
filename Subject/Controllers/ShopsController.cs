@@ -73,6 +73,7 @@ namespace Subject.Controllers
         }
 
         // GET: Shops/Create
+        
         public ActionResult _Create()
         {
             ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");
@@ -88,6 +89,9 @@ namespace Subject.Controllers
         {
             if (ModelState.IsValid)
             {
+                int id = ((Adm)Session["adm"]).AdmNumber;
+                var adms = db.Adm.Find(id);
+
                 string sql = "insert into Shop(ShopName,District,ShopAddress,ShopTime,Phone,Web,Outlet,WIFI,LimitedTime,"+
                 "IsOrder,AdmNumber,Closed)values(@ShopName,@District,@ShopAddress,@ShopTime,@Phone,@Web,@Outlet,@WIFI,"+
                 "@LimitedTime,@IsOrder,@AdmNumber,@Closed)";
@@ -104,7 +108,7 @@ namespace Subject.Controllers
                     new SqlParameter("WIFI",shop.WIFI),
                     new SqlParameter("LimitedTime",shop.LimitedTime),
                     new SqlParameter("IsOrder",shop.IsOrder),
-                    new SqlParameter("AdmNumber",shop.AdmNumber),
+                    new SqlParameter("AdmNumber",adms.AdmNumber),
                     new SqlParameter("Closed",shop.Closed)
                 };
 
@@ -141,48 +145,35 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Shop shop)
         {
-            string sql = "update Shop set ShopName=@ShopName,District=@District,ShopAddress=@ShopAddress,"+
-                "ShopTime=@ShopTime,Phone=@Phone,Web=@Web,Outlet=@Outlet,WIFI=@WIFI,LimitedTime=@LimitedTime,"+
-                "IsOrder=@IsOrder,UpdateDate=@UpdateDate,Closed=@Closed,AdmNumber=@AdmNumber " +
-                "from Shop inner join Adm on Shop.AdmNumber=Adm.AdmNumber where ShopNumber=@ShopNumber";
-
-            List<SqlParameter> list = new List<SqlParameter>
+            if (ModelState.IsValid)
             {
-                new SqlParameter("ShopName",shop.ShopName),
-                new SqlParameter("District",shop.District),
-                new SqlParameter("ShopAddress",shop.ShopAddress),
-                new SqlParameter("ShopTime",shop.ShopTime),
-                new SqlParameter("Phone",shop.Phone),
-                new SqlParameter("Web",shop.Web),
-                new SqlParameter("Outlet",shop.Outlet),
-                new SqlParameter("WIFI",shop.WIFI),
-                new SqlParameter("LimitedTime",shop.LimitedTime),
-                new SqlParameter("IsOrder",shop.IsOrder),
-                new SqlParameter("UpdateDate",shop.UpdateDate),
-                new SqlParameter("Closed",shop.Closed),
-                new SqlParameter("AdmNumber",shop.AdmNumber),
-                new SqlParameter("ShopNumber",shop.ShopNumber)
-            };
+                string sql = "update Shop set ShopName=@ShopName,District=@District,ShopAddress=@ShopAddress,"+
+                "ShopTime=@ShopTime,Phone=@Phone,Web=@Web,Outlet=@Outlet,WIFI=@WIFI,LimitedTime=@LimitedTime,"+
+                "IsOrder=@IsOrder,UpdateDate=@UpdateDate,Closed=@Closed where ShopNumber=@ShopNumber";
 
-            try
-            { 
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("ShopName",shop.ShopName),
+                    new SqlParameter("District",shop.District),
+                    new SqlParameter("ShopAddress",shop.ShopAddress),
+                    new SqlParameter("ShopTime",shop.ShopTime),
+                    new SqlParameter("Phone",shop.Phone),
+                    new SqlParameter("Web",shop.Web),
+                    new SqlParameter("Outlet",shop.Outlet),
+                    new SqlParameter("WIFI",shop.WIFI),
+                    new SqlParameter("LimitedTime",shop.LimitedTime),
+                    new SqlParameter("IsOrder",shop.IsOrder),
+                    new SqlParameter("UpdateDate",shop.UpdateDate),
+                    new SqlParameter("Closed",shop.Closed),
+                    new SqlParameter("ShopNumber",shop.ShopNumber)
+                };
+
                 sd.executeSql(sql,list);
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
-            {
-                ViewBag.Msg = ex.Message;
+            
                 ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", shop.AdmNumber);
                 return View(shop);
-            }
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(shop).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmAccount", shop.AdmNumber);
-            //return View(shop);
         }
 
         // GET: Shops/Delete/5

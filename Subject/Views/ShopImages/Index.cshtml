@@ -4,24 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-@section css{
-    <style>
-        #AddImage {
-            display: none;
-        }
-    </style>
-}
+<h2 class="mt-3 text-center">照片管理</h2>
 
-<h2>照片管理</h2>
-
-<p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增照片</button>
-</p>
-<div class="alert alert-primary" id="AddImage">
-    @Html.Action("_Create")
-</div>
-
-<table class="table table-responsive-lg">
+<table class="table table-responsive-lg mt-3">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ImageNumber)
@@ -102,10 +87,6 @@
 
 @section scripts{
     <script>
-        $('#AddForm').click(function () {
-            $('#AddImage').fadeToggle(800);
-        });
-
         function getDeleteData(evt) {
             $('#showDeleteModal .modal-body').load("/ShopImages/_Delete/" + evt.target.id);
         }

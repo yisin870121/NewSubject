@@ -11,6 +11,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class PostShopsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -90,6 +91,7 @@ namespace Subject.Controllers
         }
 
         // GET: PostShops/Edit/5
+        
         public ActionResult _Edit(int? id)
         {
             if (id == null)
@@ -113,42 +115,29 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PostShop postShop)
         {
-            string sql = "update PostShop set PostName=@PostName,PostDistrict=@PostDistrict,PostAdress=@PostAdress,PostTime=@PostTime," +
-                "PostPhone=@PostPhone,PostWeb=@PostWeb,PostOutlet=@PostOutlet,PostWifi=@PostWifi,PostLimitedTime=@PostLimitedTime," +
-                "PostOrder=@PostOrder,UserNumber=@UserNumber,PassDate=@PassDate,AdmNumber=@AdmNumber from PostShop " +
-                "inner join Adm on PostShop.AdmNumber=Adm.AdmNumber " +
-                "inner join Users on PostShop.UserNumber=Users.UserNumber " +
-                "where PostNumber=@PostNumber";
+            if (ModelState.IsValid)
+            {
+                int id = ((Adm)Session["adm"]).AdmNumber;
+                var adms = db.Adm.Find(id);
 
-            List<SqlParameter> list = new List<SqlParameter>
-            {
-                new SqlParameter("PostName",postShop.PostName),
-                new SqlParameter("PostDistrict",postShop.PostDistrict),
-                new SqlParameter("PostAdress",postShop.PostAdress),
-                new SqlParameter("PostTime",postShop.PostTime),
-                new SqlParameter("PostPhone",postShop.PostPhone),
-                new SqlParameter("PostWeb",postShop.PostWeb),
-                new SqlParameter("PostOutlet",postShop.PostOutlet),
-                new SqlParameter("PostWifi",postShop.PostWifi),
-                new SqlParameter("PostLimitedTime",postShop.PostLimitedTime),
-                new SqlParameter("PostOrder",postShop.PostOrder),
-                new SqlParameter("UserNumber",postShop.UserNumber),
-                new SqlParameter("PassDate",postShop.PassDate),
-                new SqlParameter("AdmNumber",postShop.AdmNumber),
-                new SqlParameter("PostNumber",postShop.PostNumber)
-            };
-            try 
-            {
+                string sql = "update PostShop set PassDate=@PassDate,AdmNumber=@AdmNumber " +
+                    "where PostNumber=@PostNumber";
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("PassDate",postShop.PassDate),
+                    new SqlParameter("AdmNumber",adms.AdmNumber),
+                    new SqlParameter("PostNumber",postShop.PostNumber)
+                };
+
                 sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
-            catch(Exception ex)
-            {
-                ViewBag.Msg = ex.Message;
+            
                 ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", postShop.AdmNumber);
                 ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", postShop.UserNumber);
                 return View(postShop);
-            }
+            
             
         }
 

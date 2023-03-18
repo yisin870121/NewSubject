@@ -22,11 +22,11 @@ namespace Subject.Controllers
 
         void UserLoginState(HttpContext context)
         {
-            if (context.Session["user"] == null)
+            if (context.Session["user"] == null || context.Session["userBlock"] is true)
             {
                 context.Response.Redirect("/Home/Login");
             }
-
+            
         }
 
         public override void OnActionExecuting(ActionExecutingContext filterContext)

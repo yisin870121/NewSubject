@@ -97,6 +97,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Cafe\BG1.jpg" />
+    <Content Include="Cafe\BG2.jpg" />
+    <Content Include="Cafe\BG3.jpg" />
     <Content Include="Cafe\Cafe1.jpg" />
     <Content Include="Cafe\Cafe2.jpg" />
     <Content Include="Cafe\Cafe3.jpg" />

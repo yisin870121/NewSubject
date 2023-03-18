@@ -6,23 +6,15 @@
 
 @section css{
     <style>
-        #AddUser{
-            display:none;
+        .border {
+            border-radius: 50%;
         }
     </style>
     }
 
-<h2>用戶資料</h2>
+<h2 class="mt-3 text-center">會員資料</h2>
 
-<p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增用戶</button>
-</p>
-
-<div class="alert alert-primary" id="AddUser">
-    @Html.Action("_Create")
-</div>
-
-<table class="table table-responsive-lg">
+<table class="table table-responsive-lg mt-3">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.UserNumber)
@@ -47,14 +39,16 @@
         <td>
             @Html.DisplayFor(modelItem => item.UserNumber)
         </td>
-        <td>
+        <td class="w-25">
             @if (item.UserPhoto == null)
             {
-                <i class="bi bi-emoji-smile" style="font-size:5rem"></i>
+                <i class="bi bi-emoji-smile" style="font-size:4vw"></i>
             }
             else
             {
-                <img src="@Url.Action("GetPhoto", new {id=item.UserNumber})" width="100" />
+                <div class="w-25">
+                    <img src="@Url.Action("GetPhoto", new {id=item.UserNumber})" class="img-fluid border" />
+                </div>
             }
         </td>
         <td>
@@ -105,10 +99,10 @@
 </div>
 
 <div class="modal fade" id="showEditModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <div class="text-dark mt-2 ml-2"><h5>編輯資料</h5></div>
+                <div class="text-dark mt-2 ml-2"><h5>確定要封鎖此會員嗎 ?</h5></div>
                 <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                 </button>
@@ -124,11 +118,6 @@
 
 @section scripts{
     <script>
-        $('#AddForm').click(function () {
-            $('#AddUser').fadeToggle(800);
-        });
-
-
         function getDetailData(evt) {
 
             $('#showDetailModal .modal-body').load("/Users/_Details/" + evt.target.id);

@@ -16,7 +16,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PassDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.PassDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.PassDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.PassDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -31,7 +31,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="更新" class="btn btn-default" />
+                <input type="submit" value="更新" class="btn btn-light" />
             </div>
             <span class="text-danger">@ViewBag.Msg</span>
         </div>
@@ -39,6 +39,5 @@
 }
 
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -293,7 +293,7 @@ namespace Subject.Controllers
             return View(users);
         }
 
-
+        
         public ActionResult Login()
         {
             return View();
@@ -309,8 +309,14 @@ namespace Subject.Controllers
                 ViewBag.ErrMsg = "帳號或密碼有誤";
                 return View(vMLogin);
             }
+            else if(user.Blockade == true)
+            {
+                ViewBag.ErrMsg = "此帳戶已被封鎖";
+                return View(vMLogin);
+            }
             
             Session["user"] = user;
+            Session["userBlock"] = user.Blockade;
             return RedirectToAction("Index");
 
         }

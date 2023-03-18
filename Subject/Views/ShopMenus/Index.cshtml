@@ -4,24 +4,10 @@
     ViewBag.Title = "Index";
 }
 
-@section css{
-    <style>
-        #AddMenu {
-            display: none;
-        }
-    </style>
-}
 
-<h2>菜單管理</h2>
+<h2 class="mt-3 text-center">菜單管理</h2>
 
-<p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增菜單</button>
-</p>
-<div class="alert alert-primary" id="AddMenu">
-    @Html.Action("_Create")
-</div>
-
-<table class="table table-responsive-lg">
+<table class="table table-responsive-lg mt-3">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.MenuNumber)
@@ -112,10 +98,6 @@
 
 @section scripts{
     <script>
-        $('#AddForm').click(function () {
-            $('#AddMenu').fadeToggle(800);
-        });
-
         function getEditData(evt) {
             $('#showEditModal .modal-body').load("/ShopMenus/_Edit/" + evt.target.id);
         }

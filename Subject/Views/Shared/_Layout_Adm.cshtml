@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
             <div class="navbar-header">
-                @Html.ActionLink("跑咖Cafe", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("跑咖Cafe", "AfterLogin", "Adms", new { area = "" }, new { @class = "navbar-brand" })
                 <i class="bi bi-cup-fill text-light" style="font-size:20px"></i>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
                     <li class="nav-item dropdown">
                         @Html.ActionLink("投稿專區", "Index", "PostShops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown", aria_expanded = "false" })
                         <div class="dropdown-menu">
-                            @Html.ActionLink("投稿店家", "Index", "PostShops", new { area = "" }, new { @class = "dropdown-item" })
+                            @Html.ActionLink("新店家", "Index", "PostShops", new { area = "" }, new { @class = "dropdown-item" })
                             <div class="dropdown-divider"></div>
                             @Html.ActionLink("建議", "Index", "Suggests", new { area = "" }, new { @class = "dropdown-item" })
                         </div>

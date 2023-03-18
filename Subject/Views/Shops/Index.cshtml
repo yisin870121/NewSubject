@@ -13,11 +13,12 @@
     </style>
     }
 
-<h2>店家資料管理</h2>
+<h2 class="text-center mt-3">
+    <span>店家資料管理</span>
+    <button class="btn btn-primary mb-2" id="AddForm">新增店家</button>
+</h2>
 
-<p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增店家</button>
-</p>
+
 <div class="alert alert-primary" id="AddShop">
     @Html.Action("_Create")
 </div>
@@ -116,7 +117,7 @@
 </div>
 
 <div class="modal fade" id="showEditModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="text-dark mt-2 ml-2"><h5>編輯資料</h5></div>

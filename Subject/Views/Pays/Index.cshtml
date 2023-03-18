@@ -13,13 +13,12 @@
     </style>
     }
 
-<h2>付款種類管理</h2>
+<h2 class="text-center mt-3">
+    <span>付款種類管理</span>
+    <button class="btn btn-primary mb-2" id="AddForm">新增付款方式</button>
+</h2>
 
-<p class="text-right">
-    <button class="btn btn-primary" id="AddForm">新增付款方式</button>
-</p>
-
-<div class="alert alert-primary" id="AddPay">
+<div class="alert alert-primary col-4 mx-auto" id="AddPay">
     @Html.Action("_Create")
 </div>
 <table class="table table-responsive-lg">
@@ -30,7 +29,9 @@
         <th>
             @Html.DisplayNameFor(model => model.PayType)
         </th>
-        <th></th>
+        <th>
+            管理
+        </th>
     </tr>
 
 @foreach (var item in Model) {

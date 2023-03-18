@@ -39,11 +39,12 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group text-center">
         <h5 id="suggestTitle">Hi ! 想告訴我們什麼呢 ?</h5>
+        <hr />
         @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "" },@class= "alert-warning", cols = "80", rows = "10", placeholder = " 請輸入內容..." })
         @Html.ValidationMessageFor(model => model.Suggest1, "", new { @class = "text-danger" })
     </div>
     <div class="form-group text-center mt-3">
-        <span class="btn btn-link">@Html.ActionLink("回上一頁", "Index")</span>
+        <span class="btn btn-link"><i class="bi bi-chevron-double-left"></i>@Html.ActionLink("返回首頁", "Index")</span>
         <input type="submit" value="送出" class="btn btn-light" onclick="Success()" />
     </div>
 </div>

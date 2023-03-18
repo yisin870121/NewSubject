@@ -19,6 +19,9 @@
         .alert-warning {
             background-color: #fffcc1;
         }
+        .border{
+            border-radius:50%;
+        }
     </style>
 
 }
@@ -27,24 +30,29 @@
     <div class="col-3">
         <h4 class="text-center alert alert-warning mt-2">個人資料</h4>
         <div class="card mb-3 mt-1">
+            <div class="w-75 mx-auto">
                 @if (Model.UserPhoto == null)
                 {
-                    <i class="bi bi-emoji-smile" style="font-size:5rem"></i>
+                    <div class="text-center">
+                        <i class="bi bi-emoji-smile" style="font-size:8vw"></i>
+                    </div>
                 }
                 else
                 {
-                    <img src="@Url.Action("GetUserPhoto", new {id=Model.UserNumber})" class="w-100" />
+                    <div class="w-100 mx-auto mt-3">
+                        <img src="@Url.Action("GetUserPhoto", new {id=Model.UserNumber})" class="img-fluid border" />
+                    </div>
                 }
-
-                <div class="card-body">
-                    <div class="card-title">@Html.DisplayFor(model => model.UserName)</div>
-                    <p class="card-text">
-                        <div>@Html.DisplayNameFor(model => model.UserAccount): @Html.DisplayFor(model => model.UserAccount)</div>
-                        <div>@Html.DisplayNameFor(model => model.Sex): @(c=Model.Sex == true? "男" : "女")</div>
-                        <div>@Html.DisplayNameFor(model => model.Birthday): @Html.DisplayFor(model => model.Birthday)</div>
-                        <div>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</div>
-                    </p>
-                </div>
+            </div>
+            <div class="card-body">
+                <div class="card-title">@Html.DisplayFor(model => model.UserName)</div>
+                <p class="card-text">
+                    <div>@Html.DisplayNameFor(model => model.UserAccount): @Html.DisplayFor(model => model.UserAccount)</div>
+                    <div>@Html.DisplayNameFor(model => model.Sex): @(c=Model.Sex == true? "男" : "女")</div>
+                    <div>@Html.DisplayNameFor(model => model.Birthday): @Html.DisplayFor(model => model.Birthday)</div>
+                    <div>@Html.DisplayNameFor(model => model.Age): @Html.DisplayFor(model => model.Age)</div>
+                </p>
+            </div>
         </div>
     </div>
     <div class="col-9 mt-2">

@@ -23,7 +23,7 @@
             color:#9e664c;
         }
         .alert-warning {
-            background-color: #fffcc1;
+            background-color: #fffdc9;
         }
     </style>
 
@@ -35,12 +35,12 @@
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal mt-3">
+<div class="form-horizontal mt-5">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group text-center">
         <h5 id="suggestTitle">Hi ! 想告訴我們什麼呢 ?</h5>
-        <hr />
-        @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "" },@class= "alert-warning", cols = "80", rows = "10", placeholder = " 請輸入內容..." })
+        @*<hr />*@
+        @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "" },@class= "alert-warning mt-4", cols = "80", rows = "10", placeholder = " 請輸入內容..." })
         @Html.ValidationMessageFor(model => model.Suggest1, "", new { @class = "text-danger" })
     </div>
     <div class="form-group text-center mt-3">

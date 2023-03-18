@@ -16,20 +16,22 @@
         }
 
         .alert-warning {
-            background-color: #fffcc1;
+            /*            #ffffd8*/
+            /*            #fffdc9*/
+            background-color: #ffffd8;
         }
     </style>
 
 }
 
 @*<h5 class="pl-3 mt-3 col-8 mx-auto" id="suggestTitle">沒有你喜歡的店家嗎 ? 快來告訴我們吧 !</h5>*@
-<h5 class="mt-3 col-8 mx-auto text-center" id="suggestTitle">沒有你喜歡的店家嗎 ? 快來告訴我們吧 !</h5>
-<hr />
+<h5 class="mt-5 col-8 mx-auto text-center" id="suggestTitle">沒有你喜歡的店家嗎 ? 快來告訴我們吧 !</h5>
+@*<hr />*@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-<div class="form-horizontal alert-warning mx-auto row" id="postshop">
+<div class="form-horizontal alert-warning mx-auto row mt-4" id="postshop">
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="col-4 mt-3 mb-3">
         <div class="form-group">

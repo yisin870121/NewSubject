@@ -24,34 +24,34 @@
             <div class="navbar-collapse collapse ml-3" id="mainMenu">
                 <ul class="navbar-nav mr-auto w-100 mt-1">
                     <li class="nav-item">
-                        @Html.ActionLink("咖啡廳清單", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        <a href="@Url.Action("Index","Home")" class="nav-link">咖啡廳清單 <i class="bi bi-clipboard2-heart d-inline-flex"></i></a>
                     </li>
+                    
                     <li class="nav-item">
-                        @Html.ActionLink("新增店家", "PostShop", "Home", new { area = "" }, new { @class = "nav-link" })
+                        <a href="@Url.Action("PostShop","Home")" class="nav-link">新增店家 <i class="bi bi-shop d-inline-flex"></i></a>
                     </li>
+                   
                     <li class="nav-item">
-                        @Html.ActionLink("建議", "Suggest", "Home", new { area = "" }, new { @class = "nav-link" })
+                        <a href="@Url.Action("Suggest","Home")" class="nav-link">建議 <i class="bi bi-chat-text-fill d-inline-flex"></i></a>
                     </li>
-                    <li class="nav-item">
+                    
+                                @*<li class="nav-item">
                         <form class="form-inline my-2 my-lg-0" action="https://www.google.com/search">
                             <input class="form-control mr-sm-2" name="q" type="search" placeholder="搜尋咖啡廳" aria-label="Search">
                             <button class="btn btn-light my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
                         </form>
-                    </li>
+                    </li>*@
                     @if (Session["user"] == null)
                     {
                         <li class="nav-item ml-auto">
-                            @Html.ActionLink("登入", "Login", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
-                        </li>
-                        <li class="nav-item ml-1">
-                            @Html.ActionLink("註冊", "SignUp", "Home", new { area = "" }, new { @class = "nav-link btn btn-light text-dark" })
+                            <a href="@Url.Action("Login","Home")" class="nav-link btn btn-light text-dark p-1 pl-2 pr-2"><i class="bi bi-person-circle"></i> 登入/註冊</a>
                         </li>
                     }
                     @if (Session["user"] != null)
                     {
                         <li class="dropdown ml-auto">
                             <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                                會員中心
+                                <i class="bi bi-person-circle"></i> 會員中心
                             </button>
                             <div class="dropdown-menu">
                                 @Html.ActionLink("主頁", "UserIndex", "Home", new { area = "" }, new { @class = "dropdown-item" })

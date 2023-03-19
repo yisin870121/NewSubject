@@ -9,18 +9,21 @@
 @section css{
     <style>
         .card {
+            font-size: 16px;
+        }
+
+        #card-title {
             font-size: 20px;
         }
 
-        .card-title {
-            font-size: 25px;
+        .border {
+            border-radius: 50%;
         }
 
-        .alert-warning {
-            background-color: #fffcc1;
-        }
-        .border{
-            border-radius:50%;
+        .profile {
+            background-color: #f8f9fa;
+            color: #808080;
+            font-size: 20px;
         }
     </style>
 
@@ -28,8 +31,9 @@
 
 <div class="row">
     <div class="col-3">
-        <h4 class="text-center alert alert-warning mt-2">個人資料</h4>
+        <h4 class="text-center mt-2 alert profile"><i class="bi bi-person"></i> 個人資料</h4>
         <div class="card mb-3 mt-1">
+
             <div class="w-75 mx-auto">
                 @if (Model.UserPhoto == null)
                 {
@@ -44,8 +48,12 @@
                     </div>
                 }
             </div>
-            <div class="card-body">
-                <div class="card-title">@Html.DisplayFor(model => model.UserName)</div>
+            @*<div>@Html.ActionLink("編輯照片","EditUserPhoto")</div>*@
+            <button type="button" id="@Model.UserNumber" class="btn btn-primary disabled mt-2 w-75 mx-auto" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)" title="編輯照片">
+                <div style="font-size:14px;"><i class="bi bi-pencil-square" id="@Model.UserNumber"></i> 編輯照片</div>
+            </button>
+            <div class="card-body ml-3">
+                <div class="card-title" id="card-title">@Html.DisplayFor(model => model.UserName)</div>
                 <p class="card-text">
                     <div>@Html.DisplayNameFor(model => model.UserAccount): @Html.DisplayFor(model => model.UserAccount)</div>
                     <div>@Html.DisplayNameFor(model => model.Sex): @(c=Model.Sex == true? "男" : "女")</div>
@@ -62,10 +70,33 @@
     </div>
 </div>
 
+<div class="modal fade" id="showEditModal" tabindex="-1">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="text-dark mt-2 ml-2"><h5>編輯照片</h5></div>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
+@section scripts{
+    <script>
+        function getEditData(evt) {
+            $('#showEditModal .modal-body').load("/Home/_EditUserPhoto/" + evt.target.id);
+        }
 
-@*@Html.ActionLink("Edit", "Edit", new { id = item.UserNumber }) |
-@Html.ActionLink("Details", "Details", new { id = item.UserNumber }) |
-@Html.ActionLink("Delete", "Delete", new { id = item.UserNumber })*@
+
+    </script>
+
+
+}
+
 

@@ -330,6 +330,44 @@ namespace Subject.Controllers
             return View(users);
         }
 
+        public ActionResult _EditUserPhoto()
+        {
+            int id = ((Users)Session["user"]).UserNumber;
+            var users = db.Users.Find(id);
+            
+            return PartialView(users);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult _EditUserPhoto(Users users, HttpPostedFileBase upload)
+        {
+            if (ModelState.IsValid)
+            {
+                int id = ((Users)Session["user"]).UserNumber;
+                var usersID = db.Users.Find(id);
+
+                string sql = "update Users set UserPhoto=@UserPhoto where UserNumber=@UserNumber";
+
+                int filelength = upload.ContentLength;
+                byte[] Myfile = new byte[filelength];
+                upload.InputStream.Read(Myfile, 0, filelength);
+                users.UserPhoto = Myfile;
+
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",usersID.UserNumber),
+                    new SqlParameter("UserPhoto",users.UserPhoto)
+                };
+
+                sd.executeSql(sql, list);
+                return RedirectToAction("UserIndex");
+            }
+            
+                return View(users);
+            
+        }
+
 
         public ActionResult Logout()
         {

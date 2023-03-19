@@ -18,13 +18,13 @@
         }
         
         .submitBtn {
-            border-left:1px solid #e0e0e0
+            border-left:1px solid #e0e0e0;
         }
     </style>
 }
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <div class="row border mt-4" id="signupBorder">

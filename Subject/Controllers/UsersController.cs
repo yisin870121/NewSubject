@@ -154,24 +154,22 @@ namespace Subject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Users users)
         {
-            string sql = "update Users set Blockade=@Blockade where UserNumber=@UserNumber";
-
-            List<SqlParameter> list = new List<SqlParameter>
+            if (ModelState.IsValid)
             {
-                new SqlParameter("UserNumber",users.UserNumber),
-                new SqlParameter("Blockade",users.Blockade)
-            };
+                string sql = "update Users set Blockade=@Blockade where UserNumber=@UserNumber";
 
-            try
-            {
+                List<SqlParameter> list = new List<SqlParameter>
+                {
+                    new SqlParameter("UserNumber",users.UserNumber),
+                    new SqlParameter("Blockade",users.Blockade)
+                };
+
                 sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
-            catch (Exception ex)
-            {
-                ViewBag.Msg = ex.Message;
+            
                 return View(users);
-            }
+            
         }
 
         // GET: Users/Delete/5

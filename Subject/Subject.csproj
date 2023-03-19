@@ -418,6 +418,7 @@
     <Content Include="Views\Home\Suggest.cshtml" />
     <Content Include="Views\Shared\_Layout_User_Login.cshtml" />
     <Content Include="Views\Shared\_Layout_User_SignUp.cshtml" />
+    <Content Include="Views\Home\_EditUserPhoto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

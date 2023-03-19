@@ -1,26 +1,23 @@
 ﻿@model Subject.Models.Users
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "EditUserIndex";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*, new { enctype = "multipart/form-data"}*@
-
-@using (Html.BeginForm("Edit", "Users", FormMethod.Post))
+@using (Html.BeginForm("_EditUserPhoto", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.UserNumber)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Blockade, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.UserPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Blockade)
-                    @Html.ValidationMessageFor(model => model.Blockade, "", new { @class = "text-danger" })
-                </div>
+                <input type="file" id="upload" name="upload" />
+                @Html.ValidationMessageFor(model => model.UserPhoto, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -28,15 +25,10 @@
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="保存" class="btn btn-light" />
             </div>
-            <span class="text-danger">@ViewBag.Msg</span>
         </div>
     </div>
 }
 
-
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-
-

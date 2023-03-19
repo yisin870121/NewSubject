@@ -99,7 +99,19 @@
                     @Html.LabelFor(model => model.PostOutlet, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.PostOutlet, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.PostOutlet, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostOutlet, "", new { @id = "" })
+                                @Html.Label("", "未知")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostOutlet, "true", new { @id = "true" })
+                                @Html.Label("true", "Yes")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostOutlet, "false", new { @id = "false" })
+                                @Html.Label("false", "No")
+                            </div>
                             @Html.ValidationMessageFor(model => model.PostOutlet, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -109,7 +121,19 @@
                     @Html.LabelFor(model => model.PostWifi, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.PostWifi, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.PostWifi, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostWifi, "", new { @id = "" })
+                                @Html.Label("", "未知")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostWifi, "true", new { @id = "true" })
+                                @Html.Label("true", "Yes")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostWifi, "false", new { @id = "false" })
+                                @Html.Label("false", "No")
+                            </div>
                             @Html.ValidationMessageFor(model => model.PostWifi, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -120,7 +144,19 @@
                     @Html.LabelFor(model => model.PostLimitedTime, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.PostLimitedTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.PostLimitedTime, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostLimitedTime, "", new { @id = "" })
+                                @Html.Label("", "未知")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostLimitedTime, "true", new { @id = "true" })
+                                @Html.Label("true", "Yes")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostLimitedTime, "false", new { @id = "false" })
+                                @Html.Label("false", "No")
+                            </div>
                             @Html.ValidationMessageFor(model => model.PostLimitedTime, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -130,7 +166,19 @@
                     @Html.LabelFor(model => model.PostOrder, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="">
                         <div class="checkbox">
-                            @Html.EditorFor(model => model.PostOrder, new { htmlAttributes = new { @class = "form-control" } })
+                            @*@Html.EditorFor(model => model.PostOrder, new { htmlAttributes = new { @class = "form-control" } })*@
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostOrder, "", new { @id = "" })
+                                @Html.Label("", "未知")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostOrder, "true", new { @id = "true" })
+                                @Html.Label("true", "Yes")
+                            </div>
+                            <div>
+                                @Html.RadioButtonFor(model => model.PostOrder, "false", new { @id = "false" })
+                                @Html.Label("false", "No")
+                            </div>
                             @Html.ValidationMessageFor(model => model.PostOrder, "", new { @class = "text-danger" })
                         </div>
                     </div>

@@ -18,7 +18,11 @@
             @Html.LabelFor(model => model.Blockade, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Blockade)
+                    @*@Html.EditorFor(model => model.Blockade)*@
+                    @Html.RadioButtonFor(model => model.Blockade, "true", new { @id = "true" })
+                    @Html.Label("true", "Yes")
+                    @Html.RadioButtonFor(m => m.Blockade, "false", new { @id = "false" })
+                    @Html.Label("false", "No")
                     @Html.ValidationMessageFor(model => model.Blockade, "", new { @class = "text-danger" })
                 </div>
             </div>

@@ -12,62 +12,9 @@
 </head>
 <body>
     <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <div class="navbar-header">
-                @Html.ActionLink("跑咖Cafe", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                <i class="bi bi-cup-fill text-light" style="font-size:20px"></i>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="navbar-nav mr-auto w-100">
-                    @*<li class="nav-item dropdown">
-                        @Html.ActionLink("用戶管理", "Index", "Users", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown", aria_expanded = "false" })
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("主頁", "Index", "Users", new { area = "" }, new { @class = "dropdown-item" })
-                            <div class="dropdown-divider"></div>
-                            @Html.ActionLink("封鎖名單", "Block", "Users", new { area = "" }, new { @class = "dropdown-item" })
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        @Html.ActionLink("店家管理", "Index", "Shops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown", aria_expanded = "false" })
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("主頁", "Index", "Shops", new { area = "" }, new { @class = "dropdown-item" })
-                            <div class="dropdown-divider"></div>
-                            @Html.ActionLink("菜單管理", "Index", "ShopMenus", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("標籤管理", "Index", "ShopTags", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("照片管理", "Index", "ShopImages", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("付款方式管理", "Index", "ShopPays", new { area = "" }, new { @class = "dropdown-item" })
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("付款種類", "Index", "Pays", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item dropdown">
-                        @Html.ActionLink("投稿店家", "Index", "PostShops", new { area = "" }, new { @class = "nav-link dropdown-toggle", data_toggle = "dropdown", aria_expanded = "false" })
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("主頁", "Index", "PostShops", new { area = "" }, new { @class = "dropdown-item" })
-                            <div class="dropdown-divider"></div>
-                            @Html.ActionLink("付款方式管理", "Index", "PostShopPays", new { area = "" }, new { @class = "dropdown-item" })
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("建議", "Index", "Suggests", new { area = "" }, new { @class = "nav-link" })
-                    </li>
-                    <li class="dropdown ml-auto">
-                        <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">
-                            管理員
-                        </button>
-                        <div class="dropdown-menu">
-                            @Html.ActionLink("管理員資料", "Index", "Adms", new { area = "" }, new { @class = "dropdown-item" })
-                            @Html.ActionLink("使用者頁面", "Index", "Home", new { area = "" }, new { @class = "dropdown-item" })
-                            <div class="dropdown-divider"></div>
-                            @Html.ActionLink("登出", "Logout", "Adms", new { area = "" }, new { @class = "dropdown-item " })
-                        </div>
-                    </li>
-                    <li>
-
-                    </li>*@
-                </ul>
-            </div>
+        <a href="@Url.Action("Login","Home")" class="bi bi-arrow-left text-white" style="font-size:18px;"></a>
+        <div class="container row mx-auto pl-0">
+            <div class="p-2 text-white mx-auto" style="font-size:18px;">登入跑咖Cafe'後台系統</div>
         </div>
     </div>
 

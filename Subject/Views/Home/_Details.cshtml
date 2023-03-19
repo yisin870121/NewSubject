@@ -8,6 +8,12 @@
     var a = Model.ShopAddress;
 }
 
+<style>
+    #addSave {
+        vertical-align:top;
+    }
+</style>
+
 <div class="card">
     <div class="card-header">
         <input id="SID" type="hidden" value="@Model.ShopNumber" />
@@ -18,7 +24,7 @@
         <span class="ml-3"><button class="bi bi-heart-fill btn btn-danger disabled" id="addSave"> 收藏</button></span>
 
         @*<span class="ml-3"><button class="btn btn-danger disabled addSave"><i class="bi bi-heart-fill"></i> 收藏</button></span>*@
-        <span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>
+        @*<span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>*@
     </div>
     <div class="card-body row">
         <div class="col-8">

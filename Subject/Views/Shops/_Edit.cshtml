@@ -67,7 +67,19 @@
                 @Html.LabelFor(model => model.Outlet, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.Outlet, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.Outlet, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <div>
+                            @Html.RadioButtonFor(model => model.Outlet, "", new { @id = "" })
+                            @Html.Label("", "未設定")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.Outlet, "true", new { @id = "true" })
+                            @Html.Label("true", "Yes")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.Outlet, "false", new { @id = "false" })
+                            @Html.Label("false", "No")
+                        </div>
                         @Html.ValidationMessageFor(model => model.Outlet, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -77,7 +89,19 @@
                 @Html.LabelFor(model => model.WIFI, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.WIFI, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.WIFI, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <div>
+                            @Html.RadioButtonFor(model => model.WIFI, "", new { @id = "" })
+                            @Html.Label("", "未設定")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.WIFI, "true", new { @id = "true" })
+                            @Html.Label("true", "Yes")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.WIFI, "false", new { @id = "false" })
+                            @Html.Label("false", "No")
+                        </div>
                         @Html.ValidationMessageFor(model => model.WIFI, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -88,7 +112,19 @@
                 @Html.LabelFor(model => model.LimitedTime, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.LimitedTime, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.LimitedTime, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <div>
+                            @Html.RadioButtonFor(model => model.LimitedTime, "", new { @id = "" })
+                            @Html.Label("", "未設定")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.LimitedTime, "true", new { @id = "true" })
+                            @Html.Label("true", "Yes")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.LimitedTime, "false", new { @id = "false" })
+                            @Html.Label("false", "No")
+                        </div>
                         @Html.ValidationMessageFor(model => model.LimitedTime, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -98,7 +134,19 @@
                 @Html.LabelFor(model => model.IsOrder, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="">
                     <div class="checkbox">
-                        @Html.EditorFor(model => model.IsOrder, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.IsOrder, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <div>
+                            @Html.RadioButtonFor(model => model.IsOrder, "", new { @id = "" })
+                            @Html.Label("", "未設定")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.IsOrder, "true", new { @id = "true" })
+                            @Html.Label("true", "Yes")
+                        </div>
+                        <div>
+                            @Html.RadioButtonFor(model => model.IsOrder, "false", new { @id = "false" })
+                            @Html.Label("false", "No")
+                        </div>
                         @Html.ValidationMessageFor(model => model.IsOrder, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -107,20 +155,31 @@
     </div>
     <div class="col-2">
         <div class="form-group">
+            @Html.LabelFor(model => model.Closed, htmlAttributes: new { @class = "control-label col-md-2 " })
+            <div class="">
+                <div class="checkbox">
+                    @*@Html.EditorFor(model => model.Closed, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <div>
+                        @Html.RadioButtonFor(model => model.Closed, "", new { @id = "" })
+                        @Html.Label("", "未設定")
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(model => model.Closed, "true", new { @id = "true" })
+                        @Html.Label("true", "Yes")
+                    </div>
+                    <div>
+                        @Html.RadioButtonFor(model => model.Closed, "false", new { @id = "false" })
+                        @Html.Label("false", "No")
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Closed, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
             @Html.LabelFor(model => model.UpdateDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="">
                 @Html.EditorFor(model => model.UpdateDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
                 @Html.ValidationMessageFor(model => model.UpdateDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Closed, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Closed, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Closed, "", new { @class = "text-danger" })
-                </div>
             </div>
         </div>
     </div>

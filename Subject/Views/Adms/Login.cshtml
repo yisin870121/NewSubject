@@ -5,35 +5,43 @@
     Layout = "~/Views/Shared/_Layout_Adm_Login.cshtml";
 }
 
-@*<div class="alert alert-danger text-center">歡迎進入跑咖Cafe後台管理頁面，使用後請記得登出!</div>*@
-<h2 class="mt-3">後台系統登入</h2>
+@section css{
+    <style>
+        .btnLogin {
+            font-size: 14px;
+        }
+
+        .btn-block {
+            width: 57%;
+        }
+    </style>
+}
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
+    <div class="form-horizontal border col-4 mx-auto mt-5 mb-5">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
-            </div>
+        <div class="form-group mt-4 row">
+            @Html.LabelFor(model => model.Account, htmlAttributes: new { @class = "control-label col-4 p-2 text-right" })
+            @Html.EditorFor(model => model.Account, new { htmlAttributes = new { @class = "form-control col-5" } })
+            @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger mt-1 ml-1" })
         </div>
 
-        <div class="form-group mt-3">
-            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-            </div>
+        <div class="form-group mt-3 row">
+            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-4 p-2 text-right" })
+            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control col-5" } })
+            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger mt-1 ml-1" })
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="登入" class="btn btn-light" />
-            </div>
+        <div class="form-group text-center">
+            <div class="text-danger">@ViewBag.ErrMsg</div>
+            <button type="submit" class="mx-auto btn btn-dark text-white btn-block btnLogin">
+                登入
+                <i class="bi bi-box-arrow-in-right"></i>
+            </button>
         </div>
     </div>
 }
@@ -41,4 +49,4 @@
 @section scripts {
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    }
+}

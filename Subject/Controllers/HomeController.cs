@@ -15,10 +15,16 @@ namespace Subject.Controllers
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd= new SetData();
-        
-        public ActionResult Index()
+
+        //int pageSize = 10;
+
+        public ActionResult Index(/*int page = 1*/)
         {
+            //int currentPage = page < 1 ? 1 : page;
+
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
+
+            //var result = shop.ToPagedList(currentPage, pageSize);
             return View(shop);
         }
 
@@ -424,6 +430,29 @@ namespace Subject.Controllers
             ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber", postShop.AdmNumber);
             return View(postShop);
         }
+
+        public ActionResult _MyPostShopList()
+        {
+            int id = ((Users)Session["user"]).UserNumber;
+            var users = db.Users.Find(id);
+
+            return PartialView(db.PostShop.Where(m=>m.UserNumber == users.UserNumber).ToList());
+        }
+
+        public ActionResult _MyPostShopDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            PostShop postShop = db.PostShop.Find(id);
+            if (postShop == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(postShop);
+        }
+
 
         public ActionResult Suggest()
         {

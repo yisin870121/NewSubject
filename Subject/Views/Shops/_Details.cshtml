@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Details";
+    var c = "";
 }
 
 <div class="card">
@@ -32,19 +33,19 @@
         </div>
 
         <div>
-            @Html.DisplayNameFor(model => model.Outlet): @Html.DisplayFor(model => model.Outlet)
+            @Html.DisplayNameFor(model => model.Outlet): @(c = Model.Outlet == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
         </div>
 
         <div>
-            @Html.DisplayNameFor(model => model.WIFI): @Html.DisplayFor(model => model.WIFI)
+            @Html.DisplayNameFor(model => model.WIFI): @(c = Model.WIFI == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
         </div>
 
         <div>
-            @Html.DisplayNameFor(model => model.LimitedTime): @Html.DisplayFor(model => model.LimitedTime)
+            @Html.DisplayNameFor(model => model.LimitedTime): @(c = Model.LimitedTime == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
         </div>
 
         <div>
-            @Html.DisplayNameFor(model => model.IsOrder): @Html.DisplayFor(model => model.IsOrder)
+            @Html.DisplayNameFor(model => model.IsOrder): @(c = Model.IsOrder == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
         </div>
 
         <div>

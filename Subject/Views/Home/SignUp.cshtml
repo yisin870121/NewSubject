@@ -65,7 +65,10 @@
                         @Html.LabelFor(model => model.Sex, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             <div class="checkbox">
-                                @Html.EditorFor(model => model.Sex)
+                                @Html.RadioButtonFor(model => model.Sex, "true", new { @id = "true" })
+                                @Html.Label("true", "男")
+                                @Html.RadioButtonFor(model => model.Sex, "false", new { @id = "false" })
+                                @Html.Label("false", "女")
                                 @Html.ValidationMessageFor(model => model.Sex, "", new { @class = "text-danger" })
                             </div>
                         </div>

@@ -416,6 +416,8 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\PostShop.cshtml" />
     <Content Include="Views\Home\Suggest.cshtml" />
+    <Content Include="Views\Shared\_Layout_User_Login.cshtml" />
+    <Content Include="Views\Shared\_Layout_User_SignUp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

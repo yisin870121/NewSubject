@@ -11,17 +11,30 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Suggest
     {
+        [DisplayName("建議編號")]
         public int SuggestNumber { get; set; }
+
+        [DisplayName("會員")]
         public int UserNumber { get; set; }
+
+        [DisplayName("建議內容")]
+        [Required(ErrorMessage = "請填寫建議內容")]
         public string Suggest1 { get; set; }
+
+        [DisplayName("建立日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> SuggestDate { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("審閱日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> CheckDate { get; set; }
+
+        [DisplayName("管理員")]
         public Nullable<int> AdmNumber { get; set; }
     
         public virtual Adm Adm { get; set; }

@@ -11,7 +11,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
-    [LoginCheck]
+   
     public class SuggestsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();

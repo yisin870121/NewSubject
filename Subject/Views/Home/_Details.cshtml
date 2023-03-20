@@ -33,7 +33,15 @@
                 @(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")
             </div>
             <div>
-                @Html.DisplayNameFor(model => model.ShopTime): @Html.DisplayFor(model => model.ShopTime)
+                @Html.DisplayNameFor(model => model.ShopTime): @*@Html.DisplayFor(model => model.ShopTime)*@
+                @if (Model.ShopTime == null)
+                {
+                    <span>無</span>
+                }
+                else
+                {
+                    <div>@Html.Raw(Model.ShopTime.ToString().Replace(" ", "<br>"))</div>
+                }
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.Phone):

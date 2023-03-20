@@ -11,7 +11,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
-    [LoginCheck]
+   
     public class PostShopsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -37,11 +37,6 @@ namespace Subject.Controllers
                 return HttpNotFound();
             }
             return PartialView(postShop);
-        }
-
-        public ActionResult _PayDetail(int id)
-        {
-            return PartialView(db.PostShopPay.Where(m => m.PostNumber == id).ToList());
         }
 
         // GET: PostShops/Create

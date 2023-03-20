@@ -11,17 +11,30 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class ShopMenu
     {
+        [DisplayName("菜單編號")]
         public int MenuNumber { get; set; }
+
+        [DisplayName("會員")]
         public int UserNumber { get; set; }
+
+        [DisplayName("店家")]
         public int ShopNumber { get; set; }
+
+        [DisplayName("品項")]
+        [Required(ErrorMessage = "請填寫品項")]
         public string Item { get; set; }
+
+        [DisplayName("價錢")]
+        [Required(ErrorMessage = "請填寫價錢")]
         public short Price { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("建立日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> MenuDate { get; set; }
     
         public virtual Shop Shop { get; set; }

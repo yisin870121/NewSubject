@@ -17,7 +17,7 @@
     <button class="btn btn-primary mb-2" id="AddForm">新增管理員</button>
 </h2>
 
-<div class="alert alert-info" id="AddAdm">
+<div class="alert alert-primary" id="AddAdm">
     @Html.Action("_Create")
 </div>
 
@@ -34,10 +34,10 @@
             @*帳號*@
             @Html.DisplayNameFor(model => model.AdmAccount)
         </th>
-        <th>
-            @*密碼*@
+        @*<th>
+            密碼
             @Html.DisplayNameFor(model => model.AdmPsaaword)
-        </th>
+        </th>*@
         <th>
             管理
         </th>
@@ -52,10 +52,10 @@
             <td>
                 @Html.DisplayFor(modelItem => item.AdmAccount)
             </td>
-            <td>
+            @*<td>
                 ***
-                @*@Html.DisplayFor(modelItem => item.AdmPsaaword)*@
-            </td>
+                @Html.DisplayFor(modelItem => item.AdmPsaaword)
+            </td>*@
             <td>
                 @*@Html.ActionLink("編輯", "Edit", new { id = item.AdmNumber })*@
                 <button type="button" id="@item.AdmNumber" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#showDeleteModal" onclick="getDeleteData(event)">

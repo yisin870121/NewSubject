@@ -11,15 +11,23 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class ShopPay
     {
+        [DisplayName("店家付款方式編號")]
         public int Number { get; set; }
+
+        [DisplayName("店家")]
         public int ShopNumber { get; set; }
+
+        [DisplayName("付款方式")]
+        [Required(ErrorMessage = "請選擇付款方式")]
         public int PayNumber { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("建立日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> CreateDate { get; set; }
     
         public virtual Pay Pay { get; set; }

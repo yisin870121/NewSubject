@@ -10,7 +10,7 @@
             border-radius: 50%;
         }
     </style>
-    }
+}
 
 <h2 class="mt-3 text-center">會員資料</h2>
 
@@ -33,52 +33,53 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+        <tr>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.UserNumber)
-        </td>
-        <td class="w-25">
-            @if (item.UserPhoto == null)
-            {
-                <i class="bi bi-emoji-smile" style="font-size:4vw"></i>
-            }
-            else
-            {
-                <div class="w-25">
-                    <img src="@Url.Action("GetPhoto", new {id=item.UserNumber})" class="img-fluid border" />
-                </div>
-            }
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserDate)
-        </td>
-        <td class="text-center">
-            @if (@item.Blockade)
-            {
-                <span class="text-danger" data-toggle="tooltip" data-placement="bottom" title="已封鎖"><i class="bi bi-check-lg"></i></span>
-            }
-            else
-            {
-                
-            }
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserNumber)
+            </td>
+            <td class="w-25">
+                @if (item.UserPhoto == null)
+                {
+                    <i class="bi bi-emoji-smile" style="font-size:4vw"></i>
+                }
+                else
+                {
+                    <div class="w-25">
+                        <img src="@Url.Action("GetPhoto", new {id=item.UserNumber})" class="img-fluid border" />
+                    </div>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserDate)
+            </td>
+            <td class="text-center">
+                @if (@item.Blockade)
+                {
+                    <span class="text-danger" data-toggle="tooltip" data-placement="bottom" title="已封鎖"><i class="bi bi-check-lg"></i></span>
+                }
+                else
+                {
 
-
-        <td>
-            <button type="button" id="@item.UserNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
-                <i class="bi bi-pencil-square" id="@item.UserNumber"></i>
-            </button>
-
-            <button type="button" id="@item.UserNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
-                <i class="bi bi-person-vcard" id="@item.UserNumber"></i>
-            </button>
+                }
+            </td>
 
 
-        </td>
-    </tr>
-}
+            <td>
+                <button type="button" id="@item.UserNumber" class="btn btn-primary btn-sm disabled" data-toggle="modal" data-target="#showEditModal" onclick="getEditData(event)">
+                    <i class="bi bi-pencil-square" id="@item.UserNumber"></i>
+                </button>
+
+                <button type="button" id="@item.UserNumber" class="btn btn-success btn-sm" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)">
+                    <i class="bi bi-person-vcard" id="@item.UserNumber"></i>
+                </button>
+
+
+            </td>
+        </tr>
+    }
 
 </table>
 
@@ -115,7 +116,6 @@
 </div>
 
 
-
 @section scripts{
     <script>
         function getDetailData(evt) {
@@ -131,6 +131,6 @@
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-        
+
     </script>
-    }
+}

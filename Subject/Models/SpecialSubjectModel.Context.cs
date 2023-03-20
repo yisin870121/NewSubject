@@ -28,15 +28,12 @@ namespace Subject.Models
         public virtual DbSet<Adm> Adm { get; set; }
         public virtual DbSet<Pay> Pay { get; set; }
         public virtual DbSet<PostShop> PostShop { get; set; }
-        public virtual DbSet<PostShopPay> PostShopPay { get; set; }
         public virtual DbSet<Shop> Shop { get; set; }
         public virtual DbSet<ShopImage> ShopImage { get; set; }
         public virtual DbSet<ShopMenu> ShopMenu { get; set; }
         public virtual DbSet<ShopPay> ShopPay { get; set; }
         public virtual DbSet<ShopTag> ShopTag { get; set; }
         public virtual DbSet<Suggest> Suggest { get; set; }
-        public virtual DbSet<UserFeedback> UserFeedback { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<UserSave> UserSave { get; set; }
     }
 }

@@ -40,15 +40,6 @@
           <Property Name="PassDate" Type="datetime" />
           <Property Name="AdmNumber" Type="int" />
         </EntityType>
-        <EntityType Name="PostShopPay">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PostNumber" Type="int" Nullable="false" />
-          <Property Name="PayNumber" Type="int" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="Shop">
           <Key>
             <PropertyRef Name="ShopNumber" />
@@ -120,18 +111,6 @@
           <Property Name="CheckDate" Type="datetime" />
           <Property Name="AdmNumber" Type="int" />
         </EntityType>
-        <EntityType Name="UserFeedback">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserNumber" Type="int" Nullable="false" />
-          <Property Name="ShopNumber" Type="int" Nullable="false" />
-          <Property Name="MFeedback" Type="int" Nullable="false" />
-          <Property Name="EFeedback" Type="int" Nullable="false" />
-          <Property Name="PFeedback" Type="int" Nullable="false" />
-          <Property Name="FeedbackDate" Type="datetime" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserNumber" />
@@ -146,15 +125,6 @@
           <Property Name="Age" Type="int" StoreGeneratedPattern="Computed" />
           <Property Name="UserDate" Type="datetime" />
           <Property Name="Blockade" Type="bit" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UserSave">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserNumber" Type="int" Nullable="false" />
-          <Property Name="ShopNumber" Type="int" Nullable="false" />
-          <Property Name="SaveDate" Type="datetime" />
         </EntityType>
         <Association Name="FK__PostShop__AdmNum__18EBB532">
           <End Role="Adm" Type="Self.Adm" Multiplicity="0..1" />
@@ -177,30 +147,6 @@
             </Principal>
             <Dependent Role="PostShop">
               <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PostShopP__PayNu__47A6A41B">
-          <End Role="Pay" Type="Self.Pay" Multiplicity="1" />
-          <End Role="PostShopPay" Type="Self.PostShopPay" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pay">
-              <PropertyRef Name="PayNumber" />
-            </Principal>
-            <Dependent Role="PostShopPay">
-              <PropertyRef Name="PayNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PostShopP__PostN__46B27FE2">
-          <End Role="PostShop" Type="Self.PostShop" Multiplicity="1" />
-          <End Role="PostShopPay" Type="Self.PostShopPay" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PostShop">
-              <PropertyRef Name="PostNumber" />
-            </Principal>
-            <Dependent Role="PostShopPay">
-              <PropertyRef Name="PostNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -336,68 +282,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserFeedb__ShopN__55F4C372">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopNumber" />
-            </Principal>
-            <Dependent Role="UserFeedback">
-              <PropertyRef Name="ShopNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserFeedb__UserN__55009F39">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserNumber" />
-            </Principal>
-            <Dependent Role="UserFeedback">
-              <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserSave__ShopNu__51300E55">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="UserSave" Type="Self.UserSave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopNumber" />
-            </Principal>
-            <Dependent Role="UserSave">
-              <PropertyRef Name="ShopNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserSave__UserNu__503BEA1C">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserSave" Type="Self.UserSave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserNumber" />
-            </Principal>
-            <Dependent Role="UserSave">
-              <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SpecialSubjectModelStoreContainer">
           <EntitySet Name="Adm" EntityType="Self.Adm" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pay" EntityType="Self.Pay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PostShop" EntityType="Self.PostShop" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PostShopPay" EntityType="Self.PostShopPay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shop" EntityType="Self.Shop" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopImage" EntityType="Self.ShopImage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopMenu" EntityType="Self.ShopMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopPay" EntityType="Self.ShopPay" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShopTag" EntityType="Self.ShopTag" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suggest" EntityType="Self.Suggest" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserSave" EntityType="Self.UserSave" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__PostShop__AdmNum__18EBB532" Association="Self.FK__PostShop__AdmNum__18EBB532">
             <End Role="Adm" EntitySet="Adm" />
             <End Role="PostShop" EntitySet="PostShop" />
@@ -405,14 +300,6 @@
           <AssociationSet Name="FK__PostShop__UserNu__17F790F9" Association="Self.FK__PostShop__UserNu__17F790F9">
             <End Role="Users" EntitySet="Users" />
             <End Role="PostShop" EntitySet="PostShop" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PostShopP__PayNu__47A6A41B" Association="Self.FK__PostShopP__PayNu__47A6A41B">
-            <End Role="Pay" EntitySet="Pay" />
-            <End Role="PostShopPay" EntitySet="PostShopPay" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PostShopP__PostN__46B27FE2" Association="Self.FK__PostShopP__PostN__46B27FE2">
-            <End Role="PostShop" EntitySet="PostShop" />
-            <End Role="PostShopPay" EntitySet="PostShopPay" />
           </AssociationSet>
           <AssociationSet Name="FK__Shop__AdmNumber__73BA3083" Association="Self.FK__Shop__AdmNumber__73BA3083">
             <End Role="Adm" EntitySet="Adm" />
@@ -458,22 +345,6 @@
             <End Role="Users" EntitySet="Users" />
             <End Role="Suggest" EntitySet="Suggest" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserFeedb__ShopN__55F4C372" Association="Self.FK__UserFeedb__ShopN__55F4C372">
-            <End Role="Shop" EntitySet="Shop" />
-            <End Role="UserFeedback" EntitySet="UserFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserFeedb__UserN__55009F39" Association="Self.FK__UserFeedb__UserN__55009F39">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserFeedback" EntitySet="UserFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserSave__ShopNu__51300E55" Association="Self.FK__UserSave__ShopNu__51300E55">
-            <End Role="Shop" EntitySet="Shop" />
-            <End Role="UserSave" EntitySet="UserSave" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserSave__UserNu__503BEA1C" Association="Self.FK__UserSave__UserNu__503BEA1C">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserSave" EntitySet="UserSave" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -496,7 +367,6 @@
           </Key>
           <Property Name="PayNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PayType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PostShopPay" Relationship="Self.FK__PostShopP__PayNu__47A6A41B" FromRole="Pay" ToRole="PostShopPay" />
           <NavigationProperty Name="ShopPay" Relationship="Self.FK__ShopPay__PayNumb__42E1EEFE" FromRole="Pay" ToRole="ShopPay" />
         </EntityType>
         <EntityType Name="PostShop">
@@ -520,18 +390,6 @@
           <Property Name="AdmNumber" Type="Int32" />
           <NavigationProperty Name="Adm" Relationship="Self.FK__PostShop__AdmNum__18EBB532" FromRole="PostShop" ToRole="Adm" />
           <NavigationProperty Name="Users" Relationship="Self.FK__PostShop__UserNu__17F790F9" FromRole="PostShop" ToRole="Users" />
-          <NavigationProperty Name="PostShopPay" Relationship="Self.FK__PostShopP__PostN__46B27FE2" FromRole="PostShop" ToRole="PostShopPay" />
-        </EntityType>
-        <EntityType Name="PostShopPay">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PostNumber" Type="Int32" Nullable="false" />
-          <Property Name="PayNumber" Type="Int32" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Pay" Relationship="Self.FK__PostShopP__PayNu__47A6A41B" FromRole="PostShopPay" ToRole="Pay" />
-          <NavigationProperty Name="PostShop" Relationship="Self.FK__PostShopP__PostN__46B27FE2" FromRole="PostShopPay" ToRole="PostShop" />
         </EntityType>
         <EntityType Name="Shop">
           <Key>
@@ -557,8 +415,6 @@
           <NavigationProperty Name="ShopMenu" Relationship="Self.FK__ShopMenu__ShopNu__14270015" FromRole="Shop" ToRole="ShopMenu" />
           <NavigationProperty Name="ShopPay" Relationship="Self.FK__ShopPay__ShopNum__41EDCAC5" FromRole="Shop" ToRole="ShopPay" />
           <NavigationProperty Name="ShopTag" Relationship="Self.FK__ShopTag__ShopNum__0F624AF8" FromRole="Shop" ToRole="ShopTag" />
-          <NavigationProperty Name="UserFeedback" Relationship="Self.FK__UserFeedb__ShopN__55F4C372" FromRole="Shop" ToRole="UserFeedback" />
-          <NavigationProperty Name="UserSave" Relationship="Self.FK__UserSave__ShopNu__51300E55" FromRole="Shop" ToRole="UserSave" />
         </EntityType>
         <EntityType Name="ShopImage">
           <Key>
@@ -621,20 +477,6 @@
           <NavigationProperty Name="Adm" Relationship="Self.FK__Suggest__AdmNumb__2180FB33" FromRole="Suggest" ToRole="Adm" />
           <NavigationProperty Name="Users" Relationship="Self.FK__Suggest__UserNum__208CD6FA" FromRole="Suggest" ToRole="Users" />
         </EntityType>
-        <EntityType Name="UserFeedback">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserNumber" Type="Int32" Nullable="false" />
-          <Property Name="ShopNumber" Type="Int32" Nullable="false" />
-          <Property Name="MFeedback" Type="Int32" Nullable="false" />
-          <Property Name="EFeedback" Type="Int32" Nullable="false" />
-          <Property Name="PFeedback" Type="Int32" Nullable="false" />
-          <Property Name="FeedbackDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Shop" Relationship="Self.FK__UserFeedb__ShopN__55F4C372" FromRole="UserFeedback" ToRole="Shop" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__UserFeedb__UserN__55009F39" FromRole="UserFeedback" ToRole="Users" />
-        </EntityType>
         <EntityType Name="Users">
           <Key>
             <PropertyRef Name="UserNumber" />
@@ -654,19 +496,6 @@
           <NavigationProperty Name="ShopMenu" Relationship="Self.FK__ShopMenu__UserNu__1332DBDC" FromRole="Users" ToRole="ShopMenu" />
           <NavigationProperty Name="ShopTag" Relationship="Self.FK__ShopTag__UserNum__0E6E26BF" FromRole="Users" ToRole="ShopTag" />
           <NavigationProperty Name="Suggest" Relationship="Self.FK__Suggest__UserNum__208CD6FA" FromRole="Users" ToRole="Suggest" />
-          <NavigationProperty Name="UserFeedback" Relationship="Self.FK__UserFeedb__UserN__55009F39" FromRole="Users" ToRole="UserFeedback" />
-          <NavigationProperty Name="UserSave" Relationship="Self.FK__UserSave__UserNu__503BEA1C" FromRole="Users" ToRole="UserSave" />
-        </EntityType>
-        <EntityType Name="UserSave">
-          <Key>
-            <PropertyRef Name="Number" />
-          </Key>
-          <Property Name="Number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserNumber" Type="Int32" Nullable="false" />
-          <Property Name="ShopNumber" Type="Int32" Nullable="false" />
-          <Property Name="SaveDate" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Shop" Relationship="Self.FK__UserSave__ShopNu__51300E55" FromRole="UserSave" ToRole="Shop" />
-          <NavigationProperty Name="Users" Relationship="Self.FK__UserSave__UserNu__503BEA1C" FromRole="UserSave" ToRole="Users" />
         </EntityType>
         <Association Name="FK__PostShop__AdmNum__18EBB532">
           <End Role="Adm" Type="Self.Adm" Multiplicity="0..1" />
@@ -704,18 +533,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__PostShopP__PayNu__47A6A41B">
-          <End Role="Pay" Type="Self.Pay" Multiplicity="1" />
-          <End Role="PostShopPay" Type="Self.PostShopPay" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pay">
-              <PropertyRef Name="PayNumber" />
-            </Principal>
-            <Dependent Role="PostShopPay">
-              <PropertyRef Name="PayNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ShopPay__PayNumb__42E1EEFE">
           <End Role="Pay" Type="Self.Pay" Multiplicity="1" />
           <End Role="ShopPay" Type="Self.ShopPay" Multiplicity="*" />
@@ -737,18 +554,6 @@
             </Principal>
             <Dependent Role="PostShop">
               <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__PostShopP__PostN__46B27FE2">
-          <End Role="PostShop" Type="Self.PostShop" Multiplicity="1" />
-          <End Role="PostShopPay" Type="Self.PostShopPay" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PostShop">
-              <PropertyRef Name="PostNumber" />
-            </Principal>
-            <Dependent Role="PostShopPay">
-              <PropertyRef Name="PostNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -796,30 +601,6 @@
               <PropertyRef Name="ShopNumber" />
             </Principal>
             <Dependent Role="ShopTag">
-              <PropertyRef Name="ShopNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserFeedb__ShopN__55F4C372">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopNumber" />
-            </Principal>
-            <Dependent Role="UserFeedback">
-              <PropertyRef Name="ShopNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserSave__ShopNu__51300E55">
-          <End Role="Shop" Type="Self.Shop" Multiplicity="1" />
-          <End Role="UserSave" Type="Self.UserSave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Shop">
-              <PropertyRef Name="ShopNumber" />
-            </Principal>
-            <Dependent Role="UserSave">
               <PropertyRef Name="ShopNumber" />
             </Dependent>
           </ReferentialConstraint>
@@ -872,44 +653,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserFeedb__UserN__55009F39">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserFeedback" Type="Self.UserFeedback" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserNumber" />
-            </Principal>
-            <Dependent Role="UserFeedback">
-              <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__UserSave__UserNu__503BEA1C">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="UserSave" Type="Self.UserSave" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserNumber" />
-            </Principal>
-            <Dependent Role="UserSave">
-              <PropertyRef Name="UserNumber" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SpecialSubjectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Adm" EntityType="Self.Adm" />
           <EntitySet Name="Pay" EntityType="Self.Pay" />
           <EntitySet Name="PostShop" EntityType="Self.PostShop" />
-          <EntitySet Name="PostShopPay" EntityType="Self.PostShopPay" />
           <EntitySet Name="Shop" EntityType="Self.Shop" />
           <EntitySet Name="ShopImage" EntityType="Self.ShopImage" />
           <EntitySet Name="ShopMenu" EntityType="Self.ShopMenu" />
           <EntitySet Name="ShopPay" EntityType="Self.ShopPay" />
           <EntitySet Name="ShopTag" EntityType="Self.ShopTag" />
           <EntitySet Name="Suggest" EntityType="Self.Suggest" />
-          <EntitySet Name="UserFeedback" EntityType="Self.UserFeedback" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <EntitySet Name="UserSave" EntityType="Self.UserSave" />
           <AssociationSet Name="FK__PostShop__AdmNum__18EBB532" Association="Self.FK__PostShop__AdmNum__18EBB532">
             <End Role="Adm" EntitySet="Adm" />
             <End Role="PostShop" EntitySet="PostShop" />
@@ -922,10 +676,6 @@
             <End Role="Adm" EntitySet="Adm" />
             <End Role="Suggest" EntitySet="Suggest" />
           </AssociationSet>
-          <AssociationSet Name="FK__PostShopP__PayNu__47A6A41B" Association="Self.FK__PostShopP__PayNu__47A6A41B">
-            <End Role="Pay" EntitySet="Pay" />
-            <End Role="PostShopPay" EntitySet="PostShopPay" />
-          </AssociationSet>
           <AssociationSet Name="FK__ShopPay__PayNumb__42E1EEFE" Association="Self.FK__ShopPay__PayNumb__42E1EEFE">
             <End Role="Pay" EntitySet="Pay" />
             <End Role="ShopPay" EntitySet="ShopPay" />
@@ -933,10 +683,6 @@
           <AssociationSet Name="FK__PostShop__UserNu__17F790F9" Association="Self.FK__PostShop__UserNu__17F790F9">
             <End Role="Users" EntitySet="Users" />
             <End Role="PostShop" EntitySet="PostShop" />
-          </AssociationSet>
-          <AssociationSet Name="FK__PostShopP__PostN__46B27FE2" Association="Self.FK__PostShopP__PostN__46B27FE2">
-            <End Role="PostShop" EntitySet="PostShop" />
-            <End Role="PostShopPay" EntitySet="PostShopPay" />
           </AssociationSet>
           <AssociationSet Name="FK__ShopImage__ShopN__0A9D95DB" Association="Self.FK__ShopImage__ShopN__0A9D95DB">
             <End Role="Shop" EntitySet="Shop" />
@@ -954,14 +700,6 @@
             <End Role="Shop" EntitySet="Shop" />
             <End Role="ShopTag" EntitySet="ShopTag" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserFeedb__ShopN__55F4C372" Association="Self.FK__UserFeedb__ShopN__55F4C372">
-            <End Role="Shop" EntitySet="Shop" />
-            <End Role="UserFeedback" EntitySet="UserFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserSave__ShopNu__51300E55" Association="Self.FK__UserSave__ShopNu__51300E55">
-            <End Role="Shop" EntitySet="Shop" />
-            <End Role="UserSave" EntitySet="UserSave" />
-          </AssociationSet>
           <AssociationSet Name="FK__ShopImage__UserN__09A971A2" Association="Self.FK__ShopImage__UserN__09A971A2">
             <End Role="Users" EntitySet="Users" />
             <End Role="ShopImage" EntitySet="ShopImage" />
@@ -977,14 +715,6 @@
           <AssociationSet Name="FK__Suggest__UserNum__208CD6FA" Association="Self.FK__Suggest__UserNum__208CD6FA">
             <End Role="Users" EntitySet="Users" />
             <End Role="Suggest" EntitySet="Suggest" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserFeedb__UserN__55009F39" Association="Self.FK__UserFeedb__UserN__55009F39">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserFeedback" EntitySet="UserFeedback" />
-          </AssociationSet>
-          <AssociationSet Name="FK__UserSave__UserNu__503BEA1C" Association="Self.FK__UserSave__UserNu__503BEA1C">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UserSave" EntitySet="UserSave" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -1028,16 +758,6 @@
                 <ScalarProperty Name="PostDate" ColumnName="PostDate" />
                 <ScalarProperty Name="PassDate" ColumnName="PassDate" />
                 <ScalarProperty Name="AdmNumber" ColumnName="AdmNumber" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PostShopPay">
-            <EntityTypeMapping TypeName="SpecialSubjectModel.PostShopPay">
-              <MappingFragment StoreEntitySet="PostShopPay">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="PostNumber" ColumnName="PostNumber" />
-                <ScalarProperty Name="PayNumber" ColumnName="PayNumber" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1118,19 +838,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="UserFeedback">
-            <EntityTypeMapping TypeName="SpecialSubjectModel.UserFeedback">
-              <MappingFragment StoreEntitySet="UserFeedback">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="UserNumber" ColumnName="UserNumber" />
-                <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
-                <ScalarProperty Name="MFeedback" ColumnName="MFeedback" />
-                <ScalarProperty Name="EFeedback" ColumnName="EFeedback" />
-                <ScalarProperty Name="PFeedback" ColumnName="PFeedback" />
-                <ScalarProperty Name="FeedbackDate" ColumnName="FeedbackDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SpecialSubjectModel.Users">
               <MappingFragment StoreEntitySet="Users">
@@ -1144,16 +851,6 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="UserDate" ColumnName="UserDate" />
                 <ScalarProperty Name="Blockade" ColumnName="Blockade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserSave">
-            <EntityTypeMapping TypeName="SpecialSubjectModel.UserSave">
-              <MappingFragment StoreEntitySet="UserSave">
-                <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="UserNumber" ColumnName="UserNumber" />
-                <ScalarProperty Name="ShopNumber" ColumnName="ShopNumber" />
-                <ScalarProperty Name="SaveDate" ColumnName="SaveDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

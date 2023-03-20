@@ -4,39 +4,42 @@
     ViewBag.Title = "Edit";
 }
 
-@*, new { enctype = "multipart/form-data"}*@
-
-@using (Html.BeginForm("Edit", "Users", FormMethod.Post))
+@using (Html.BeginForm("Edit","Users",FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.UserNumber)
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.UserNumber)
+    @Html.HiddenFor(model => model.UserAccount)
+    @Html.HiddenFor(model => model.UserPassword)
+    @Html.HiddenFor(model => model.Sex)
+    @Html.HiddenFor(model => model.UserName)
+    @Html.HiddenFor(model => model.Birthday)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Blockade, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @*@Html.EditorFor(model => model.Blockade)*@
-                    @Html.RadioButtonFor(model => model.Blockade, "true", new { @id = "true" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Blockade, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @*@Html.EditorFor(model => model.Blockade)*@
+                @Html.RadioButtonFor(model => model.Blockade, "true", new { @id = "true" })
                     @Html.Label("true", "Yes")
-                    @Html.RadioButtonFor(m => m.Blockade, "false", new { @id = "false" })
+                    @Html.RadioButtonFor(model => model.Blockade, "false", new { @id = "false" })
                     @Html.Label("false", "No")
-                    @Html.ValidationMessageFor(model => model.Blockade, "", new { @class = "text-danger" })
-                </div>
+                @Html.ValidationMessageFor(model => model.Blockade, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="保存" class="btn btn-light" />
-            </div>
-            <span class="text-danger">@ViewBag.Msg</span>
         </div>
     </div>
-}
 
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="保存" class="btn btn-light" />
+        </div>
+        <span class="text-danger">@ViewBag.Msg</span>
+    </div>
+</div>
+}
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

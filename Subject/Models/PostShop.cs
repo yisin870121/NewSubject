@@ -11,37 +11,60 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class PostShop
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PostShop()
-        {
-            this.PostShopPay = new HashSet<PostShopPay>();
-        }
-    
+        [DisplayName("投稿編號")]
         public int PostNumber { get; set; }
+
+        [DisplayName("店家名稱")]
+        [Required(ErrorMessage = "請填寫店家名稱")]
         public string PostName { get; set; }
+
+        [DisplayName("區域")]
         public string PostDistrict { get; set; }
+
+        [DisplayName("地址")]
         public string PostAdress { get; set; }
+
+        [DisplayName("營業時間")]
         public string PostTime { get; set; }
+
+        [DisplayName("電話")]
         public string PostPhone { get; set; }
+
+        [DisplayName("網站")]
         public string PostWeb { get; set; }
+
+        [DisplayName("有插座")]
         public Nullable<bool> PostOutlet { get; set; }
+
+        [DisplayName("有Wifi")]
         public Nullable<bool> PostWifi { get; set; }
+
+        [DisplayName("限時間")]
         public Nullable<bool> PostLimitedTime { get; set; }
+
+        [DisplayName("可訂位")]
         public Nullable<bool> PostOrder { get; set; }
+
+        [DisplayName("會員")]
         public int UserNumber { get; set; }
+
+        [DisplayName("投稿日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PostDate { get; set; }
 
+        [DisplayName("通過日期")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> PassDate { get; set; }
+
+        [DisplayName("管理員")]
         public Nullable<int> AdmNumber { get; set; }
     
         public virtual Adm Adm { get; set; }
         public virtual Users Users { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostShopPay> PostShopPay { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Shop
@@ -22,26 +23,55 @@ namespace Subject.Models
             this.ShopMenu = new HashSet<ShopMenu>();
             this.ShopPay = new HashSet<ShopPay>();
             this.ShopTag = new HashSet<ShopTag>();
-            this.UserFeedback = new HashSet<UserFeedback>();
-            this.UserSave = new HashSet<UserSave>();
         }
-    
+
+        [DisplayName("店家編號")]
         public int ShopNumber { get; set; }
+
+        [DisplayName("店家名稱")]
+        [Required(ErrorMessage = "請填寫店家名稱")]
         public string ShopName { get; set; }
+
+        [DisplayName("區域")]
         public string District { get; set; }
+
+        [DisplayName("地址")]
         public string ShopAddress { get; set; }
+
+        [DisplayName("營業時間")]
         public string ShopTime { get; set; }
+
+        [DisplayName("電話")]
         public string Phone { get; set; }
+
+        [DisplayName("網站")]
         public string Web { get; set; }
+
+        [DisplayName("有插座")]
         public Nullable<bool> Outlet { get; set; }
+
+        [DisplayName("有Wifi")]
         public Nullable<bool> WIFI { get; set; }
+
+        [DisplayName("限時間")]
         public Nullable<bool> LimitedTime { get; set; }
+
+        [DisplayName("可訂位")]
         public Nullable<bool> IsOrder { get; set; }
 
+        [DisplayName("建立日期")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> ShopDate { get; set; }
+
+        [DisplayName("更新日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> UpdateDate { get; set; }
+
+        [DisplayName("管理員")]
         public int AdmNumber { get; set; }
+
+        [DisplayName("已歇業")]
+        [DefaultValue(false)]
         public Nullable<bool> Closed { get; set; }
     
         public virtual Adm Adm { get; set; }
@@ -53,9 +83,5 @@ namespace Subject.Models
         public virtual ICollection<ShopPay> ShopPay { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShopTag> ShopTag { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserFeedback> UserFeedback { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSave> UserSave { get; set; }
     }
 }

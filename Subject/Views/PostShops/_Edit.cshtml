@@ -9,19 +9,21 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.PostNumber)
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.PostNumber)
+    @Html.HiddenFor(model => model.PostName)
+    @Html.HiddenFor(model => model.UserNumber)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.PassDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.PassDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
-                @Html.ValidationMessageFor(model => model.PassDate, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PassDate, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PassDate, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.PassDate, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        @*<div class="form-group">
+    @*<div class="form-group">
             @Html.LabelFor(model => model.AdmNumber, "AdmNumber", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("AdmNumber", (IEnumerable<SelectListItem>)ViewBag.AdmNumber, htmlAttributes: new { @class = "form-control" })
@@ -29,13 +31,13 @@
             </div>
         </div>*@
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="更新" class="btn btn-light" />
-            </div>
-            <span class="text-danger">@ViewBag.Msg</span>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="更新" class="btn btn-light" />
         </div>
+        <span class="text-danger">@ViewBag.Msg</span>
     </div>
+</div>
 }
 
 

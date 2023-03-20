@@ -21,7 +21,7 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="col-4 mt-3 mb-3">
             <div class="form-group">
-                @Html.LabelFor(model => model.ShopName, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ShopName, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ShopName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ShopName, "", new { @class = "text-danger" })
@@ -29,15 +29,57 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.District, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.EditorFor(model => model.District, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <select id="District" name="District" class="form-control">
+                        <option style="display:none">請選擇</option>
+                        <option>前金區</option>
+                        <option>新興區</option>
+                        <option>鹽埕區</option>
+                        <option>左營區</option>
+                        <option>楠梓區</option>
+                        <option>鼓山區</option>
+                        <option>旗津區</option>
+                        <option>苓雅區</option>
+                        <option>三民區</option>
+                        <option>前鎮區</option>
+                        <option>小港區</option>
+                        <option>鳳山區</option>
+                        <option>鳥松區</option>
+                        <option>大社區</option>
+                        <option>仁武區</option>
+                        <option>大樹區</option>
+                        <option>岡山區</option>
+                        <option>燕巢區</option>
+                        <option>梓官區</option>
+                        <option>永安區</option>
+                        <option>橋頭區</option>
+                        <option>阿蓮區</option>
+                        <option>路竹區</option>
+                        <option>湖內區</option>
+                        <option>彌陀區</option>
+                        <option>那瑪夏區</option>
+                        <option>美濃區</option>
+                        <option>旗山區</option>
+                        <option>林園區</option>
+                        <option>大寮區</option>
+                        <option>甲仙區</option>
+                        <option>田寮區</option>
+                        <option>茄萣區</option>
+                        <option>桃源區</option>
+                        <option>茂林區</option>
+                        <option>內門區</option>
+                        <option>杉林區</option>
+                        <option>六龜區</option>
+                    </select>
+
                     @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.ShopAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ShopAddress, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ShopAddress, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ShopAddress, "", new { @class = "text-danger" })
@@ -46,7 +88,7 @@
         </div>
         <div class="col-4 mt-3 mb-3 lines">
             <div class="form-group">
-                @Html.LabelFor(model => model.ShopTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ShopTime, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.ShopTime, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.ShopTime, "", new { @class = "text-danger" })
@@ -54,7 +96,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
@@ -62,7 +104,7 @@
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.Web, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.Web, htmlAttributes: new { @class = "control-label col-md-4" })
                 <div class="col-md-10">
                     @Html.EditorFor(model => model.Web, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.Web, "", new { @class = "text-danger" })
@@ -72,7 +114,7 @@
         <div class="col-4 mt-3 mb-3 lines row">
             <div class="col-6">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Outlet, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Outlet, htmlAttributes: new { @class = "control-label col-md-8" })
                     <div class="">
                         <div class="checkbox">
                             @*@Html.EditorFor(model => model.Outlet, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -95,7 +137,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.WIFI, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.WIFI, htmlAttributes: new { @class = "control-label col-md-8" })
                     <div class="">
                         <div class="checkbox">
                             @*@Html.EditorFor(model => model.WIFI, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -118,7 +160,7 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    @Html.LabelFor(model => model.LimitedTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.LimitedTime, htmlAttributes: new { @class = "control-label col-md-8" })
                     <div class="">
                         <div class="checkbox">
                             @*@Html.EditorFor(model => model.LimitedTime, new { htmlAttributes = new { @class = "form-control" } })*@
@@ -140,7 +182,7 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.IsOrder, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.IsOrder, htmlAttributes: new { @class = "control-label col-md-8" })
                     <div class="">
                         <div class="checkbox">
                             @*@Html.EditorFor(model => model.IsOrder, new { htmlAttributes = new { @class = "form-control" } })*@

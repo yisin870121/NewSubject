@@ -11,13 +11,26 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ShopTag
     {
+        [DisplayName("標籤編號")]
         public int TagNumber { get; set; }
+
+        [DisplayName("會員")]
         public int UserNumber { get; set; }
+
+        [DisplayName("店家")]
         public int ShopNumber { get; set; }
+
+        [DisplayName("標籤內容")]
+        [Required(ErrorMessage = "請填寫標籤")]
         public string Tag { get; set; }
+
+        [DisplayName("建立日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> TagDate { get; set; }
     
         public virtual Shop Shop { get; set; }

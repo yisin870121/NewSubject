@@ -11,21 +11,24 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Pay
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Pay()
         {
-            this.PostShopPay = new HashSet<PostShopPay>();
             this.ShopPay = new HashSet<ShopPay>();
         }
-    
+
+        [DisplayName("付款種類編號")]
         public int PayNumber { get; set; }
+
+        [DisplayName("付款方式")]
+        [Required(ErrorMessage = "付款方式為必填")]
         public string PayType { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PostShopPay> PostShopPay { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ShopPay> ShopPay { get; set; }
     }

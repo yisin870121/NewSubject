@@ -11,50 +11,57 @@
             @Html.DisplayFor(model => model.ShopName)
         </h5>
     </div>
-    <div class="card-body">
-        <div>
-            @Html.DisplayNameFor(model => model.District): @Html.DisplayFor(model => model.District)
-        </div>
+    <div class="card-body row">
+        <div class="col-4">
+            <div>
+                @Html.DisplayNameFor(model => model.District): @Html.DisplayFor(model => model.District)
+            </div>
 
-        <div>
-            @Html.DisplayNameFor(model => model.ShopAddress): @Html.DisplayFor(model => model.ShopAddress)
-        </div>
+            <div>
+                @Html.DisplayNameFor(model => model.ShopAddress): @Html.DisplayFor(model => model.ShopAddress)
+            </div>
 
-        <div>
-            @Html.DisplayNameFor(model => model.ShopTime): @Html.DisplayFor(model => model.ShopTime)
+            <div>
+                @Html.DisplayNameFor(model => model.ShopTime):
+                @if (Model.ShopTime == null)
+                {
+                    <span>無</span>
+                }
+                else
+                {
+                    <div>@Html.Raw(Model.ShopTime.ToString().Replace(" ", "<br>"))</div>
+                }
+            </div>
         </div>
+        <div class="col-4">
+            <div>
+                @Html.DisplayNameFor(model => model.Phone): @Html.DisplayFor(model => model.Phone)
+            </div>
 
-        <div>
-            @Html.DisplayNameFor(model => model.Phone): @Html.DisplayFor(model => model.Phone)
+            <div>
+                @Html.DisplayNameFor(model => model.Web): @Html.DisplayFor(model => model.Web)
+            </div>
         </div>
+        <div class="col-4">
+            <div>
+                @Html.DisplayNameFor(model => model.Outlet): @(c = Model.Outlet == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
+            </div>
 
-        <div>
-            @Html.DisplayNameFor(model => model.Web): @Html.DisplayFor(model => model.Web)
+            <div>
+                @Html.DisplayNameFor(model => model.WIFI): @(c = Model.WIFI == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
+            </div>
+
+            <div>
+                @Html.DisplayNameFor(model => model.LimitedTime): @(c = Model.LimitedTime == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
+            </div>
+
+            <div>
+                @Html.DisplayNameFor(model => model.IsOrder): @(c = Model.IsOrder == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
+            </div>
         </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.Outlet): @(c = Model.Outlet == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.WIFI): @(c = Model.WIFI == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.LimitedTime): @(c = Model.LimitedTime == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.IsOrder): @(c = Model.IsOrder == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
-        </div>
-
-        <div>
-            @Html.DisplayNameFor(model => model.UpdateDate): @Html.DisplayFor(model => model.UpdateDate)
         </div>
     </div>
-</div>
 
 
-@*<div class="alert alert-primary">
-        @Html.Action("_MenuDetail")
-    </div>*@
+
+

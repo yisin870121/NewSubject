@@ -2,6 +2,7 @@
 using Subject.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
@@ -16,15 +17,12 @@ namespace Subject.Controllers
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd= new SetData();
 
-        //int pageSize = 10;
+  
 
-        public ActionResult Index(/*int page = 1*/)
+        public ActionResult Index()
         {
-            //int currentPage = page < 1 ? 1 : page;
-
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
 
-            //var result = shop.ToPagedList(currentPage, pageSize);
             return View(shop);
         }
 
@@ -346,7 +344,7 @@ namespace Subject.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult _EditUserPhoto(Users users, HttpPostedFileBase upload)
+        public ActionResult EditUserPhoto(Users users, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {

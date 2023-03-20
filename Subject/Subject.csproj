@@ -117,8 +117,8 @@
     <Content Include="Global.asax" />
     <Content Include="Models\SpecialSubjectModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SpecialSubjectModel.edmx</DependentUpon>
       <LastGenOutput>SpecialSubjectModel.Context.cs</LastGenOutput>
+      <DependentUpon>SpecialSubjectModel.edmx</DependentUpon>
     </Content>
     <Content Include="Models\SpecialSubjectModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -254,7 +254,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginCheck.cs" />
     <Compile Include="Controllers\PaysController.cs" />
-    <Compile Include="Controllers\PostShopPaysController.cs" />
     <Compile Include="Controllers\PostShopsController.cs" />
     <Compile Include="Controllers\ShopImagesController.cs" />
     <Compile Include="Controllers\ShopMenusController.cs" />
@@ -275,9 +274,6 @@
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\PostShop.cs">
-      <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PostShopPay.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SetData.cs" />
@@ -314,13 +310,7 @@
     <Compile Include="Models\Suggest.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserFeedback.cs">
-      <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Users.cs">
-      <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserSave.cs">
       <DependentUpon>SpecialSubjectModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -384,7 +374,6 @@
     <Content Include="Views\ShopPays\Details.cshtml" />
     <Content Include="Views\ShopPays\Edit.cshtml" />
     <Content Include="Views\ShopPays\Index.cshtml" />
-    <Content Include="Views\PostShops\_PayDetail.cshtml" />
     <Content Include="Views\Adms\AfterLogin.cshtml" />
     <Content Include="Views\Users\Block.cshtml" />
     <Content Include="Views\ShopImages\_Create.cshtml" />

@@ -11,7 +11,9 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Adm
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,9 +23,16 @@ namespace Subject.Models
             this.Shop = new HashSet<Shop>();
             this.Suggest = new HashSet<Suggest>();
         }
-    
+
+        [DisplayName("管理員編號")]
         public int AdmNumber { get; set; }
+
+        [DisplayName("帳號")]
+        [Required(ErrorMessage = "帳號為必填")]
         public string AdmAccount { get; set; }
+
+        [DisplayName("密碼")]
+        [Required(ErrorMessage = "密碼為必填")]
         public string AdmPsaaword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

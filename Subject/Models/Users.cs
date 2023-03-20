@@ -11,6 +11,7 @@ namespace Subject.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Users
@@ -23,23 +24,44 @@ namespace Subject.Models
             this.ShopMenu = new HashSet<ShopMenu>();
             this.ShopTag = new HashSet<ShopTag>();
             this.Suggest = new HashSet<Suggest>();
-            this.UserFeedback = new HashSet<UserFeedback>();
-            this.UserSave = new HashSet<UserSave>();
         }
-    
+
+        [DisplayName("會員編號")]
         public int UserNumber { get; set; }
+
+        [DisplayName("帳號")]
+        [Required(ErrorMessage = "帳號為必填")]
         public string UserAccount { get; set; }
+
+        [DisplayName("密碼")]
+        [Required(ErrorMessage = "密碼為必填")]
         public string UserPassword { get; set; }
+
+        [DisplayName("會員名稱")]
+        [Required(ErrorMessage = "會員名稱為必填")]
         public string UserName { get; set; }
+
+        [DisplayName("性別")]
+        [Required(ErrorMessage = "性別為必填")]
         public bool Sex { get; set; }
+
+        [DisplayName("照片")]
         public byte[] UserPhoto { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("生日")]
+        [Required(ErrorMessage = "生日為必填")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public System.DateTime Birthday { get; set; }
+
+        [DisplayName("年齡")]
         public Nullable<int> Age { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [DisplayName("建立日期")]
+        [DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> UserDate { get; set; }
+
+        [DisplayName("已封鎖")]
+        //[DefaultValue(false)]
         public bool Blockade { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -52,9 +74,5 @@ namespace Subject.Models
         public virtual ICollection<ShopTag> ShopTag { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Suggest> Suggest { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserFeedback> UserFeedback { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserSave> UserSave { get; set; }
     }
 }

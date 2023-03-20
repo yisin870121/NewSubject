@@ -41,14 +41,14 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal border mx-auto row mt-4">
+    <div class="form-horizontal border mx-auto row mt-4" onclick="return false" id="form">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="col-4 mt-3 mb-3">
             <div class="form-group">
                 @Html.LabelFor(model => model.PostName, htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PostName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.PostName, new { htmlAttributes = new { @class = "form-control",id= "PostName" } })
                     @Html.ValidationMessageFor(model => model.PostName, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -56,7 +56,49 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.PostDistrict, htmlAttributes: new { @class = "control-label col-md-6" })
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.PostDistrict, new { htmlAttributes = new { @class = "form-control" } })
+                    @*@Html.EditorFor(model => model.PostDistrict, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <select id="PostDistrict" name="PostDistrict" class="form-control">
+                        <option style="display:none">請選擇</option>
+                        <option>前金區</option>
+                        <option>新興區</option>
+                        <option>鹽埕區</option>
+                        <option>左營區</option>
+                        <option>楠梓區</option>
+                        <option>鼓山區</option>
+                        <option>旗津區</option>
+                        <option>苓雅區</option>
+                        <option>三民區</option>
+                        <option>前鎮區</option>
+                        <option>小港區</option>
+                        <option>鳳山區</option>
+                        <option>鳥松區</option>
+                        <option>大社區</option>
+                        <option>仁武區</option>
+                        <option>大樹區</option>
+                        <option>岡山區</option>
+                        <option>燕巢區</option>
+                        <option>梓官區</option>
+                        <option>永安區</option>
+                        <option>橋頭區</option>
+                        <option>阿蓮區</option>
+                        <option>路竹區</option>
+                        <option>湖內區</option>
+                        <option>彌陀區</option>
+                        <option>那瑪夏區</option>
+                        <option>美濃區</option>
+                        <option>旗山區</option>
+                        <option>林園區</option>
+                        <option>大寮區</option>
+                        <option>甲仙區</option>
+                        <option>田寮區</option>
+                        <option>茄萣區</option>
+                        <option>桃源區</option>
+                        <option>茂林區</option>
+                        <option>內門區</option>
+                        <option>杉林區</option>
+                        <option>六龜區</option>
+                    </select>
+
                     @Html.ValidationMessageFor(model => model.PostDistrict, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -189,7 +231,7 @@
     </div>
 
     <div class="form-group mt-4 mx-auto col-8">
-        <input type="submit" value="送出" class="btn btn-light btn-block mx-auto" onclick="Success()" />
+        <input type="submit" value="送出" class="btn btn-light btn-block mx-auto" id="button"/>
     </div>
 
 }
@@ -203,9 +245,32 @@
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
 
     <script>
-        function Success() {
-            alert("謝謝您的投搞 ! 將經管理員審核，敬請期待");
-        }
+        $(document).ready(function () {
+            $("#button").click(function () {
+                if ($("#PostName").val() != "") {
+                    alert("謝謝您的投搞 ! 將經管理員審核，敬請期待");
+                }
+            })
+        })
+
+
+        //$(document).ready(function () {
+        //    $("#button").click(function () {
+        //        if ($("#name").val() == "") {
+        //            alert("你尚未填寫姓名");
+        //            eval("document.form1['name'].focus()");
+        //        } else if ($("#phone").val() == "") {
+        //            alert("你尚未填寫電話");
+        //            eval("document.form1['phone'].focus()");
+        //        } else if ($("#address").val() == "") {
+        //            alert("你尚未填寫地址");
+        //            eval("document.form1['address'].focus()");
+        //        } else {
+        //            document.form1.submit();
+        //        }
+        //    })
+
+    
 
     </script>
 }

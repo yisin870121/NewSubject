@@ -26,7 +26,6 @@ namespace Subject.Models
         public int ShopNumber { get; set; }
 
         [DisplayName("圖檔")]
-        [Required(ErrorMessage = "請選擇圖檔")]
         public byte[] ShopImage1 { get; set; }
 
         [DisplayName("建立日期")]

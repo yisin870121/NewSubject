@@ -8,9 +8,15 @@
     var a = Model.ShopAddress;
 }
 
+
+
+
 <style>
     #addSave {
-        vertical-align:top;
+        vertical-align: top;
+    }
+    #TimeTitle {
+        background-color: #f8f9fa;
     }
 </style>
 
@@ -27,47 +33,60 @@
         @*<span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>*@
     </div>
     <div class="card-body row">
-        <div class="col-8">
+        <div class="col-7">
+            <div>
+                @Html.DisplayNameFor(model => model.Phone):
+                <span class="@(c=Model.Phone == null? "text-black-50" : "")">@(c=Model.Phone == null? "無" : p)</span>
+            </div>
             <div>
                 @Html.DisplayNameFor(model => model.ShopAddress):
                 @(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")
             </div>
             <div>
-                @Html.DisplayNameFor(model => model.ShopTime): @*@Html.DisplayFor(model => model.ShopTime)*@
+                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>
+            </div>
+            <hr />
+
+            <div class="row p-3">
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.Outlet):
+                    <span class="p-3  @(c = Model.Outlet == null ? "text-black-50" : c=Model.Outlet == true? "text-primary":"text-warning")">@(c = Model.Outlet == null ? "未知" : c = Model.Outlet == true ? "Yes" : "No")</span>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.WIFI):
+                    <span class="p-3 @(c = Model.WIFI == null ? "text-black-50" :c=Model.WIFI == true? "text-primary":"text-warning")">@(c = Model.WIFI == null ? "未知" : c = Model.WIFI == true ? "Yes" : "No")</span>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.LimitedTime):
+                    <span class="p-3 @(c = Model.LimitedTime == null ? "text-black-50" :c=Model.LimitedTime == true? "text-primary":"text-warning")">@(c = Model.LimitedTime == null ? "未知" : c = Model.LimitedTime == true ? "Yes" : "No")</span>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.IsOrder):
+                    <span class="p-3 @(c = Model.IsOrder == null ? "text-black-50" :c=Model.IsOrder == true? "text-primary":"text-warning")">@(c = Model.IsOrder == null ? "未知" : c = Model.IsOrder == true ? "Yes" : "No")</span>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-5 text-center" style="border-left: 1px solid #e0e0e0">
+            <div>
+                <div class="alert" id="TimeTitle">@Html.DisplayNameFor(model => model.ShopTime)</div>
                 @if (Model.ShopTime == null)
                 {
-                    <span>無</span>
+                    <span class="text-black-50">未知</span>
                 }
                 else
                 {
                     <div>@Html.Raw(Model.ShopTime.ToString().Replace(" ", "<br>"))</div>
                 }
             </div>
-            <div>
-                @Html.DisplayNameFor(model => model.Phone):
-                @(c=Model.Phone == null? "無" : p)
-            </div>
-            <div>
-                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>  
-            </div>
         </div>
-        <div class="col-4">
-            <div>
-                @Html.DisplayNameFor(model => model.Outlet):
-                @(c=Model.Outlet == true? "Yes":"No")
-            </div>
-            <div>
-                @Html.DisplayNameFor(model => model.WIFI):
-                @(c=Model.WIFI == true? "Yes":"No")
-            </div>
-            <div>
-                @Html.DisplayNameFor(model => model.LimitedTime):
-                @(c=Model.LimitedTime == true? "Yes":"No")
-            </div>
-            <div>
-                @Html.DisplayNameFor(model => model.IsOrder):
-                @(c=Model.IsOrder == true? "Yes":"No")
-            </div>
+
+        <div class="col-2">
+
+
         </div>
     </div>
 </div>
@@ -115,7 +134,7 @@
     }
 
     $('#addSave').click(function () {
-    
+
         let shop = $(this).closest('.card');
         let newSID = shop.find('#SID').val();
 
@@ -131,7 +150,7 @@
     })
     Buttontoggle();
 
-    
+
 
     function setSave(shop) {
         let newItem = {
@@ -139,7 +158,7 @@
             SName: shop.find('#SName').text()
         }
         save.push(newItem);
-    
+
         alert("已加入收藏");
         Buttontoggle();
     }
@@ -147,18 +166,18 @@
 
     //alert(save.indexOf(save.SID))
     function removeSave(SID) {
-       
+
         for (var item of save) {
             if (item.SID == SID)
                 save.splice(save.indexOf(item), 1);
         }
-        
+
         alert("已取消收藏");
         Buttontoggle();
     }
 
 
-  
+
     //alert($('#SID').val())
     function Buttontoggle() {
         for (var item of save) {
@@ -177,12 +196,12 @@
 
     }
     //Buttontoggle();
-    
 
-   
-   
 
-    
+
+
+
+
 </script>
 
 

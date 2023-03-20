@@ -24,6 +24,14 @@
             width: 100%;
             height: auto;
         }
+
+       /* .modal-dialog {
+            overflow-y: initial !important
+        }
+        .modal-body {
+            height: 600px;
+            overflow-y: auto;
+        }*/
       
     </style>
 
@@ -88,17 +96,17 @@
             <td id="@item.ShopNumber">
                 @Html.DisplayFor(modelItem => item.District)
             </td>
-            <td id="@item.ShopNumber" class="text-center">
-                @(c=item.Outlet == true? "Yes":"No")
+            <td id="@item.ShopNumber" class="text-center @(c = item.Outlet == null ? "text-black-50" : c=item.Outlet == true? "text-primary":"text-warning")">
+                @(c = item.Outlet == null ? "未知" : c = item.Outlet == true ? "Yes" : "No")
             </td>
-            <td id="@item.ShopNumber" class="text-center">
-                @(c= item.WIFI == true? "Yes":"No")
+            <td id="@item.ShopNumber" class="text-center @(c = item.WIFI == null ? "text-black-50" : c=item.WIFI == true? "text-primary":"text-warning")">
+                @(c = item.WIFI == null ? "未知" : c = item.WIFI == true ? "Yes" : "No")
             </td>
-            <td id="@item.ShopNumber" class="text-center">
-                @(c= item.LimitedTime == true? "Yes":"No")
+            <td id="@item.ShopNumber" class="text-center @(c = item.LimitedTime == null ? "text-black-50" : c=item.LimitedTime == true? "text-primary":"text-warning")">
+                @(c = item.LimitedTime == null ? "未知" : c = item.LimitedTime == true ? "Yes" : "No")
             </td>
-            <td id="@item.ShopNumber" class="text-center">
-                @(c= item.IsOrder == true? "Yes":"No")
+            <td id="@item.ShopNumber" class="text-center @(c = item.IsOrder == null ? "text-black-50" : c=item.IsOrder == true? "text-primary":"text-warning")">
+                @(c = item.IsOrder == null ? "未知" : c = item.IsOrder == true ? "Yes" : "No")
             </td>
         </tr>
     }

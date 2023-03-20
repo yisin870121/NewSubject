@@ -51,15 +51,15 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal mt-4">
+    <div class="form-horizontal mt-4" onclick="return false" id="form">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group text-center">
-            @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "" }, cols = "80", rows = "10", placeholder = " 請輸入內容..." })
-            @Html.ValidationMessageFor(model => model.Suggest1, "", new { @class = "text-danger" })
+            @Html.TextAreaFor(model => model.Suggest1, new { htmlAttributes = new { @class = "", id = "Suggest1" }, cols = "80", rows = "10", placeholder = " 請輸入內容..." })
+            <div>@Html.ValidationMessageFor(model => model.Suggest1, "", new { @class = "text-danger" })</div>
         </div>
     </div>
     <div class="form-group mt-4 mx-auto">
-        <input type="submit" value="送出" class="btn btn-light btn-block mx-auto col-3" onclick="Success()" />
+        <input type="submit" value="送出" class="btn btn-light btn-block mx-auto col-3" id="button" />
     </div>
 }
 
@@ -69,9 +69,13 @@
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script>
-        function Success() {
-            alert("謝謝您的建議，我們已收到 !");
-        }
+        $(document).ready(function () {
+            $("#button").click(function () {
+                if ($("#Suggest1").val() != "") {
+                    alert("謝謝您的建議 ! 我們已收到");
+                }
+            })
+        })
 
     </script>
 }

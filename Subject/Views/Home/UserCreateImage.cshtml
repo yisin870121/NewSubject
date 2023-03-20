@@ -24,45 +24,46 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @*<div class="form-group">
-                @Html.LabelFor(model => model.UserNumber, "UserNumber", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("UserNumber", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.UserNumber, "", new { @class = "text-danger" })
-                </div>
-            </div>*@
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShopNumber, "ShopNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+<div class="form-horizontal">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+   
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.UserNumber, "UserNumber", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @*@Html.DropDownList("ShopNumber", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.ShopNumber, "", new { @class = "text-danger" })*@
-                <select id="ShopNumber" name="ShopNumber" class="form-control bg-white border-white" disabled>
-                    @foreach (var item in ViewBag.Shop)
-                    {
-                        <option value="@item.ShopNumber" @(item.ShopNumber.ToString() == sn ? "selected" : "")>@item.ShopName</option>
-                    }
-                </select>
+                @Html.DropDownList("UserNumber", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.UserNumber, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShopImage1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <input type="file" id="upload" name="upload"/>
-                @Html.ValidationMessageFor(model => model.ShopImage1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="送出" class="btn btn-default" id="submit" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShopNumber, "ShopNumber", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @*@Html.DropDownList("ShopNumber", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.ShopNumber, "", new { @class = "text-danger" })*@
+            <select id="ShopNumber" name="ShopNumber" class="form-control bg-white border-white" disabled>
+                @foreach (var item in ViewBag.Shop)
+                {
+                    <option value="@item.ShopNumber" @(item.ShopNumber.ToString() == sn ? "selected" : "")>@item.ShopName</option>
+                }
+            </select>
         </div>
     </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShopImage1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" id="upload" name="upload" />
+            @Html.ValidationMessageFor(model => model.ShopImage1, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="送出" class="btn btn-default" id="submit" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

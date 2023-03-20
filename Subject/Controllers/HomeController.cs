@@ -17,8 +17,6 @@ namespace Subject.Controllers
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd= new SetData();
 
-  
-
         public ActionResult Index()
         {
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
@@ -229,7 +227,8 @@ namespace Subject.Controllers
                 sd.executeSql(sql, list);
                 return RedirectToAction("Index");
             }
-
+            
+            
             ViewBag.Shop = db.Shop.ToList();
             //ViewBag.ShopNumber = new SelectList(db.Shop, "ShopNumber", "ShopName", shopImage.ShopNumber);
             //ViewBag.UserNumber = new SelectList(db.Users, "UserNumber", "UserNumber", shopImage.UserNumber);

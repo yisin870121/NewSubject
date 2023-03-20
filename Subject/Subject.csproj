@@ -384,11 +384,6 @@
     <Content Include="Views\ShopPays\Details.cshtml" />
     <Content Include="Views\ShopPays\Edit.cshtml" />
     <Content Include="Views\ShopPays\Index.cshtml" />
-    <Content Include="Views\PostShopPays\_Create.cshtml" />
-    <Content Include="Views\PostShopPays\_Delete.cshtml" />
-    <Content Include="Views\PostShopPays\Details.cshtml" />
-    <Content Include="Views\PostShopPays\Edit.cshtml" />
-    <Content Include="Views\PostShopPays\Index.cshtml" />
     <Content Include="Views\PostShops\_PayDetail.cshtml" />
     <Content Include="Views\Adms\AfterLogin.cshtml" />
     <Content Include="Views\Users\Block.cshtml" />

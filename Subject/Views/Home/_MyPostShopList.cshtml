@@ -7,7 +7,7 @@
 
 <h4 class="text-center alert profile"><i class="bi bi-shop"></i> 我的投稿</h4>
 
-<table class="table">
+<table class="table table-responsive-xl">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.PostName)
@@ -24,7 +24,7 @@
                 @Html.DisplayFor(modelItem => item.PostName)
             </td>
             <td>
-                <button type="button" id="@item.PostNumber" class="btn btn-primary disabled mt-2 w-75 mx-auto" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)" title="詳細資料">
+                <button type="button" id="@item.PostNumber" class="btn btn-primary btn-sm disabled mt-2 w-50 mx-auto" data-toggle="modal" data-target="#showDetailModal" onclick="getDetailData(event)" title="詳細資料">
                     <i class="bi bi-journal-text" id="@item.PostNumber"></i>
                 </button>
             </td>

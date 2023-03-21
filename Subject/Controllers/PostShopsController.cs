@@ -11,7 +11,8 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
-   
+
+    [LoginCheck]
     public class PostShopsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();

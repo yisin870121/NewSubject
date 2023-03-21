@@ -3,7 +3,16 @@
 @{
     ViewBag.Title = "Details";
     var c = "";
+    var p = Model.Phone;
+    var d = Model.District;
+    var a = Model.ShopAddress;
 }
+
+<style>
+    #TimeTitle {
+        background-color: #f8f9fa;
+    }
+</style>
 
 <div class="card">
     <div class="card-header">
@@ -12,20 +21,49 @@
         </h5>
     </div>
     <div class="card-body row">
-        <div class="col-4">
+        <div class="col-7">
             <div>
-                @Html.DisplayNameFor(model => model.District): @Html.DisplayFor(model => model.District)
+                @Html.DisplayNameFor(model => model.Phone):
+                <span class="@(c=Model.Phone == null? "text-black-50" : "")">@(c=Model.Phone == null? "無" : p)</span>
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.ShopAddress):
+                <span class="@(Model.District != null && Model.ShopAddress != null? "":"text-black-50")">@(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")</span>
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>
+            </div>
+            <hr />
+
+            <div class="row p-3">
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.Outlet):
+                    <span class="p-3  @(c = Model.Outlet == null ? "text-black-50" : c=Model.Outlet == true? "text-primary":"text-warning")">@(c = Model.Outlet == null ? "未知" : c = Model.Outlet == true ? "Yes" : "No")</span>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.WIFI):
+                    <span class="p-3 @(c = Model.WIFI == null ? "text-black-50" :c=Model.WIFI == true? "text-primary":"text-warning")">@(c = Model.WIFI == null ? "未知" : c = Model.WIFI == true ? "Yes" : "No")</span>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.LimitedTime):
+                    <span class="p-3 @(c = Model.LimitedTime == null ? "text-black-50" :c=Model.LimitedTime == true? "text-primary":"text-warning")">@(c = Model.LimitedTime == null ? "未知" : c = Model.LimitedTime == true ? "Yes" : "No")</span>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.IsOrder):
+                    <span class="p-3 @(c = Model.IsOrder == null ? "text-black-50" :c=Model.IsOrder == true? "text-primary":"text-warning")">@(c = Model.IsOrder == null ? "未知" : c = Model.IsOrder == true ? "Yes" : "No")</span>
+                </div>
             </div>
 
-            <div>
-                @Html.DisplayNameFor(model => model.ShopAddress): @Html.DisplayFor(model => model.ShopAddress)
-            </div>
 
+        </div>
+        <div class="col-5 text-center" style="border-left: 1px solid #e0e0e0">
             <div>
-                @Html.DisplayNameFor(model => model.ShopTime):
+                <div class="alert" id="TimeTitle">@Html.DisplayNameFor(model => model.ShopTime)</div>
                 @if (Model.ShopTime == null)
                 {
-                    <span>無</span>
+                    <span class="text-black-50">未知</span>
                 }
                 else
                 {
@@ -33,34 +71,13 @@
                 }
             </div>
         </div>
-        <div class="col-4">
-            <div>
-                @Html.DisplayNameFor(model => model.Phone): @Html.DisplayFor(model => model.Phone)
-            </div>
 
-            <div>
-                @Html.DisplayNameFor(model => model.Web): @Html.DisplayFor(model => model.Web)
-            </div>
-        </div>
-        <div class="col-4">
-            <div>
-                @Html.DisplayNameFor(model => model.Outlet): @(c = Model.Outlet == null ? "未知" : c=Model.Outlet == true? "Yes":"No")
-            </div>
+        <div class="col-2">
 
-            <div>
-                @Html.DisplayNameFor(model => model.WIFI): @(c = Model.WIFI == null ? "未知" : c=Model.WIFI == true? "Yes":"No")
-            </div>
 
-            <div>
-                @Html.DisplayNameFor(model => model.LimitedTime): @(c = Model.LimitedTime == null ? "未知" : c=Model.LimitedTime == true? "Yes":"No")
-            </div>
-
-            <div>
-                @Html.DisplayNameFor(model => model.IsOrder): @(c = Model.IsOrder == null ? "未知" : c=Model.IsOrder == true? "Yes":"No")
-            </div>
-        </div>
         </div>
     </div>
+</div>
 
 
 

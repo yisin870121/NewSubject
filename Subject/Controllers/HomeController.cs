@@ -12,11 +12,13 @@ using System.Web.UI.WebControls;
 
 namespace Subject.Controllers
 {
+    [LoginCheck(id = 1)]
     public class HomeController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd= new SetData();
 
+        [LoginCheck(flag = false)]
         public ActionResult Index()
         {
             var shop = db.Shop.Where(p => p.Closed == false).ToList();
@@ -24,6 +26,7 @@ namespace Subject.Controllers
             return View(shop);
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult _Details(int? id)
         {
             if (id == null)
@@ -41,7 +44,7 @@ namespace Subject.Controllers
             return PartialView(shop);
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -59,12 +62,13 @@ namespace Subject.Controllers
             return View(shop);
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult _MenuDetail(int id)
         {
             return PartialView(db.ShopMenu.Where(m => m.ShopNumber == id).ToList());
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult UserCreateMenu()
         {
             ViewBag.Shop = db.Shop.ToList();
@@ -101,13 +105,13 @@ namespace Subject.Controllers
             return View(shopMenu);
         }
 
-
+        [LoginCheck(flag = false)]
         public ActionResult _TagDetail(int id)
         {
             return PartialView(db.ShopTag.Where(m => m.ShopNumber == id).ToList());
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult UserCreateTag()
         {
             ViewBag.Shop = db.Shop.ToList();
@@ -148,12 +152,13 @@ namespace Subject.Controllers
             return View(shopTag);
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult _PayDetail(int id)
         {
             return PartialView(db.ShopPay.Where(m => m.ShopNumber == id).ToList());
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult UserCreatePay()
         {
             ViewBag.Shop = db.Shop.ToList();
@@ -188,12 +193,13 @@ namespace Subject.Controllers
             return View(shopPay);
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult _ImageDetail(int id)
         {
             return PartialView(db.ShopImage.Where(m => m.ShopNumber == id).ToList());
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult UserCreateImage()
         {
             ViewBag.Shop = db.Shop.ToList();
@@ -236,7 +242,7 @@ namespace Subject.Controllers
             return View(shopImage);
         }
 
-        
+        [LoginCheck(flag = false)]
         public FileContentResult GetShopPhoto(int id)
         {
             var Photo = db.ShopImage.Find(id);
@@ -245,6 +251,7 @@ namespace Subject.Controllers
             return null;
 
         }
+
 
         public FileContentResult GetUserPhoto(int id)
         {
@@ -255,11 +262,13 @@ namespace Subject.Controllers
 
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult SignUp()
         {
             return View();
         }
 
+        [LoginCheck(flag = false)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SignUp(Users users, HttpPostedFileBase upload)
@@ -298,12 +307,13 @@ namespace Subject.Controllers
             return View(users);
         }
 
-        
+        [LoginCheck(flag = false)]
         public ActionResult Login()
         {
             return View();
         }
 
+        [LoginCheck(flag = false)]
         [HttpPost]
         public ActionResult Login(VMLogin vMLogin)
         {
@@ -326,7 +336,7 @@ namespace Subject.Controllers
 
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult UserIndex()
         {
             int id = ((Users)Session["user"]).UserNumber;
@@ -335,7 +345,7 @@ namespace Subject.Controllers
             return View(users);
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult _EditUserPhoto()
         {
             int id = ((Users)Session["user"]).UserNumber;
@@ -374,20 +384,20 @@ namespace Subject.Controllers
             
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult Logout()
         {
             Session["user"] = null;
             return RedirectToAction("Index");
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult _MySave()
         {
             return PartialView();
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult PostShop()
         {
             ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");
@@ -431,7 +441,7 @@ namespace Subject.Controllers
             return View(postShop);
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult _MyPostShopList()
         {
             int id = ((Users)Session["user"]).UserNumber;
@@ -440,7 +450,7 @@ namespace Subject.Controllers
             return PartialView(db.PostShop.Where(m=>m.UserNumber == users.UserNumber).ToList());
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult _MyPostShopDetail(int? id)
         {
             if (id == null)
@@ -455,7 +465,7 @@ namespace Subject.Controllers
             return PartialView(postShop);
         }
 
-        [LoginCheck(id = 1)]
+        //[LoginCheck(id = 1)]
         public ActionResult Suggest()
         {
             ViewBag.AdmNumber = new SelectList(db.Adm, "AdmNumber", "AdmNumber");

@@ -20,6 +20,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class ShopImagesController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -148,7 +149,7 @@ namespace Subject.Controllers
             base.Dispose(disposing);
         }
 
-
+        //[LoginCheck(flag = false)]
         public FileContentResult GetPhoto(int id)
         {
             var photo = db.ShopImage.Find(id);
@@ -158,6 +159,7 @@ namespace Subject.Controllers
 
         }
 
+        [LoginCheck(flag = false)]
         public FileContentResult GetSavePhoto(int id)
         {
             var photo = db.ShopImage.Where(m => m.ShopNumber == id).FirstOrDefault();

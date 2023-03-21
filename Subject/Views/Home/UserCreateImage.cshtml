@@ -73,7 +73,7 @@
             @*@Html.LabelFor(model => model.ShopImage1, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="">
                 <span class="text-primary">請選擇照片</span>
-                <input type="file" id="upload" name="upload" class="pl-4" />
+                <input type="file" id="upload" name="upload" class="pl-4" required/>
                 @Html.ValidationMessageFor(model => model.ShopImage1, "", new { @class = "text-danger" })
             </div>
         </div>

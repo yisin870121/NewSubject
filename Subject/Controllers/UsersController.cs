@@ -15,6 +15,7 @@ using Subject.ViewModels;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class UsersController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -173,7 +174,7 @@ namespace Subject.Controllers
         }
 
         // GET: Users/Delete/5
-        public ActionResult _Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -184,11 +185,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return PartialView(users);
+            return View(users);
         }
 
         //POST: Users/Delete/5
-        [HttpPost, ActionName("_Delete")]
+        [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
@@ -213,6 +214,7 @@ namespace Subject.Controllers
             return View(db.Users.Where(m => m.Blockade).ToList());
         }
 
+        //[LoginCheck(flag = false)]
         public FileContentResult GetPhoto(int id)
         {
             var photo = db.Users.Find(id);

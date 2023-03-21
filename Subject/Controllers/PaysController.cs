@@ -11,6 +11,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class PaysController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();

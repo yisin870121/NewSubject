@@ -23,7 +23,7 @@
         </dd>
     </dl>
 
-    @using (Html.BeginForm("_Delete", "Users", FormMethod.Post)) {
+    @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color text-right">

@@ -14,13 +14,16 @@
             @Html.DisplayNameFor(model => model.PostNumber)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.UserNumber)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.PostDate)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.PassDate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Adm.AdmNumber)
+            @Html.DisplayNameFor(model => model.AdmNumber)
         </th>
 
         <th>管理</th>
@@ -33,13 +36,16 @@
                 @Html.DisplayFor(modelItem => item.PostNumber)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Users.UserName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PostDate)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PassDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Adm.AdmNumber)
+                @Html.DisplayFor(modelItem => item.Adm.AdmAccount)
             </td>
 
             <td>
@@ -59,7 +65,7 @@
 </table>
 
 <div class="modal fade" id="showDetailModal" tabindex="-1">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="text-dark mt-2 ml-2"><h5>詳細資料</h5></div>

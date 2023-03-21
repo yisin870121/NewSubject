@@ -3,44 +3,79 @@
 @{
     ViewBag.Title = "Details";
     var c = "";
+    var p = Model.PostPhone;
+    var d = Model.PostDistrict;
+    var a = Model.PostAdress;
 }
 
+<style>
+    #TimeTitle {
+        background-color: #f8f9fa;
+    }
+</style>
+
 <div class="card">
-    <div class="card-body">
-        <div>
-            @Html.DisplayNameFor(model => model.Users.UserNumber): @Html.DisplayFor(model => model.Users.UserNumber)
+    <div class="card-header">
+        <h5>
+            @Html.DisplayFor(model => model.PostName)
+        </h5>
+    </div>
+    <div class="card-body row">
+        <div class="col-7">
+            <div>
+                @Html.DisplayNameFor(model => model.PostPhone):
+                <span class="@(c=Model.PostPhone == null? "text-black-50" : "")">@(c=Model.PostPhone == null? "無" : p)</span>
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.PostAdress):
+                <span class="@(Model.PostDistrict != null && Model.PostAdress != null? "":"text-black-50")">@(Model.PostDistrict != null && Model.PostAdress != null? "高雄市"+d+a:"無")</span>
+            </div>
+            <div>
+                @Html.DisplayNameFor(model => model.PostWeb): <a href="@Html.DisplayFor(model => model.PostWeb)">@Html.DisplayFor(model => model.PostWeb)</a>
+            </div>
+            <hr />
+
+            <div class="row p-3">
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.PostOutlet):
+                    <span class="p-3  @(c = Model.PostOutlet == null ? "text-black-50" : c=Model.PostOutlet == true? "text-primary":"text-warning")">@(c = Model.PostOutlet == null ? "未知" : c = Model.PostOutlet == true ? "Yes" : "No")</span>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.PostWifi):
+                    <span class="p-3 @(c = Model.PostWifi == null ? "text-black-50" :c=Model.PostWifi == true? "text-primary":"text-warning")">@(c = Model.PostWifi == null ? "未知" : c = Model.PostWifi == true ? "Yes" : "No")</span>
+                </div>
+            </div>
+            <div class="row p-3">
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.PostLimitedTime):
+                    <span class="p-3 @(c = Model.PostLimitedTime == null ? "text-black-50" :c=Model.PostLimitedTime == true? "text-primary":"text-warning")">@(c = Model.PostLimitedTime == null ? "未知" : c = Model.PostLimitedTime == true ? "Yes" : "No")</span>
+                </div>
+                <div class="col-5">
+                    @Html.DisplayNameFor(model => model.PostOrder):
+                    <span class="p-3 @(c = Model.PostOrder == null ? "text-black-50" :c=Model.PostOrder == true? "text-primary":"text-warning")">@(c = Model.PostOrder == null ? "未知" : c = Model.PostOrder == true ? "Yes" : "No")</span>
+                </div>
+            </div>
+
+
         </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostName): @Html.DisplayFor(model => model.PostName)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostDistrict): @Html.DisplayFor(model => model.PostDistrict)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostAdress): @Html.DisplayFor(model => model.PostAdress)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostTime): @Html.DisplayFor(model => model.PostTime)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostPhone): @Html.DisplayFor(model => model.PostPhone)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostWeb): @Html.DisplayFor(model => model.PostWeb)
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostOutlet): @(c = Model.PostOutlet == null ? "未知" : c=Model.PostOutlet == true? "Yes":"No")
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostWifi): @(c = Model.PostWifi == null ? "未知" : c=Model.PostWifi == true? "Yes":"No")
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostLimitedTime): @(c = Model.PostLimitedTime == null ? "未知" : c=Model.PostLimitedTime == true? "Yes":"No")
-        </div>
-        <div>
-            @Html.DisplayNameFor(model => model.PostOrder): @(c = Model.PostOrder == null ? "未知" : c=Model.PostOrder == true? "Yes":"No")
+        <div class="col-5 text-center" style="border-left: 1px solid #e0e0e0">
+            <div>
+                <div class="alert" id="TimeTitle">@Html.DisplayNameFor(model => model.PostTime)</div>
+                @if (Model.PostTime == null)
+                {
+                    <span class="text-black-50">未知</span>
+                }
+                else
+                {
+                    <div>@Html.Raw(Model.PostTime.ToString().Replace(" ", "<br>"))</div>
+                }
+            </div>
         </div>
 
+        <div class="col-2">
+
+
+        </div>
     </div>
 </div>
 

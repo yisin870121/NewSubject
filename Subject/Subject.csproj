@@ -332,7 +332,7 @@
     <Content Include="Views\Adms\_Create.cshtml" />
     <Content Include="Views\Adms\Login.cshtml" />
     <Content Include="Views\Users\_Create.cshtml" />
-    <Content Include="Views\Users\_Delete.cshtml" />
+    <Content Include="Views\Users\Delete.cshtml" />
     <Content Include="Views\Users\_Details.cshtml" />
     <Content Include="Views\Users\_Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
@@ -352,7 +352,7 @@
     <Content Include="Views\PostShops\_Edit.cshtml" />
     <Content Include="Views\PostShops\Index.cshtml" />
     <Content Include="Views\Suggests\_Create.cshtml" />
-    <Content Include="Views\Suggests\Delete.cshtml" />
+    <Content Include="Views\Suggests\_Delete.cshtml" />
     <Content Include="Views\Suggests\_Details.cshtml" />
     <Content Include="Views\Suggests\_Edit.cshtml" />
     <Content Include="Views\Suggests\Index.cshtml" />

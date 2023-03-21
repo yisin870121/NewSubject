@@ -12,6 +12,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class ShopMenusController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();

@@ -19,13 +19,13 @@ namespace Subject.Controllers
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
         SetData sd = new SetData();
 
-        //[LoginCheck]
+       
         public ActionResult Index()
         {
             return View(db.Adm.ToList());
         }
 
-        //[LoginCheck]
+        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -40,7 +40,7 @@ namespace Subject.Controllers
             return View(adm);
         }
 
-        //[LoginCheck]
+       
         public ActionResult _Create()
         {
             return PartialView();
@@ -49,7 +49,7 @@ namespace Subject.Controllers
         // POST: Adms/Create
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        [LoginCheck]
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Adm adm)
@@ -73,7 +73,7 @@ namespace Subject.Controllers
             return View(adm);
         }
 
-        //[LoginCheck]
+    
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -91,7 +91,7 @@ namespace Subject.Controllers
         // POST: Adms/Edit/5
         // 若要避免過量張貼攻擊，請啟用您要繫結的特定屬性。
         // 如需詳細資料，請參閱 https://go.microsoft.com/fwlink/?LinkId=317598。
-        //[LoginCheck]
+ 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "AdmNumber,AdmAccount,AdmPsaaword")] Adm adm)
@@ -105,7 +105,7 @@ namespace Subject.Controllers
             return View(adm);
         }
 
-        //[LoginCheck]
+
         public ActionResult _Delete(int? id)
         {
             if (id == null)
@@ -120,7 +120,7 @@ namespace Subject.Controllers
             return PartialView(adm);
         }
 
-        //[LoginCheck]
+    
         [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -164,7 +164,7 @@ namespace Subject.Controllers
             return RedirectToAction("AfterLogin");
         }
 
-        //[LoginCheck]
+  
         public ActionResult Logout()
         {
             Session["adm"] = null;

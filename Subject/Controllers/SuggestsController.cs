@@ -11,7 +11,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
-   
+    [LoginCheck]
     public class SuggestsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -122,7 +122,7 @@ namespace Subject.Controllers
         }
 
         // GET: Suggests/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
@@ -133,11 +133,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(suggest);
+            return PartialView(suggest);
         }
 
         // POST: Suggests/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

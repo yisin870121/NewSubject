@@ -12,6 +12,7 @@ using Subject.Models;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class ShopsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -63,6 +64,7 @@ namespace Subject.Controllers
             return PartialView(db.ShopImage.Where(m => m.ShopNumber == id).ToList());
         }
 
+        //[LoginCheck(flag = false)]
         public FileContentResult GetPhoto(int id)
         {
             var photo = db.ShopImage.Find(id);

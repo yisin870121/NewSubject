@@ -40,7 +40,7 @@
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.ShopAddress):
-                @(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")
+                <span class="@(Model.District != null && Model.ShopAddress != null? "":"text-black-50")">@(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")</span>
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>

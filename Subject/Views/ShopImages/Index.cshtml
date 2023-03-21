@@ -6,7 +6,7 @@
 
 <h2 class="mt-3 text-center">照片管理</h2>
 
-<table class="table table-responsive-lg mt-3">
+<table class="table table-hover table-responsive-lg mt-3">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ImageNumber)
@@ -16,6 +16,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ShopImage1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Users.UserName)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ImageDate)
@@ -36,6 +39,9 @@
             </td>
             <td>
                 <img src="@Url.Action("GetPhoto", new {id=item.ImageNumber})" width="100" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Users.UserName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ImageDate)

@@ -347,7 +347,7 @@
     <Content Include="Views\Pays\_Edit.cshtml" />
     <Content Include="Views\Pays\Index.cshtml" />
     <Content Include="Views\PostShops\_Create.cshtml" />
-    <Content Include="Views\PostShops\Delete.cshtml" />
+    <Content Include="Views\PostShops\_Delete.cshtml" />
     <Content Include="Views\PostShops\_Details.cshtml" />
     <Content Include="Views\PostShops\_Edit.cshtml" />
     <Content Include="Views\PostShops\Index.cshtml" />

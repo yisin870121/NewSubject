@@ -13,6 +13,7 @@ using Subject.ViewModels;
 
 namespace Subject.Controllers
 {
+    [LoginCheck]
     public class AdmsController : Controller
     {
         private SpecialSubjectEntities db = new SpecialSubjectEntities();
@@ -139,11 +140,13 @@ namespace Subject.Controllers
             base.Dispose(disposing);
         }
 
+        [LoginCheck(flag = false)]
         public ActionResult Login()
         {
             return View();
         }
 
+        [LoginCheck(flag = false)]
         [HttpPost]
         public ActionResult Login(VMLogin vMLogin)
         {
@@ -161,7 +164,7 @@ namespace Subject.Controllers
             return RedirectToAction("AfterLogin");
         }
 
-        [LoginCheck]
+        //[LoginCheck]
         public ActionResult Logout()
         {
             Session["adm"] = null;

@@ -28,7 +28,7 @@
         @foreach (var item in Model)
         {
             <div class="carousel-item @IsActive(c)">
-                <img src="@Url.Action("GetPhoto",new { id = item.ImageNumber })" class="w-50" />
+                <img src="@Url.Action("GetPhoto",new { id = item.ImageNumber })" class="w-100" />
             </div>
             c++;
         }

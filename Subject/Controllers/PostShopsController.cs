@@ -137,7 +137,7 @@ namespace Subject.Controllers
         }
 
         // GET: PostShops/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult _Delete(int? id)
         {
             if (id == null)
             {
@@ -148,11 +148,11 @@ namespace Subject.Controllers
             {
                 return HttpNotFound();
             }
-            return View(postShop);
+            return PartialView(postShop);
         }
 
         // POST: PostShops/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName("_Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

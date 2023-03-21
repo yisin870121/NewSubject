@@ -37,7 +37,7 @@
 
     let initSave = function () {
         if (!localStorage.getItem("save") || localStorage.getItem("save") == "[]") {
-            $('#MySave').html(`<h5 class="text-center text-danger">目前沒有收藏任何店家</h5>`);
+            $('#MySave').html(`<h5 class="text-center text-danger mx-auto">目前沒有收藏任何店家</h5>`);
         }
         else {
             save = JSON.parse(localStorage.getItem("save"));

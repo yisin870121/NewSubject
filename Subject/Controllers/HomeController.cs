@@ -21,7 +21,7 @@ namespace Subject.Controllers
         [LoginCheck(flag = false)]
         public ActionResult Index()
         {
-            var shop = db.Shop.Where(p => p.Closed == false).ToList();
+            var shop = db.Shop.Where(p => p.Closed == false).OrderBy(p=>p.District);
 
             return View(shop);
         }

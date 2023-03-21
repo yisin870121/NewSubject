@@ -19,9 +19,9 @@
     @Html.HiddenFor(model => model.Birthday)
 
     <div class="form-group">
-        @Html.LabelFor(model => model.UserPhoto, htmlAttributes: new { @class = "control-label col-md-2" })
+        @*@Html.LabelFor(model => model.UserPhoto, htmlAttributes: new { @class = "control-label col-md-6" })*@
         <div class="col-md-10">
-            <input type="file" id="upload" name="upload" />
+            <input type="file" id="upload" name="upload" required/>
             @Html.ValidationMessageFor(model => model.UserPhoto, "", new { @class = "text-danger" })
         </div>
     </div>

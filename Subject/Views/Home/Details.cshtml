@@ -31,7 +31,7 @@
             <strong id="SName">@Html.DisplayFor(model => model.ShopName)</strong>
         </span>
         <span class="ml-3"><button class="bi bi-heart-fill btn btn-danger disabled" id="addSave"> 收藏</button></span>
-        <span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>
+        @*<span class="ml-1"><button class="btn btn-danger disabled"><i class="bi bi-pencil-fill"></i> 評分</button></span>*@
     </div>
     <div class="card-body row">
         <div class="col-7">
@@ -42,6 +42,14 @@
             <div>
                 @Html.DisplayNameFor(model => model.ShopAddress):
                 <span class="@(Model.District != null && Model.ShopAddress != null? "":"text-black-50")">@(Model.District != null && Model.ShopAddress != null? "高雄市"+d+a:"無")</span>
+                @if (Model.District != null && Model.ShopAddress != null)
+                {
+                    <a href="http://www.google.com.tw/maps/search/@Model.ShopName" target="_blank">地圖</a>
+                }
+                else
+                {
+
+                }
             </div>
             <div>
                 @Html.DisplayNameFor(model => model.Web): <a href="@Html.DisplayFor(model => model.Web)">@Html.DisplayFor(model => model.Web)</a>

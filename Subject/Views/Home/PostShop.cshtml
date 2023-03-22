@@ -41,7 +41,7 @@
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal border mx-auto row mt-4" onclick="return false" id="form">
+    <div class="form-horizontal border mx-auto row mt-4" @*onclick="return false"*@ id="form">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="col-4 mt-3 mb-3">
